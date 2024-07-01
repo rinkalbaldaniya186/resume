@@ -12,7 +12,7 @@ class _SkillPageState extends State<SkillPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Add Personal Detail',
           style: TextStyle(color: Colors.white, fontSize: 30),
         ),
