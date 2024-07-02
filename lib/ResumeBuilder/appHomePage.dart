@@ -83,7 +83,8 @@ class _AppHomePageState extends State<AppHomePage> {
                   ),
                 )
               ],
-            )),
+            )
+        ),
       ),
     );
   }

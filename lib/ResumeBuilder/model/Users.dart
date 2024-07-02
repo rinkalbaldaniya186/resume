@@ -3,7 +3,7 @@ class Users {
   String firstName;
   // String middleName;
   String lastName;
-  int dob;
+  num dob;
   String gender;
   int mobile;
   String email;

@@ -55,76 +55,73 @@ class _PersonalDetailState extends State<PersonalDetail> {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: textField(
-              _labelText = 'First Name',
-              _hintText = 'Enter Your First Name',
-              _controller = _firstNameController,
-              _icon = Icon(Icons.person, color: Colors.black, size: 27),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'First Name',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
 
-            ),
-          ),
-          // Padding(
-          //   padding: EdgeInsets.only(top: 22,left: 20,right: 20),
-          //   child: textField(
-          //     _labelText = 'Middle Name',
-          //     _hintText = 'Enter Your Middle Name',
-          //     _controller = _middleNameController,
-          //     _icon = Icon(Icons.person,color: Colors.black,size: 27),
-          //   ),
-          // ),
-          Padding(
-            padding: EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: textField(
-              _labelText = 'Last Name',
-              _hintText = 'Enter Your Last Name',
-              _controller = _lastNameController,
-              _icon = Icon(Icons.person, color: Colors.black, size: 27),
+              ),
+              controller: _firstNameController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: textField(
-              _labelText = 'Date of Birth',
-              _hintText = 'Enter Your Date of Birth',
-              _controller = _dobController,
-              _icon = Icon(Icons.date_range, color: Colors.black, size: 27),
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Last Name',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+              ),
+              controller: _lastNameController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: textField(
-              _labelText = 'Gender',
-              _hintText = 'Enter Your gender',
-              _controller = _genderController,
-              _icon = Icon(Icons.person_2_outlined, color: Colors.black, size: 27),
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Date of Birth',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+              ),
+              controller: _dobController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: textField(
-              _labelText = 'Mobile Number',
-              _hintText = 'Enter Your Mobile Number',
-              _controller = _mNumController,
-              _icon = Icon(Icons.numbers, color: Colors.black, size: 27),
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Gender',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+              ),
+              controller: _genderController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: textField(
-              _labelText = 'Email Address',
-              _hintText = 'Enter Your Email Address',
-              _controller = _emailController,
-              _icon = Icon(Icons.email, color: Colors.black, size: 27),
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Mobile Number',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+              ),
+              controller: _mNumController,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: textField(
-              _labelText = 'Current Address',
-              _hintText = 'Enter Your Current Address Name',
-              _controller = _addressController,
-              _icon = Icon(Icons.location_on_rounded,
-                  color: Colors.black, size: 27),
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Email Address',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+              ),
+              controller: _emailController,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Current Address',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+              ),
+              controller: _addressController,
             ),
           ),
           Padding(
@@ -237,3 +234,139 @@ TextField textField(String labelText, String hintTxt, controller, icon) {
     controller: _controller,
   );
 }
+//  ListView(
+//         children: [
+//           Padding(
+//             padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+//             child: textField(
+//               _labelText = 'First Name',
+//               _hintText = 'Enter Your First Name',
+//               _controller = _firstNameController,
+//               _icon = Icon(Icons.person, color: Colors.black, size: 27),
+//
+//             ),
+//           ),
+//           // Padding(
+//           //   padding: EdgeInsets.only(top: 22,left: 20,right: 20),
+//           //   child: textField(
+//           //     _labelText = 'Middle Name',
+//           //     _hintText = 'Enter Your Middle Name',
+//           //     _controller = _middleNameController,
+//           //     _icon = Icon(Icons.person,color: Colors.black,size: 27),
+//           //   ),
+//           // ),
+//           Padding(
+//             padding: EdgeInsets.only(top: 22, left: 20, right: 20),
+//             child: textField(
+//               _labelText = 'Last Name',
+//               _hintText = 'Enter Your Last Name',
+//               _controller = _lastNameController,
+//               _icon = Icon(Icons.person, color: Colors.black, size: 27),
+//             ),
+//           ),
+//           Padding(
+//             padding: EdgeInsets.only(top: 22, left: 20, right: 20),
+//             child: textField(
+//               _labelText = 'Date of Birth',
+//               _hintText = 'Enter Your Date of Birth',
+//               _controller = _dobController,
+//               _icon = Icon(Icons.date_range, color: Colors.black, size: 27),
+//             ),
+//           ),
+//           Padding(
+//             padding: EdgeInsets.only(top: 22, left: 20, right: 20),
+//             child: textField(
+//               _labelText = 'Gender',
+//               _hintText = 'Enter Your gender',
+//               _controller = _genderController,
+//               _icon = Icon(Icons.person_2_outlined, color: Colors.black, size: 27),
+//             ),
+//           ),
+//           Padding(
+//             padding: EdgeInsets.only(top: 22, left: 20, right: 20),
+//             child: textField(
+//               _labelText = 'Mobile Number',
+//               _hintText = 'Enter Your Mobile Number',
+//               _controller = _mNumController,
+//               _icon = Icon(Icons.numbers, color: Colors.black, size: 27),
+//             ),
+//           ),
+//           Padding(
+//             padding: EdgeInsets.only(top: 22, left: 20, right: 20),
+//             child: textField(
+//               _labelText = 'Email Address',
+//               _hintText = 'Enter Your Email Address',
+//               _controller = _emailController,
+//               _icon = Icon(Icons.email, color: Colors.black, size: 27),
+//             ),
+//           ),
+//           Padding(
+//             padding: EdgeInsets.only(top: 22, left: 20, right: 20),
+//             child: textField(
+//               _labelText = 'Current Address',
+//               _hintText = 'Enter Your Current Address Name',
+//               _controller = _addressController,
+//               _icon = Icon(Icons.location_on_rounded,
+//                   color: Colors.black, size: 27),
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+//             child: Container(
+//               color: Colors.lightBlue,
+//               height: 60,
+//               width: 330,
+//               child: TextButton(
+//                 child: Text('add',
+//                   style: TextStyle(
+//                       color: Colors.white,
+//                       fontSize: 27,
+//                       fontWeight: FontWeight.bold
+//                   ),),
+//                 onPressed: () async {
+//                   Users user = Users(
+//                       id: 1,
+//                       firstName: _firstNameController.text,
+//                       lastName: _lastNameController.text,
+//                       dob: int.parse(_dobController.text),
+//                       gender: _genderController.text,
+//                       mobile: int.parse(_mNumController.text),
+//                       email: _emailController.text,
+//                       address: _addressController.text);
+//                   addUser(user, context);
+//                   // await _dbHelper.insert(user as Users);
+//                   Navigator.pushReplacement(
+//                       context,
+//                       MaterialPageRoute(
+//                         builder: (context) => EducationalDetail(),
+//                       ));
+//                 },
+//               ),
+//             ),
+//           ),
+//           // Padding(
+//           //   padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+//           //   child: Row(
+//           //     mainAxisAlignment: MainAxisAlignment.end,
+//           //     children: [
+//           //       InkWell(
+//           //         child: Text(
+//           //           'Next',
+//           //           style: TextStyle(
+//           //               color: Colors.black,
+//           //               fontSize: 25,
+//           //               fontWeight: FontWeight.w700),
+//           //         ),
+//           //         onTap: () {
+//           // Navigator.pushReplacement(
+//           //     context,
+//           //     MaterialPageRoute(
+//           //       builder: (context) => EducationalDetail(),
+//           //     ));
+//           //         },
+//           //       )
+//           //     ],
+//           //   ),
+//           // )
+//         ],
+//       ),

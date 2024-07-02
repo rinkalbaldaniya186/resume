@@ -69,7 +69,7 @@ class DbHelper {
           id: element['id'] as int,
           firstName: element['firstName'] as String,
           lastName: element['lastName'] as String,
-          dob: element['dob'] as int,
+          dob: element['dob'] as num,
           gender: element['gender'] as String,
           mobile: element['mobile'] as int,
           email: element['email'] as String,

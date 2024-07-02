@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rnewapp/ResumeBuilder/skillPage.dart';
 
 class EducationalDetail extends StatefulWidget {
   const EducationalDetail({super.key});
@@ -52,7 +53,30 @@ class _EducationalDetailState extends State<EducationalDetail> {
                 labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: Container(
+              color: Colors.lightBlue,
+              height: 60,
+              width: 330,
+              child: TextButton(
+                child: Text('add',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold
+                  ),),
+                onPressed: () async {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SkillPage(),
+                      ));
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
