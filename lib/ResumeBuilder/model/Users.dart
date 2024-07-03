@@ -1,9 +1,9 @@
 class Users {
   int id;
   String firstName;
-  // String middleName;
+  String middleName;
   String lastName;
-  num dob;
+  String dob;
   String gender;
   int mobile;
   String email;
@@ -12,6 +12,7 @@ class Users {
   Users(
       {required this.id,
         required this.firstName,
+        required this.middleName,
         required this.lastName,
         required this.dob,
         required this.gender,
@@ -23,12 +24,13 @@ class Users {
     return {
       'id': id,
       'firstName': firstName,
+      'middleName': middleName,
       'lastName': lastName,
       'dob': dob,
       'gender': gender,
       'mobile': mobile,
       'email': email,
-      'address': address
+      'address': address,
     };
   }
 }

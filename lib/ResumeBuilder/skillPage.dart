@@ -19,16 +19,25 @@ class _SkillPageState extends State<SkillPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Add Personal Detail',
+          'Add Skills Detail',
           style: TextStyle(color: Colors.white, fontSize: 30),
         ),
         backgroundColor: Colors.blue.shade400,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          Column(
             children: [
-              Text('Skills'),
+              SizedBox(
+                width: 30,
+              ),
+              Text('Soft Skills',style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.w700)),
+            ],
+          ),
+          Row(
+            children: <Widget>[
               Checkbox(
                 value: communicationTF,
                 onChanged: (value) {
@@ -38,15 +47,15 @@ class _SkillPageState extends State<SkillPage> {
                   });
                 },
               ),
-              Text('Communication'),
+              Text('Communication',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
               SizedBox(
-                width: 10,
+                width: 5,
               ),
               Checkbox(
                 isError: skillsManagemenERR,
                 activeColor: Colors.blue.shade700,
                 checkColor: Colors.white,
-                focusColor: Colors.pink,
+                focusColor: Colors.black,
                 value: skillsManagementTF,
                 onChanged: (value) {
                   setState(() {
@@ -55,7 +64,7 @@ class _SkillPageState extends State<SkillPage> {
                   });
                 },
               ),
-              Text('Skills Management'),
+              Text('Skills Management',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
             ],
           ),
         ],

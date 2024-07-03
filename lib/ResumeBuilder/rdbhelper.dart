@@ -16,14 +16,13 @@ class DbHelper {
   // Column name
   static final String _id = 'id';
   static final String firstName = 'firstName';
+  static final String middleName = 'middleName';
   static final String lastName = 'lastName';
   static final String dob = 'dob';
   static final String gender = 'gender';
   static final String mobile = 'mobile';
   static final String email = 'email';
   static final String address = 'address';
-
-  //static final String _date = 'date';
 
   static Database? _database;
 
@@ -45,8 +44,9 @@ class DbHelper {
         return db.execute('CREATE TABLE $_tableUser('
             '$_id INTEGER PRIMARY KEY AUTOINCREMENT , '
             '$firstName TEXT, '
+            '$middleName TEXT,'
             '$lastName TEXT,'
-            '$dob INTEGER'
+            '$dob TEXT'
             '$gender TEXT,'
             '$mobile INTEGER,'
             '$email TEXT,'
@@ -57,10 +57,11 @@ class DbHelper {
 
   Future<int> insert(Users user) async {
     final db = await getDatabase();
+    print('insert success');
     return await db!.insert(_tableUser, user.toMap());
   }
 
-  Future<List<Users>?> getUserList() async {
+  Future<List<Users>?> getList() async {
     final db = await getDatabase();
     final List<Map<String, Object?>>? userMaps = await db?.query(_tableUser);
 
@@ -68,8 +69,9 @@ class DbHelper {
         ?.map((element) => Users(
           id: element['id'] as int,
           firstName: element['firstName'] as String,
+          middleName: element['middleName'] as String,
           lastName: element['lastName'] as String,
-          dob: element['dob'] as num,
+          dob: element['dob'] as String,
           gender: element['gender'] as String,
           mobile: element['mobile'] as int,
           email: element['email'] as String,

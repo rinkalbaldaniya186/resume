@@ -14,7 +14,7 @@ class PersonalDetail extends StatefulWidget {
 
 TextEditingController _firstNameController = TextEditingController();
 TextEditingController _lastNameController = TextEditingController();
-// TextEditingController _middleNameController = TextEditingController();
+ TextEditingController _middleNameController = TextEditingController();
 TextEditingController _dobController = TextEditingController();
 TextEditingController _genderController = TextEditingController();
 TextEditingController _mNumController = TextEditingController();
@@ -39,6 +39,14 @@ Future<void> addUser(Users user, BuildContext context) async {
     print("error");
   }
 }
+var pFname = _firstNameController.text;
+var pMname = _middleNameController.text;
+var pLname= _lastNameController.text;
+var pDob = _dobController.text;
+var pGender = _genderController.text;
+var pMnum = _mNumController.text;
+var pEmail = _emailController.text;
+var pAddress = _addressController.text;
 
 class _PersonalDetailState extends State<PersonalDetail> {
   @override
@@ -59,9 +67,26 @@ class _PersonalDetailState extends State<PersonalDetail> {
               decoration: InputDecoration(
                 labelText: 'First Name',
                 labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-
+                prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
               ),
               controller: _firstNameController,
+              keyboardType: TextInputType.text,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Middle Name',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+              ),
+              controller: _middleNameController,
+              keyboardType: TextInputType.text,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
           ),
           Padding(
@@ -70,8 +95,12 @@ class _PersonalDetailState extends State<PersonalDetail> {
               decoration: InputDecoration(
                 labelText: 'Last Name',
                 labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
               ),
               controller: _lastNameController,
+              keyboardType: TextInputType.text,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
           ),
           Padding(
@@ -80,8 +109,12 @@ class _PersonalDetailState extends State<PersonalDetail> {
               decoration: InputDecoration(
                 labelText: 'Date of Birth',
                 labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                prefixIcon: Icon(Icons.date_range, color: Colors.black, size: 30),
               ),
               controller: _dobController,
+              keyboardType: TextInputType.datetime,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
           ),
           Padding(
@@ -90,8 +123,42 @@ class _PersonalDetailState extends State<PersonalDetail> {
               decoration: InputDecoration(
                 labelText: 'Gender',
                 labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                prefixIcon: Icon(Icons.people, color: Colors.black, size: 30),
+                suffix: PopupMenuButton(
+                  itemBuilder: (context) {
+                    return [
+                      PopupMenuItem(
+                        child: Text('Male'),
+                        onTap: () {
+                          var gprint = 'Male';
+                          _genderController.text = gprint;
+                        //  print(gprint);
+                        },
+                      ),
+                      PopupMenuItem(
+                        child: Text('Female'),
+                        onTap: () {
+                          var gprint = 'Female';
+                          _genderController.text = gprint;
+                        //  print(gprint);
+                        },
+                      ),
+                      PopupMenuItem(
+                        child: Text('Other'),
+                        onTap: () {
+                          var gprint = 'Other';
+                          _genderController.text = gprint;
+                          //  print(gprint);
+                        },
+                      )
+                    ];
+                  },
+                ),
               ),
               controller: _genderController,
+              keyboardType: TextInputType.text,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
           ),
           Padding(
@@ -100,8 +167,12 @@ class _PersonalDetailState extends State<PersonalDetail> {
               decoration: InputDecoration(
                 labelText: 'Mobile Number',
                 labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                prefixIcon: Icon(Icons.phone, color: Colors.black, size: 30),
               ),
               controller: _mNumController,
+              keyboardType: TextInputType.number,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
           ),
           Padding(
@@ -110,8 +181,12 @@ class _PersonalDetailState extends State<PersonalDetail> {
               decoration: InputDecoration(
                 labelText: 'Email Address',
                 labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                prefixIcon: Icon(Icons.email, color: Colors.black, size: 30),
               ),
               controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
           ),
           Padding(
@@ -120,18 +195,24 @@ class _PersonalDetailState extends State<PersonalDetail> {
               decoration: InputDecoration(
                 labelText: 'Current Address',
                 labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                prefixIcon: Icon(Icons.location_on_rounded, color: Colors.black, size: 30),
               ),
               controller: _addressController,
+              keyboardType: TextInputType.streetAddress,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20,bottom: 22),
             child: Container(
               color: Colors.lightBlue,
               height: 60,
               width: 330,
               child: TextButton(
-                child: Text('add',
+                child: Text(
+                  'add',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 27,
@@ -141,19 +222,33 @@ class _PersonalDetailState extends State<PersonalDetail> {
                   Users user = Users(
                       id: 1,
                       firstName: _firstNameController.text,
+                      middleName: _middleNameController.text,
                       lastName: _lastNameController.text,
-                      dob: int.parse(_dobController.text),
+                      dob: _dobController.text,
                       gender: _genderController.text,
                       mobile: int.parse(_mNumController.text),
                       email: _emailController.text,
                       address: _addressController.text);
+
+                  var fullName = pFname + ' ' + pMname + ' ' + pLname;
+                  // print('First Name : $pFname');
+                  // print('Middle Name : $pMname');
+                  // print('Last Name : $pLname');
+                  print('Full Name : $fullName');
+                  print('Dob : $pDob');
+                  print('Gender : $pGender');
+                  print('Mobile Number : $pMnum');
+                  print('Email Address : $pEmail');
+                  print('Current Address : $pAddress');
+
                   addUser(user, context);
-                  // await _dbHelper.insert(user as Users);
+
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => EducationalDetail(),
-                      ));
+                      )
+                  );
                 },
               ),
             ),
