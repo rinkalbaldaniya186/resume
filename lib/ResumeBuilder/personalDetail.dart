@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/educationalDetail.dart';
+import 'package:rnewapp/ResumeBuilder/finalPage.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
 import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 
@@ -25,20 +26,19 @@ final DbHelper _dbHelper = DbHelper();
 
 Future<void> addUser(Users user, BuildContext context) async {
   try {
-    var id = await _dbHelper.insert(user);
+    var id = await _dbHelper.insertUser(user);
     if (id != -1) {
-      print("user add successfully: ");
-      // Navigator.pushReplacement(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => EducationalDetail(),
-      //     ));
+      print("User added successfully with ID: $id");
+
+      // Navigate to next screen or perform any additional action
+    } else {
+      print("Failed to add user");
     }
   } catch (e) {
-    print(e.toString());
-    print("error");
+    print("Error adding user: $e");
   }
 }
+
 var pFname = _firstNameController.text;
 var pMname = _middleNameController.text;
 var pLname= _lastNameController.text;
@@ -218,38 +218,61 @@ class _PersonalDetailState extends State<PersonalDetail> {
                       fontSize: 27,
                       fontWeight: FontWeight.bold
                   ),),
+                // onPressed: () async {
+                //   Users user = Users(
+                //       id: 1,
+                //       firstName: _firstNameController.text,
+                //       middleName: _middleNameController.text,
+                //       lastName: _lastNameController.text,
+                //       dob: _dobController.text,
+                //       gender: _genderController.text,
+                //       mobile: int.parse(_mNumController.text),
+                //       email: _emailController.text,
+                //       address: _addressController.text);
+                //
+                //   var fullName = pFname + ' ' + pMname + ' ' + pLname;
+                //   // print('First Name : $pFname');
+                //   // print('Middle Name : $pMname');
+                //   // print('Last Name : $pLname');
+                //   print('Full Name : $fullName');
+                //   print('Dob : $pDob');
+                //   print('Gender : $pGender');
+                //   print('Mobile Number : $pMnum');
+                //   print('Email Address : $pEmail');
+                //   print('Current Address : $pAddress');
+                //
+                //   addUser(user, context);
+                //
+                //   Navigator.pushReplacement(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (context) => EducationalDetail(),
+                //       )
+                //   );
+                // },
                 onPressed: () async {
                   Users user = Users(
-                      id: 1,
-                      firstName: _firstNameController.text,
-                      middleName: _middleNameController.text,
-                      lastName: _lastNameController.text,
-                      dob: _dobController.text,
-                      gender: _genderController.text,
-                      mobile: int.parse(_mNumController.text),
-                      email: _emailController.text,
-                      address: _addressController.text);
+                    id: 1, // Example ID, adjust as per your schema or auto-increment in DB
+                    firstName: _firstNameController.text,
+                    middleName: _middleNameController.text,
+                    lastName: _lastNameController.text,
+                    dob: _dobController.text,
+                    gender: _genderController.text,
+                    mobile: int.parse(_mNumController.text),
+                    email: _emailController.text,
+                    address: _addressController.text,
+                  );
 
-                  var fullName = pFname + ' ' + pMname + ' ' + pLname;
-                  // print('First Name : $pFname');
-                  // print('Middle Name : $pMname');
-                  // print('Last Name : $pLname');
-                  print('Full Name : $fullName');
-                  print('Dob : $pDob');
-                  print('Gender : $pGender');
-                  print('Mobile Number : $pMnum');
-                  print('Email Address : $pEmail');
-                  print('Current Address : $pAddress');
-
-                  addUser(user, context);
+                  await addUser(user, context);
 
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EducationalDetail(),
-                      )
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FinalPage(),
+                    ),
                   );
                 },
+
               ),
             ),
           ),

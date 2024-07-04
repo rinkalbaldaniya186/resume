@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 import 'package:rnewapp/ResumeBuilder/skillPage.dart';
+
 
 class EducationalDetail extends StatefulWidget {
   const EducationalDetail({super.key});

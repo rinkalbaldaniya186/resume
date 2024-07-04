@@ -1,5 +1,4 @@
-// ignore_for_file: prefer_const_declarations, prefer_conditional_assignment
-import 'package:path/path.dart ';
+import 'package:path/path.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,14 +14,14 @@ class DbHelper {
 
   // Column name
   static final String _id = 'id';
-  static final String firstName = 'firstName';
-  static final String middleName = 'middleName';
-  static final String lastName = 'lastName';
-  static final String dob = 'dob';
-  static final String gender = 'gender';
-  static final String mobile = 'mobile';
-  static final String email = 'email';
-  static final String address = 'address';
+  static final String _firstName = 'firstName';
+  static final String _middleName = 'middleName';
+  static final String _lastName = 'lastName';
+  static final String _dob = 'dob';
+  static final String _gender = 'gender';
+  static final String _mobile = 'mobile';
+  static final String _email = 'email';
+  static final String _address = 'address';
 
   static Database? _database;
 
@@ -35,50 +34,56 @@ class DbHelper {
 
   Future<Database> createDatabase() async {
     var path = join(await getDatabasesPath(), _dbName);
-    print('database path : $path');
+    print('Database path: $path');
 
     return openDatabase(
       path,
       version: _dbVersion,
       onCreate: (db, version) {
-        return db.execute('CREATE TABLE $_tableUser('
-            '$_id INTEGER PRIMARY KEY AUTOINCREMENT , '
-            '$firstName TEXT, '
-            '$middleName TEXT,'
-            '$lastName TEXT,'
-            '$dob TEXT'
-            '$gender TEXT,'
-            '$mobile INTEGER,'
-            '$email TEXT,'
-            '$address TEXT)');
+        return db.execute('''
+        CREATE TABLE $_tableUser (
+          $_id INTEGER PRIMARY KEY AUTOINCREMENT,
+          $_firstName TEXT,
+          $_middleName TEXT,
+          $_lastName TEXT,
+          $_dob TEXT,
+          $_gender TEXT,
+          $_mobile INTEGER,
+          $_email TEXT,
+          $_address TEXT
+        )
+      ''');
       },
     );
   }
 
-  Future<int> insert(Users user) async {
+
+  Future<int> insertUser(Users user) async {
     final db = await getDatabase();
-    print('insert success');
+    print('Insert success');
     return await db!.insert(_tableUser, user.toMap());
   }
 
-  Future<List<Users>?> getList() async {
+  Future<List<Users>?> getUsersList() async {
     final db = await getDatabase();
     final List<Map<String, Object?>>? userMaps = await db?.query(_tableUser);
 
     return userMaps
         ?.map((element) => Users(
-          id: element['id'] as int,
-          firstName: element['firstName'] as String,
-          middleName: element['middleName'] as String,
-          lastName: element['lastName'] as String,
-          dob: element['dob'] as String,
-          gender: element['gender'] as String,
-          mobile: element['mobile'] as int,
-          email: element['email'] as String,
-          address: element['address'] as String,
+      id: element[_id] as int,
+      firstName: element[_firstName] as String,
+      middleName: element[_middleName] as String,
+      lastName: element[_lastName] as String,
+      dob: element[_dob] as String,
+      gender: element[_gender] as String,
+      mobile: element[_mobile] as int,
+      email: element[_email] as String,
+      address: element[_address] as String,
     ))
         .toList();
   }
+}
+
 
 // Future<int> update(Users user) async {
 //   final db = await getDatabase();
@@ -97,4 +102,3 @@ class DbHelper {
 //     return -1;
 //   }
 // }
-}

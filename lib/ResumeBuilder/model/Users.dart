@@ -9,18 +9,19 @@ class Users {
   String email;
   String address;
 
-  Users(
-      {required this.id,
-        required this.firstName,
-        required this.middleName,
-        required this.lastName,
-        required this.dob,
-        required this.gender,
-        required this.mobile,
-        required this.email,
-        required this.address});
+  Users({
+    required this.id,
+    required this.firstName,
+    required this.middleName,
+    required this.lastName,
+    required this.dob,
+    required this.gender,
+    required this.mobile,
+    required this.email,
+    required this.address,
+  });
 
-  Map<String, Object> toMap() {
+Map<String, Object> toMap() {
     return {
       'id': id,
       'firstName': firstName,
