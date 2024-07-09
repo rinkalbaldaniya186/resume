@@ -21,7 +21,7 @@ class Users {
     required this.address,
   });
 
-Map<String, Object> toMap() {
+ Map<String, Object> toMap() {
     return {
       'id': id,
       'firstName': firstName,

@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 
-class SkillPage extends StatefulWidget {
-  const SkillPage({super.key});
+class ExperienceDetail extends StatefulWidget {
+  const ExperienceDetail({super.key});
 
   @override
-  State<SkillPage> createState() => _SkillPageState();
+  State<ExperienceDetail> createState() => _ExperienceDetailState();
 }
-
 var checkboxValue;
-bool communicationTF = false;
-bool skillsManagementTF = false;
-bool skillsManagemenERR = false;
-
-class _SkillPageState extends State<SkillPage> {
+bool fresherTF = true;
+bool experiencedTF = false;
+bool experiencedERR = false;
+class _ExperienceDetailState extends State<ExperienceDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Add Skills Detail',
+          'Add Experience Detail',
           style: TextStyle(color: Colors.white, fontSize: 30),
         ),
         backgroundColor: Colors.blue.shade400,
@@ -32,38 +30,38 @@ class _SkillPageState extends State<SkillPage> {
               SizedBox(
                 width: 30,
               ),
-              Text('Soft Skills',style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.w700)),
+              Text('Select Your Current Position',style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.w700)),
             ],
           ),
           Row(
             children: <Widget>[
               Checkbox(
-                value: communicationTF,
+                value: fresherTF,
                 onChanged: (value) {
                   setState(() {
-                    communicationTF = value!;
+                    fresherTF = value!;
                     print(value);
                   });
                 },
               ),
-              Text('Communication',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
+              Text('Fresher',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
               SizedBox(
                 width: 5,
               ),
               Checkbox(
-                isError: skillsManagemenERR,
+                isError: experiencedERR,
                 activeColor: Colors.blue.shade700,
                 checkColor: Colors.white,
                 focusColor: Colors.black,
-                value: skillsManagementTF,
+                value: experiencedTF,
                 onChanged: (value) {
                   setState(() {
-                    skillsManagementTF = value!;
+                    experiencedTF = value!;
                     print(value);
                   });
                 },
               ),
-              Text('Skills Management',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
+              Text('experienced',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
             ],
           ),
         ],

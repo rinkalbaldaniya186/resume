@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+import 'package:rnewapp/ResumeBuilder/model/education.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
@@ -11,8 +12,9 @@ class DbHelper {
 
   // tables name
   static final String _tableUser = 'resume';
+  static final String _tableEdu = 'Education';
 
-  // Column name
+  // Column name Personal Detail
   static final String _id = 'id';
   static final String _firstName = 'firstName';
   static final String _middleName = 'middleName';
@@ -22,6 +24,27 @@ class DbHelper {
   static final String _mobile = 'mobile';
   static final String _email = 'email';
   static final String _address = 'address';
+
+  // Column name Educational Detail
+  static final String _ide = 'ide';
+  static final String _boeT = 'boeT';
+  static final String _sNameT = 'sNameT';
+  static final String _perT = 'perT';
+
+  static final String _boeTw = 'boeTw';
+  static final String _sNameTw = 'sNameTw';
+  static final String _streamTw = 'streamTw';
+  static final String _perTw = 'perTw';
+
+  static final String _sNameGr = 'sNameGr';
+  static final String _locationGr = 'locationGr';
+  static final String _timeGr = 'timeGr';
+  static final String _resultGr = 'resultGr';
+
+  static final String _sNameMo = 'sNameMo';
+  static final String _locationMo = 'locationMo';
+  static final String _timeMo = 'timeMo';
+  static final String _resultMo = 'resultMo';
 
   static Database? _database;
 
@@ -39,51 +62,104 @@ class DbHelper {
     return openDatabase(
       path,
       version: _dbVersion,
-      onCreate: (db, version) {
-        return db.execute('''
-        CREATE TABLE $_tableUser (
-          $_id INTEGER PRIMARY KEY AUTOINCREMENT,
-          $_firstName TEXT,
-          $_middleName TEXT,
-          $_lastName TEXT,
-          $_dob TEXT,
-          $_gender TEXT,
-          $_mobile INTEGER,
-          $_email TEXT,
-          $_address TEXT
-        )
-      ''');
-      },
+      onCreate: _onCreate,
     );
   }
 
-
+// personal detail page no data insert :-
   Future<int> insertUser(Users user) async {
     final db = await getDatabase();
-    print('Insert success');
+    print('Insert success Personal Detail');
     return await db!.insert(_tableUser, user.toMap());
   }
-
+// educational detail page no data insert :-
+  Future<int> insertEdu(Education education) async {
+    final db = await getDatabase();
+    print('Insert success Educational Detail');
+    return await db!.insert(_tableEdu, education.toMap());
+  }
+// personal detail page no data get :-
   Future<List<Users>?> getUsersList() async {
     final db = await getDatabase();
     final List<Map<String, Object?>>? userMaps = await db?.query(_tableUser);
 
     return userMaps
         ?.map((element) => Users(
-      id: element[_id] as int,
-      firstName: element[_firstName] as String,
-      middleName: element[_middleName] as String,
-      lastName: element[_lastName] as String,
-      dob: element[_dob] as String,
-      gender: element[_gender] as String,
-      mobile: element[_mobile] as int,
-      email: element[_email] as String,
-      address: element[_address] as String,
+      id: element['id'] as int,
+      firstName: element['firstName'] as String,
+      middleName: element['middleName'] as String,
+      lastName: element['lastName'] as String,
+      dob: element['dob'] as String,
+      gender: element['gender'] as String,
+      mobile: element['mobile'] as int,
+      email: element['email'] as String,
+      address: element['address'] as String,
     ))
         .toList();
   }
-}
+// educational detail page no data get :-
+  Future<List<Education>?> getEduList() async {
+    final db = await getDatabase();
+    final List<Map<String, Object?>>? eduMaps = await db?.query(_tableEdu);
 
+    return eduMaps
+        ?.map((element) =>
+        Education(
+          ide: element['ide'] as int,
+          boeT: element['boeT'] as String,
+          sNameT: element['sNameT'] as String,
+          perT: element['perT'] as int,
+
+          boeTw: element['boeTw'] as String,
+          sNameTw: element['sNameTw'] as String,
+          streamTw: element['streamTw'] as String,
+          perTw: element['perTw'] as int,
+
+          sNameGr: element['sNameGr'] as String,
+          locationGr: element['locationGr'] as String,
+          timeGr: element['timeGr'] as String,
+          resultGr: element['resultGr'] as int,
+
+          sNameMo: element['sNameMo'] as String,
+          locationMo: element['locationMo'] as String,
+          timeMo: element['timeMo'] as String,
+          resultMo: element['resultMo'] as int,
+
+    ),)
+        .toList();
+  }
+
+  Future<Database?> _onCreate(Database db, int version) async {
+    await db.execute('CREATE TABLE $_tableUser ('
+          '$_id INTEGER PRIMARY KEY AUTOINCREMENT,'
+         '$_firstName TEXT NOT NULL,'
+          '$_middleName TEXT NOT NULL,'
+         ' $_lastName TEXT NOT NULL,'
+          '$_dob TEXT NOT NULL,'
+          '$_gender TEXT NOT NULL,'
+          '$_mobile INTEGER NOT NULL,'
+          '$_email TEXT NOT NULL,'
+         ' $_address TEXT NOT NULL)');
+
+    await db.execute('CREATE TABLE $_tableEdu ('
+          '$_ide INTEGER PRIMARY KEY AUTOINCREMENT,'
+          '$_boeT TEXT NOT NULL,'
+          '$_sNameT TEXT NOT NULL,'
+          '$_perT INTEGER NOT NULL,'
+          '$_boeTw TEXT NOT NULL,'
+          '$_sNameTw TEXT NOT NULL,'
+          '$_streamTw TEXT NOT NULL,'
+          '$_perTw INTEGER NOT NULL,'
+          '$_sNameGr TEXT NOT NULL,'
+          '$_locationGr TEXT NOT NULL,'
+          '$_timeGr TEXT NOT NULL,'
+          '$_resultGr INTEGER NOT NULL,'
+          '$_sNameMo TEXT NOT NULL,'
+          '$_locationMo TEXT NOT NULL,'
+          '$_timeMo TEXT NOT NULL,'
+          '$_resultMo INTEGER NOT NULL)');
+  }
+}
 
 // Future<int> update(Users user) async {
 //   final db = await getDatabase();

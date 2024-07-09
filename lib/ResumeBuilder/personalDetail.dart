@@ -15,7 +15,7 @@ class PersonalDetail extends StatefulWidget {
 
 TextEditingController _firstNameController = TextEditingController();
 TextEditingController _lastNameController = TextEditingController();
- TextEditingController _middleNameController = TextEditingController();
+TextEditingController _middleNameController = TextEditingController();
 TextEditingController _dobController = TextEditingController();
 TextEditingController _genderController = TextEditingController();
 TextEditingController _mNumController = TextEditingController();
@@ -28,9 +28,17 @@ Future<void> addUser(Users user, BuildContext context) async {
   try {
     var id = await _dbHelper.insertUser(user);
     if (id != -1) {
+      id++;
       print("User added successfully with ID: $id");
+      print('First Name : $pFname');
+      print('Middle Name : $pMname');
+      print('Last Name : $pLname');
+      print('Dob : $pDob');
+      print('Gender : $pGender');
+      print('Mobile Number : $pMnum');
+      print('Email Address : $pEmail');
+      print('Current Address : $pAddress');
 
-      // Navigate to next screen or perform any additional action
     } else {
       print("Failed to add user");
     }
@@ -212,7 +220,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
               width: 330,
               child: TextButton(
                 child: Text(
-                  'add',
+                  'Next',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 27,
@@ -268,7 +276,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FinalPage(),
+                      builder: (context) => EducationalDetail(),
                     ),
                   );
                 },

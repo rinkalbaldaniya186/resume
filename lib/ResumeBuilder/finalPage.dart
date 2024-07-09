@@ -20,22 +20,39 @@ void getListofUsers() async {
 }
 
 class _FinalPageState extends State<FinalPage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      getListofUsers();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Print Data'),
-      ),
-      body: ListView.builder(
+      body: Column(
+        children: [
+          Container(
+            color: Colors.teal,
+            height: 700,
+            width: double.infinity,
+            child: ListView.builder(
         itemCount: usersList.length,
         itemBuilder: (context, index) {
         return ListTile(
-          tileColor: Colors.blueGrey,
-          title: Text("${usersList[index].firstName} ${usersList[index].middleName}"),
-          subtitle: Text("${usersList[index].email}"),
+          tileColor: Colors.grey.shade300,
+          title: Text("${usersList[index].firstName} ${usersList[index].middleName} ${usersList[index].lastName}",style: TextStyle(color: Colors.black,fontSize: 22),),
+          subtitle: Text("${usersList[index].email}",style: TextStyle(color: Colors.black,fontSize: 22),),
          );
        },
+      ),
+          ),
+        ],
       ),
     );
   }
 }
+

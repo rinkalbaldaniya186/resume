@@ -45,7 +45,8 @@ class _AppHomePageState extends State<AppHomePage> {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/image/resumehome2.png'),
-                      )),
+                      )
+                  ),
                 ),
                 SizedBox(
                   height: 20,

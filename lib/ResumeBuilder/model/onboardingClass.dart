@@ -4,4 +4,5 @@ class OnboardingClass{
   String description;
 
   OnboardingClass(this.image, this.title, this.description);
+
 }

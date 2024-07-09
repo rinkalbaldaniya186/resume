@@ -26,6 +26,7 @@ class _OnboradingScreenState extends State<OnboardingScreen> {
     obList.add(OnboardingClass('assets/image/obresume9.jpg', 'Resume Writing Services', 'Can refer to a wide range of editing, rewriting or formatting assistance that you might receive to help you create a job application submission.'));
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
