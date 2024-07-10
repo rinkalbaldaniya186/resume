@@ -6,13 +6,17 @@ class ExperienceDetail extends StatefulWidget {
   @override
   State<ExperienceDetail> createState() => _ExperienceDetailState();
 }
-var checkboxValue;
-bool fresherTF = true;
-bool experiencedTF = false;
-bool experiencedERR = false;
+// var checkboxValue;
+// bool fresherTF = true;
+// bool experiencedTF = false;
+// bool experiencedERR = false;
+
+var genderValue;
+
 class _ExperienceDetailState extends State<ExperienceDetail> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -33,35 +37,68 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
               Text('Select Your Current Position',style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.w700)),
             ],
           ),
+          // Row(
+          //   children: <Widget>[
+          //     Checkbox(
+          //       value: fresherTF,
+          //       activeColor: Colors.blue.shade700,
+          //       checkColor: Colors.white,
+          //       focusColor: Colors.black,
+          //       onChanged: (value) {
+          //         setState(() {
+          //           fresherTF = value!;
+          //           print(value);
+          //         });
+          //       },
+          //     ),
+          //     Text('Fresher',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
+          //     SizedBox(
+          //       width: 5,
+          //     ),
+          //     Checkbox(
+          //       isError: experiencedERR,
+          //       activeColor: Colors.blue.shade700,
+          //       checkColor: Colors.white,
+          //       focusColor: Colors.black,
+          //        value: experiencedTF,
+          //       onChanged: (value) {
+          //         setState(() {
+          //           experiencedTF = value!;
+          //           print(value);
+          //         });
+          //       },
+          //     ),
+          //     Text('Experienced',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
+          //   ],
+          // ),
           Row(
-            children: <Widget>[
-              Checkbox(
-                value: fresherTF,
+            children: [
+            //  Text('Gender'),
+              Radio(
+                value: 'Fresher',
+                groupValue: genderValue,
                 onChanged: (value) {
                   setState(() {
-                    fresherTF = value!;
                     print(value);
+                    genderValue = value;
                   });
                 },
               ),
-              Text('Fresher',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
+              Text('Fresher',Style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
               SizedBox(
-                width: 5,
+                width: 10,
               ),
-              Checkbox(
-                isError: experiencedERR,
-                activeColor: Colors.blue.shade700,
-                checkColor: Colors.white,
-                focusColor: Colors.black,
-                value: experiencedTF,
+              Radio(
+                value: 'Experienced',
+                groupValue: genderValue,
                 onChanged: (value) {
                   setState(() {
-                    experiencedTF = value!;
                     print(value);
+                    genderValue = value;
                   });
                 },
               ),
-              Text('experienced',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
+              Text('Experienced'),
             ],
           ),
         ],

@@ -39,6 +39,9 @@ class _SkillPageState extends State<SkillPage> {
             children: <Widget>[
               Checkbox(
                 value: communicationTF,
+                activeColor: Colors.blue.shade700,
+                checkColor: Colors.white,
+                focusColor: Colors.black,
                 onChanged: (value) {
                   setState(() {
                     communicationTF = value!;

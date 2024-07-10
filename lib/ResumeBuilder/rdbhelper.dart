@@ -27,13 +27,13 @@ class DbHelper {
 
   // Column name Educational Detail
   static final String _ide = 'ide';
-  static final String _boeT = 'boeT';
   static final String _sNameT = 'sNameT';
+  static final String _timeT = 'timeT';
   static final String _perT = 'perT';
 
-  static final String _boeTw = 'boeTw';
   static final String _sNameTw = 'sNameTw';
   static final String _streamTw = 'streamTw';
+  static final String _timeTw = 'timeTw';
   static final String _perTw = 'perTw';
 
   static final String _sNameGr = 'sNameGr';
@@ -106,13 +106,13 @@ class DbHelper {
         ?.map((element) =>
         Education(
           ide: element['ide'] as int,
-          boeT: element['boeT'] as String,
           sNameT: element['sNameT'] as String,
+          timeT: element['timeT'] as String,
           perT: element['perT'] as int,
 
-          boeTw: element['boeTw'] as String,
           sNameTw: element['sNameTw'] as String,
           streamTw: element['streamTw'] as String,
+          timeTw: element['timeTw'] as String,
           perTw: element['perTw'] as int,
 
           sNameGr: element['sNameGr'] as String,
@@ -143,12 +143,12 @@ class DbHelper {
 
     await db.execute('CREATE TABLE $_tableEdu ('
           '$_ide INTEGER PRIMARY KEY AUTOINCREMENT,'
-          '$_boeT TEXT NOT NULL,'
           '$_sNameT TEXT NOT NULL,'
+          '$_timeT TEXT NOT NULL,'
           '$_perT INTEGER NOT NULL,'
-          '$_boeTw TEXT NOT NULL,'
           '$_sNameTw TEXT NOT NULL,'
           '$_streamTw TEXT NOT NULL,'
+          '$_timeTw TEXT NOT NULL,'
           '$_perTw INTEGER NOT NULL,'
           '$_sNameGr TEXT NOT NULL,'
           '$_locationGr TEXT NOT NULL,'

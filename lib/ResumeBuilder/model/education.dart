@@ -1,12 +1,12 @@
 class Education{
   int ide;
-  String? boeT;
   String? sNameT;
+  String? timeT;
   int? perT;
 
-  String? boeTw;
   String? sNameTw;
   String? streamTw;
+  String? timeTw;
   int? perTw;
 
   String? sNameGr;
@@ -23,13 +23,13 @@ class Education{
   Education(
       {
       required this.ide,
-      this.boeT,
       this.sNameT,
+      this.timeT,
       this.perT,
 
-      this.boeTw,
       this.sNameTw,
       this.streamTw,
+      this.timeTw,
       this.perTw,
 
       this.sNameGr,
@@ -52,13 +52,13 @@ class Education{
   Map<String,Object?> toMap(){
     return {
       'ide' : ide,
-      'boeT' : boeT,
       'sNameT': sNameT,
+      'timeT' : timeT,
       'perT': perT,
 
-      'boeTw' : boeTw,
       'sNameTw': sNameTw,
       'streamTw': streamTw,
+      'timeTw' : timeTw,
       'perTw': perTw,
 
       'sNameGr' : sNameGr,

@@ -21,15 +21,16 @@ Future<void> addEdu(Education education, BuildContext context) async {
       ide++;
       print("Education added successfully");
       print("Education Detail added successfully with ID: $ide");
+
       print('10th Detail :- ');
-      print('$pboeT');
       print('$psNameT');
+      print('$ptimeT');
       print('$pperT');
 
       print('12th Detail :- ');
-      print('$pboeTw');
       print('$psNameTw');
       print('$pStreamTw');
+      print('$ptimeTw');
       print('$pperTw');
 
       print('Graduation Detail :- ');
@@ -57,13 +58,13 @@ bool showContainer2 = true;
 bool showContainer3 = true;
 bool showContainer4 = true;
 
-TextEditingController _boeTController = TextEditingController();
 TextEditingController _sNameTController = TextEditingController();
+TextEditingController _timeTController = TextEditingController();
 TextEditingController _perTController = TextEditingController();
 
-TextEditingController _boeTwController = TextEditingController();
 TextEditingController _sNameTwController = TextEditingController();
 TextEditingController _StreamTwController = TextEditingController();
+TextEditingController _timeTwController = TextEditingController();
 TextEditingController _perTwController = TextEditingController();
 
 TextEditingController _GrsNameController = TextEditingController();
@@ -76,13 +77,13 @@ TextEditingController _MosLocationController = TextEditingController();
 TextEditingController _MotimeController = TextEditingController();
 TextEditingController _MoresultController = TextEditingController();
 
-var pboeT = _boeTController.text;
 var psNameT = _sNameTController.text;
+var ptimeT = _timeTController.text;
 var pperT = _perTController.text;
 
-var pboeTw = _boeTwController.text;
 var psNameTw = _sNameTwController.text;
 var pStreamTw = _StreamTwController.text;
+var ptimeTw = _timeTwController.text;
 var pperTw = _perTwController.text;
 
 var psNameGr = _GrsNameController.text;
@@ -139,17 +140,6 @@ class _EducationalDetailState extends State<EducationalDetail> {
                       children: [
                         TextField(
                           decoration: InputDecoration(
-                            labelText: 'Board of education',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                         //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                          ),
-                          controller: _boeTController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
                             labelText: 'School Name',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                         //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
@@ -161,7 +151,18 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         ),
                         TextField(
                           decoration: InputDecoration(
-                            labelText: 'Perntage',
+                            labelText: 'Passing Month/Year',
+                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                            //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          ),
+                          controller: _timeTController,
+                          keyboardType: TextInputType.text,
+                          cursorHeight: 35,
+                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Percentage',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                         //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
@@ -204,18 +205,6 @@ class _EducationalDetailState extends State<EducationalDetail> {
                       children: [
                         TextField(
                           decoration: InputDecoration(
-
-                            labelText: 'Board of education',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                          ),
-                           controller: _boeTwController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
                             labelText: 'School Name',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                             //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
@@ -229,7 +218,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                           decoration: InputDecoration(
                             labelText: 'Stream',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                            //prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
                            controller: _StreamTwController,
                           keyboardType: TextInputType.text,
@@ -238,7 +227,18 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         ),
                         TextField(
                           decoration: InputDecoration(
-                            labelText: 'Perntage',
+                            labelText: 'Passing Month/Year',
+                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                            //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          ),
+                          controller: _timeTwController,
+                          keyboardType: TextInputType.text,
+                          cursorHeight: 35,
+                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Percentage',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                             //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
@@ -281,8 +281,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                       children: [
                         TextField(
                           decoration: InputDecoration(
-
-                            labelText: 'collage/University Name',
+                            labelText: 'Collage/University Name',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                             //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
@@ -304,7 +303,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         ),
                         TextField(
                           decoration: InputDecoration(
-                            labelText: 'Time',
+                            labelText: 'Passing Month/Year',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                             //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
@@ -317,7 +316,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         ),
                         TextField(
                           decoration: InputDecoration(
-                            labelText: 'Perntage',
+                            labelText: 'Percentage',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                             //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
@@ -361,7 +360,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         TextField(
                           decoration: InputDecoration(
 
-                            labelText: 'Collage/Univercity Name',
+                            labelText: 'Collage/University Name',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                             //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
@@ -383,7 +382,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         ),
                         TextField(
                           decoration: InputDecoration(
-                            labelText: 'Time',
+                            labelText: 'Passing Month/Year',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                             //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
@@ -394,7 +393,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         ),
                         TextField(
                           decoration: InputDecoration(
-                            labelText: 'Perntage',
+                            labelText: 'Percentage',
                             labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
                             //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                           ),
@@ -424,13 +423,13 @@ class _EducationalDetailState extends State<EducationalDetail> {
                       onPressed: () async {
                         Education education = Education(
                           ide: 1,
-                          boeT: _boeTController.text,
                           sNameT: _sNameTController.text,
+                          timeT: _timeTController.text,
                           perT: int.parse(_perTController.text),
 
-                          boeTw: _boeTwController.text,
                           sNameTw: _sNameTwController.text,
                           streamTw: _StreamTwController.text,
+                          timeTw: _timeTwController.text,
                           perTw: int.parse(_perTwController.text),
 
                           sNameGr: _GrsNameController.text,
