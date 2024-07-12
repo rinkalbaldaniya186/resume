@@ -35,6 +35,7 @@ class _SkillPageState extends State<SkillPage> {
               Text('Soft Skills',style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.w700)),
             ],
           ),
+
           Row(
             children: <Widget>[
               Checkbox(

@@ -51,8 +51,8 @@ class _FinalPageState extends State<FinalPage> {
               mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                 //  Text('${usersList[0].firstName} ${usersList[0].middleName}        ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),),
-                 // Text(usersList.isNotEmpty ? usersList[0].jobtitle : '',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
+                  Text('${usersList[0].firstName} ${usersList[0].middleName}        ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),),
+                  Text(usersList.isNotEmpty ? usersList[0].jobtitle : '',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
                 //  Text('${eduList[index].resultMo}'),
                 //   Text(usersList[0].dob),
                 //   Text(usersList[0].gender),
@@ -73,14 +73,47 @@ class _FinalPageState extends State<FinalPage> {
                       children: <Widget>[
                         Text('Gender: ${usersList[0].gender}'),
                         Text('Date of Birth: ${usersList[0].dob}'),
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/image/resume.png'),
-                            )
-                          ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/image/calllpng.png'),
+                                  )
+                              ),
+                            ),
+                            Text('${usersList[0].mobile}')
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/image/emailLogo.png'),
+                                )
+                              ),
+                            ),
+                            Text('${usersList[0].email}')
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/image/location.png'),
+                                  )
+                              ),
+                            ),
+                            Text('${usersList[0].email}')
+                          ],
                         )
                       ],
                     ),

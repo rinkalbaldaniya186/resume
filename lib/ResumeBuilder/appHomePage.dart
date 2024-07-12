@@ -48,6 +48,7 @@ class _AppHomePageState extends State<AppHomePage> {
                       )
                   ),
                 ),
+
                 SizedBox(
                   height: 20,
                 ),

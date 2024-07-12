@@ -161,6 +161,7 @@ class DbHelper {
           '$_locationMo TEXT NOT NULL,'
           '$_timeMo TEXT NOT NULL,'
           '$_resultMo INTEGER NOT NULL)');
+
   }
 }
 

@@ -444,18 +444,17 @@ class _EducationalDetailState extends State<EducationalDetail> {
                           resultMo: int.parse(_MoresultController.text),
 
                         );
-
+                        
                        // await addUser(user, context);
                         await addEdu(education, context);
 
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const FinalPage(),
+                            builder: (context) => const ExperienceDetail(),
                           ),
                         );
                       },
-
                     ),
                   ),
                 ),

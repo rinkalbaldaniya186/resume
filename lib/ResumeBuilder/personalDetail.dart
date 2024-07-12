@@ -331,6 +331,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
   }
 }
 
+
 var _labelText;
 var _hintText;
 var _controller;

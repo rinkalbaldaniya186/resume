@@ -54,7 +54,6 @@ class _PersonalDetailPageState extends State<PersonalDetailPage> {
                     _icon = Icon(Icons.person,color: Colors.black,size: 27),
                   ),
                 ),
-
                 Padding(
                   padding: EdgeInsets.only(top: 22,left: 20,right: 20),
                   child: textField(

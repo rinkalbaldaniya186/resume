@@ -85,6 +85,7 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                 },
               ),
               Text('Fresher',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
+
               SizedBox(
                 width: 10,
               ),

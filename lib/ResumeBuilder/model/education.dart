@@ -19,7 +19,6 @@ class Education{
   String? timeMo;
   int? resultMo;
 
-
   Education(
       {
       required this.ide,
