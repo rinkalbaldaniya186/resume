@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
-
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/educationalDetail.dart';
 import 'package:rnewapp/ResumeBuilder/finalPage.dart';
@@ -14,8 +13,9 @@ class PersonalDetail extends StatefulWidget {
 }
 
 TextEditingController _firstNameController = TextEditingController();
-TextEditingController _lastNameController = TextEditingController();
 TextEditingController _middleNameController = TextEditingController();
+TextEditingController _lastNameController = TextEditingController();
+TextEditingController _jobtitleController = TextEditingController();
 TextEditingController _dobController = TextEditingController();
 TextEditingController _genderController = TextEditingController();
 TextEditingController _mNumController = TextEditingController();
@@ -33,6 +33,7 @@ Future<void> addUser(Users user, BuildContext context) async {
       print('First Name : $pFname');
       print('Middle Name : $pMname');
       print('Last Name : $pLname');
+      print('Job Title : $pjobtitle');
       print('Dob : $pDob');
       print('Gender : $pGender');
       print('Mobile Number : $pMnum');
@@ -50,6 +51,7 @@ Future<void> addUser(Users user, BuildContext context) async {
 var pFname = _firstNameController.text;
 var pMname = _middleNameController.text;
 var pLname= _lastNameController.text;
+var pjobtitle = _jobtitleController.text;
 var pDob = _dobController.text;
 var pGender = _genderController.text;
 var pMnum = _mNumController.text;
@@ -106,6 +108,20 @@ class _PersonalDetailState extends State<PersonalDetail> {
                 prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
               ),
               controller: _lastNameController,
+              keyboardType: TextInputType.text,
+              cursorHeight: 35,
+              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Job Title',
+                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+              ),
+              controller: _jobtitleController,
               keyboardType: TextInputType.text,
               cursorHeight: 35,
               style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
@@ -264,6 +280,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
                     firstName: _firstNameController.text,
                     middleName: _middleNameController.text,
                     lastName: _lastNameController.text,
+                    jobtitle: _jobtitleController.text,
                     dob: _dobController.text,
                     gender: _genderController.text,
                     mobile: int.parse(_mNumController.text),

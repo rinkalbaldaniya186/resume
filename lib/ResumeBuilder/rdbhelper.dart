@@ -19,6 +19,7 @@ class DbHelper {
   static final String _firstName = 'firstName';
   static final String _middleName = 'middleName';
   static final String _lastName = 'lastName';
+  static final String _jobtitle = 'jobtitle';
   static final String _dob = 'dob';
   static final String _gender = 'gender';
   static final String _mobile = 'mobile';
@@ -89,6 +90,7 @@ class DbHelper {
       firstName: element['firstName'] as String,
       middleName: element['middleName'] as String,
       lastName: element['lastName'] as String,
+      jobtitle: element['jobtitle'] as String,
       dob: element['dob'] as String,
       gender: element['gender'] as String,
       mobile: element['mobile'] as int,
@@ -132,9 +134,10 @@ class DbHelper {
   Future<Database?> _onCreate(Database db, int version) async {
     await db.execute('CREATE TABLE $_tableUser ('
           '$_id INTEGER PRIMARY KEY AUTOINCREMENT,'
-         '$_firstName TEXT NOT NULL,'
+          '$_firstName TEXT NOT NULL,'
           '$_middleName TEXT NOT NULL,'
-         ' $_lastName TEXT NOT NULL,'
+          '$_lastName TEXT NOT NULL,'
+          '$_jobtitle TEXT NOT NULL,'
           '$_dob TEXT NOT NULL,'
           '$_gender TEXT NOT NULL,'
           '$_mobile INTEGER NOT NULL,'

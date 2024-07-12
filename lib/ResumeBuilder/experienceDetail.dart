@@ -84,7 +84,7 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                   });
                 },
               ),
-              Text('Fresher',Style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
+              Text('Fresher',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
               SizedBox(
                 width: 10,
               ),
@@ -98,7 +98,7 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                   });
                 },
               ),
-              Text('Experienced'),
+              Text('Experienced',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
             ],
           ),
         ],

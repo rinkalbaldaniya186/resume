@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/experienceDetail.dart';
+import 'package:rnewapp/ResumeBuilder/finalPage.dart';
 import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 import 'model/education.dart';
 
@@ -450,7 +451,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ExperienceDetail(),
+                            builder: (context) => const FinalPage(),
                           ),
                         );
                       },

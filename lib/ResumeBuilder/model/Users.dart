@@ -3,6 +3,7 @@ class Users {
   String firstName;
   String middleName;
   String lastName;
+  String jobtitle;
   String dob;
   String gender;
   int mobile;
@@ -14,6 +15,7 @@ class Users {
     required this.firstName,
     required this.middleName,
     required this.lastName,
+    required this.jobtitle,
     required this.dob,
     required this.gender,
     required this.mobile,
@@ -27,6 +29,7 @@ class Users {
       'firstName': firstName,
       'middleName': middleName,
       'lastName': lastName,
+      'jobtitle': jobtitle,
       'dob': dob,
       'gender': gender,
       'mobile': mobile,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rnewapp/ResumeBuilder/educationalDetail.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+import 'package:rnewapp/ResumeBuilder/model/education.dart';
 import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 
 class FinalPage extends StatefulWidget {
@@ -12,11 +12,18 @@ class FinalPage extends StatefulWidget {
 
 DbHelper _dbHelper = DbHelper();
 List<Users> usersList = [];
+List<Education> eduList= [];
 
 void getListofUsers() async {
-  print('i am called');
+  print('i am called users');
   usersList = (await _dbHelper.getUsersList())!;
   print(usersList.length);
+}
+
+void getListofEdu() async {
+  print('i am called education');
+  eduList = (await _dbHelper.getEduList())!;
+  print(eduList.length);
 }
 
 class _FinalPageState extends State<FinalPage> {
@@ -27,6 +34,7 @@ class _FinalPageState extends State<FinalPage> {
     super.initState();
     setState(() {
       getListofUsers();
+      getListofEdu();
     });
   }
 
@@ -36,23 +44,93 @@ class _FinalPageState extends State<FinalPage> {
       body: Column(
         children: [
           Container(
-            color: Colors.teal,
-            height: 700,
+            color: Colors.blue.shade200,
+            height: 110,
             width: double.infinity,
-            child: ListView.builder(
-        itemCount: usersList.length,
-        itemBuilder: (context, index) {
-        return ListTile(
-          tileColor: Colors.grey.shade300,
-          title: Text("${usersList[index].firstName} ${usersList[index].middleName} ${usersList[index].lastName}",style: TextStyle(color: Colors.black,fontSize: 22),),
-          subtitle: Text("${usersList[index].email}",style: TextStyle(color: Colors.black,fontSize: 22),),
-         );
-       },
-      ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                 //  Text('${usersList[0].firstName} ${usersList[0].middleName}        ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),),
+                 // Text(usersList.isNotEmpty ? usersList[0].jobtitle : '',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
+                //  Text('${eduList[index].resultMo}'),
+                //   Text(usersList[0].dob),
+                //   Text(usersList[0].gender),
+                //   Text(usersList[0].address),
+                ],
+              ),
+          ),
+          Row(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    color: Colors.blue.shade300,
+                    height: 780,
+                    width: 150,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Gender: ${usersList[0].gender}'),
+                        Text('Date of Birth: ${usersList[0].dob}'),
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/image/resume.png'),
+                            )
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Column( // experience detail
+                children: [
+                  Container(
+                    color: Colors.blue.shade400,
+                    height: 780,
+                    width: 261,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text('Experience'),
+                        Text('${eduList[0].sNameT}'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 }
-
+// Container(
+// color: Colors.blue.shade200,
+// height: 150,
+// width: double.infinity,
+// child: ListView.builder(
+// itemCount: usersList.length,
+// itemBuilder: (context, index) {
+// return Column(
+// children: [
+// Text('${usersList[0].firstName} ${usersList[0].middleName} ${usersList[0].lastName}'),
+// //  Text('${eduList[index].resultMo}'),
+// Text(usersList[0].dob),
+// Text(usersList[0].gender),
+// Text(usersList[0].address),
+// ],
+// );
+// },
+// ),
+// ),
+// ListTile(
+// tileColor: Colors.grey.shade300,
+// title: Text("${usersList[0].firstName} ${usersList[0].middleName} ${usersList[index].lastName}",style: TextStyle(color: Colors.black,fontSize: 22),),
+// subtitle: Text("${usersList[index].email}",style: TextStyle(color: Colors.black,fontSize: 22),),
+// );
