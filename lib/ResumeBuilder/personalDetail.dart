@@ -275,20 +275,20 @@ class _PersonalDetailState extends State<PersonalDetail> {
                 //   );
                 // },
                 onPressed: () async {
-                  Users user = Users(
-                    id: 1, // Example ID, adjust as per your schema or auto-increment in DB
-                    firstName: _firstNameController.text,
-                    middleName: _middleNameController.text,
-                    lastName: _lastNameController.text,
-                    jobtitle: _jobtitleController.text,
-                    dob: _dobController.text,
-                    gender: _genderController.text,
-                    mobile: int.parse(_mNumController.text),
-                    email: _emailController.text,
-                    address: _addressController.text,
-                  );
-
-                  await addUser(user, context);
+                  // Users user = Users(
+                  //   id: 1, // Example ID, adjust as per your schema or auto-increment in DB
+                  //   firstName: _firstNameController.text,
+                  //   middleName: _middleNameController.text,
+                  //   lastName: _lastNameController.text,
+                  //   jobtitle: _jobtitleController.text,
+                  //   dob: _dobController.text,
+                  //   gender: _genderController.text,
+                  //   mobile: int.parse(_mNumController.text),
+                  //   email: _emailController.text,
+                  //   address: _addressController.text,
+                  // );
+                  //
+                  // await addUser(user, context);
 
                   Navigator.pushReplacement(
                     context,

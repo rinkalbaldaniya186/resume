@@ -12,6 +12,7 @@ class ExperienceDetail extends StatefulWidget {
 // bool experiencedERR = false;
 
 var genderValue;
+bool poValue = false;
 
 class _ExperienceDetailState extends State<ExperienceDetail> {
   @override
@@ -71,36 +72,49 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
           //     Text('Experienced',style: TextStyle(color: Colors.black,fontSize: 19,fontWeight: FontWeight.w700)),
           //   ],
           // ),
-          Row(
-            children: [
-            //  Text('Gender'),
-              Radio(
-                value: 'Fresher',
-                groupValue: genderValue,
-                onChanged: (value) {
-                  setState(() {
-                    print(value);
-                    genderValue = value;
-                  });
-                },
-              ),
-              Text('Fresher',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
+          InkWell(
+            onTap: () {
 
-              SizedBox(
-                width: 10,
-              ),
-              Radio(
-                value: 'Experienced',
-                groupValue: genderValue,
-                onChanged: (value) {
-                  setState(() {
-                    print(value);
-                    genderValue = value;
-                  });
-                },
-              ),
-              Text('Experienced',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
-            ],
+            },
+            child: Row(
+              children: [
+              //  Text('Gender'),
+                Radio(
+                  value: 'Fresher',
+                  groupValue: genderValue,
+                  onChanged: (value) {
+                    setState(() {
+                      print(value);
+                      genderValue = value;
+
+                    });
+                  },
+                ),
+                Text('Fresher',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
+
+                SizedBox(
+                  width: 10,
+                ),
+                Radio(
+                  value: 'Experienced',
+                  groupValue: genderValue,
+                  onChanged: (value) {
+                    setState(() {
+                      print(value);
+                      genderValue = value;
+                    });
+                    if(genderValue == 'Experienced'){
+                      Container(
+                        height: 100,
+                        width: 300,
+                        color: Colors.blue,
+                      );
+                    }
+                  },
+                ),
+                Text('Experienced',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),),
+              ],
+            ),
           ),
         ],
       ),

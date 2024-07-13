@@ -134,45 +134,61 @@ class _EducationalDetailState extends State<EducationalDetail> {
                   ),
                 ),
                 if (showContainer1)
-                  Container(
-                    color: Colors.grey.shade100,
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'School Name',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                        //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue.shade100,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border: Border.all(color: Colors.black,width: 2)
+                      ),
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'School Name',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                prefixIcon: Icon(Icons.school, color: Colors.black, size: 30),
+                              ),
+                               controller: _sNameTController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                           controller: _sNameTController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Passing Month/Year',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Passing Month/Year',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                prefixIcon: Icon(Icons.calendar_month, color: Colors.black, size: 30),
+                              ),
+                              controller: _timeTController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                          controller: _timeTController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Percentage',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                        //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Percentage',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                prefixIcon: Icon(Icons.grade, color: Colors.black, size: 30),
+                              ),
+                              controller: _perTController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                          controller: _perTController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
         
@@ -199,59 +215,77 @@ class _EducationalDetailState extends State<EducationalDetail> {
                   ),
                 ),
                 if (showContainer2)
-                  Container(
-                    color: Colors.grey.shade100,
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'School Name',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue.shade100,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border: Border.all(color: Colors.black,width: 2)
+                      ),
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, bottom: 20, left: 20, right: 20),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'School Name',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                prefixIcon: Icon(Icons.school, color: Colors.black, size: 30),
+                              ),
+                              controller: _sNameTwController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                          controller: _sNameTwController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Stream',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Stream',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                prefixIcon: Icon(Icons.stream, color: Colors.black, size: 30),
+                              ),
+                               controller: _StreamTwController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                           controller: _StreamTwController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Passing Month/Year',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Passing Month/Year',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                prefixIcon: Icon(Icons.calendar_month, color: Colors.black, size: 30),
+                              ),
+                              controller: _timeTwController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                          controller: _timeTwController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Percentage',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Percentage',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                prefixIcon: Icon(Icons.grade, color: Colors.black, size: 30),
+                              ),
+                              controller: _perTwController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                          controller: _perTwController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-        
                 SizedBox(
                   height: 20,
                 ),
@@ -275,58 +309,77 @@ class _EducationalDetailState extends State<EducationalDetail> {
                   ),
                 ),
                 if (showContainer3)
-                  Container(
-                    color: Colors.grey.shade100,
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Collage/University Name',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue.shade100,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border: Border.all(color: Colors.black,width: 2)
+                      ),
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Collage/University Name',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ),
+                               controller: _GrsNameController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                           controller: _GrsNameController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Location',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Location',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ),
+                               controller: _GrsLocationController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                           controller: _GrsLocationController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Passing Month/Year',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                          ),
-                           controller: _GrtimeController
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Passing Month/Year',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ),
+                               controller: _GrtimeController
 
-                          ,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Percentage',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                          controller: _GrresultController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Percentage',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ),
+                              controller: _GrresultController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
         
@@ -353,57 +406,75 @@ class _EducationalDetailState extends State<EducationalDetail> {
                   ),
                 ),
                 if (showContainer4)
-                  Container(
-                    color: Colors.grey.shade100,
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-
-                            labelText: 'Collage/University Name',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue.shade100,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          border: Border.all(color: Colors.black,width: 2)
+                      ),
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Collage/University Name',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ),
+                               controller: _MosNameController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                           controller: _MosNameController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Location',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Location',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ),
+                               controller: _MosLocationController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                           controller: _MosLocationController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Passing Month/Year',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Passing Month/Year',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ),
+                               controller: _MotimeController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                           controller: _MotimeController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Percentage',
-                            labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                            //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Percentage',
+                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                              ),
+                               controller: _MoresultController,
+                              keyboardType: TextInputType.text,
+                              cursorHeight: 35,
+                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                            ),
                           ),
-                           controller: _MoresultController,
-                          keyboardType: TextInputType.text,
-                          cursorHeight: 35,
-                          style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
 
@@ -422,31 +493,31 @@ class _EducationalDetailState extends State<EducationalDetail> {
                             fontWeight: FontWeight.bold
                         ),),
                       onPressed: () async {
-                        Education education = Education(
-                          ide: 1,
-                          sNameT: _sNameTController.text,
-                          timeT: _timeTController.text,
-                          perT: int.parse(_perTController.text),
-
-                          sNameTw: _sNameTwController.text,
-                          streamTw: _StreamTwController.text,
-                          timeTw: _timeTwController.text,
-                          perTw: int.parse(_perTwController.text),
-
-                          sNameGr: _GrsNameController.text,
-                          locationGr: _GrsLocationController.text,
-                          timeGr: _GrtimeController.text,
-                          resultGr: int.parse(_GrresultController.text),
-
-                          sNameMo: _MosNameController.text,
-                          locationMo: _MosLocationController.text,
-                          timeMo: _MotimeController.text,
-                          resultMo: int.parse(_MoresultController.text),
-
-                        );
-                        
-                       // await addUser(user, context);
-                        await addEdu(education, context);
+                       //  Education education = Education(
+                       //    ide: 1,
+                       //    sNameT: _sNameTController.text,
+                       //    timeT: _timeTController.text,
+                       //    perT: int.parse(_perTController.text),
+                       //
+                       //    sNameTw: _sNameTwController.text,
+                       //    streamTw: _StreamTwController.text,
+                       //    timeTw: _timeTwController.text,
+                       //    perTw: int.parse(_perTwController.text),
+                       //
+                       //    sNameGr: _GrsNameController.text,
+                       //    locationGr: _GrsLocationController.text,
+                       //    timeGr: _GrtimeController.text,
+                       //    resultGr: int.parse(_GrresultController.text),
+                       //
+                       //    sNameMo: _MosNameController.text,
+                       //    locationMo: _MosLocationController.text,
+                       //    timeMo: _MotimeController.text,
+                       //    resultMo: int.parse(_MoresultController.text),
+                       //
+                       //  );
+                       //
+                       // // await addUser(user, context);
+                       //  await addEdu(education, context);
 
                         Navigator.pushReplacement(
                           context,
