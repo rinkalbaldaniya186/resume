@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:rnewapp/ResumeBuilder/projectDetail.dart';
+import 'package:rnewapp/ResumeBuilder/skillPage.dart';
 
-class ExperienceDetail extends StatefulWidget {
-  const ExperienceDetail({super.key});
+class ProjectDetail extends StatefulWidget {
+  const ProjectDetail({super.key});
 
   @override
-  State<ExperienceDetail> createState() => _ExperienceDetailState();
+  State<ProjectDetail> createState() => _ProjectDetailState();
 }
 
 bool _isExperienceSelected = false;
 bool _isFresherSelected = false;
 
-class _ExperienceDetailState extends State<ExperienceDetail> {
+class _ProjectDetailState extends State<ProjectDetail> {
 
   void _onExperienceChanged(bool? value){
     setState(() {
@@ -36,7 +36,7 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Add Experience Detail',
+            'Add Project Detail',
             style: TextStyle(color: Colors.white, fontSize: 30),
           ),
           backgroundColor: Colors.blue.shade400,
@@ -52,7 +52,7 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                     value: _isExperienceSelected,
                     onChanged: _onExperienceChanged,
                   ),
-                  const Text('Experience',style: TextStyle(color: Colors.black,fontSize: 25, fontWeight: FontWeight.w500),),
+                  const Text('Project Work',style: TextStyle(color: Colors.black,fontSize: 25, fontWeight: FontWeight.w500),),
                 ],
               ),
               Row(
@@ -61,7 +61,7 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                     value: _isFresherSelected,
                     onChanged: _onFresherChanged,
                   ),
-                  const Text('Fresher',style: TextStyle(color: Colors.black,fontSize: 25, fontWeight: FontWeight.w500)),
+                  const Text('Non - Project Work',style: TextStyle(color: Colors.black,fontSize: 25, fontWeight: FontWeight.w500)),
                 ],
               ),
               if(_isExperienceSelected)
@@ -69,27 +69,27 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                   child: ProjectFieldForm(),
                 ),
               if(_isFresherSelected)
-              Padding(
-                padding: const EdgeInsets.all(15.0),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
                   child: Container(
                     color: Colors.lightBlue,
                     height: 60,
                     width: 330,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetail()));
-                        },
-                        child: Text(
-                          'Next',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 27,
-                              fontWeight: FontWeight.bold
-                          ),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SkillPage()));
+                      },
+                      child: Text(
+                        'Next',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold
                         ),
-                     ),
-                ),
-              )
+                      ),
+                    ),
+                  ),
+                )
             ],
           ),
         )
@@ -97,14 +97,14 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
   }
 }
 
-class ExperienceFieldForm extends StatefulWidget {
-  const ExperienceFieldForm({super.key});
+class ProjectFieldForm extends StatefulWidget {
+  const ProjectFieldForm({super.key});
 
   @override
-  State<ExperienceFieldForm> createState() => _ExperienceFieldFormState();
+  State<ProjectFieldForm> createState() => _ProjectFieldFormState();
 }
 
-class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
+class _ProjectFieldFormState extends State<ProjectFieldForm> {
   bool _isFormVisible = false;
   final TextEditingController _textFieldController = TextEditingController();
   final TextEditingController _textFieldController2 = TextEditingController();
@@ -122,7 +122,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
     if (_textFieldController.text.isNotEmpty && _textFieldController2.text.isNotEmpty && _textFieldController3.text.isNotEmpty && _textFieldController4.text.isNotEmpty) {
       setState(() {
         _submittedData.add('Company Name: ${_textFieldController.text}');
-        _submittedData.add('Location: ${_textFieldController2.text}');
+        _submittedData.add('Job-Title: ${_textFieldController2.text}');
         _submittedData.add('Duration: ${_textFieldController3.text}');
         _submittedData.add('Description: ${_textFieldController4.text}');
         _textFieldController.clear();
@@ -175,7 +175,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                 padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
                 child: TextField(
                   decoration: const InputDecoration(
-                    labelText: 'Location',
+                    labelText: 'Job Title',
                     labelStyle: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w700),
                   ),
                   controller: _textFieldController2,
@@ -218,10 +218,10 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                   onPressed: _addData,
                   child: const Text('Add',
                     style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold
-                  ),),
+                        color: Colors.white,
+                        fontSize: 27,
+                        fontWeight: FontWeight.bold
+                    ),),
                 ),
               ),
             ],

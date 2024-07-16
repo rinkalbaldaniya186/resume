@@ -241,7 +241,8 @@ class _PersonalDetailState extends State<PersonalDetail> {
                       color: Colors.white,
                       fontSize: 27,
                       fontWeight: FontWeight.bold
-                  ),),
+                  ),
+                ),
                 // onPressed: () async {
                 //   Users user = Users(
                 //       id: 1,

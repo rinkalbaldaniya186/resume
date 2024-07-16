@@ -52,7 +52,7 @@ class _FinalPageState extends State<FinalPage> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text('${usersList[0].firstName} ${usersList[0].middleName}        ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),),
-                  Text(usersList.isNotEmpty ? usersList[0].jobtitle : '',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
+                //  Text(usersList.isNotEmpty ? usersList[0].jobtitle : '',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
                 //  Text('${eduList[index].resultMo}'),
                 //   Text(usersList[0].dob),
                 //   Text(usersList[0].gender),
@@ -78,11 +78,11 @@ class _FinalPageState extends State<FinalPage> {
                             Container(
                               height: 30,
                               width: 30,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage('assets/image/calllpng.png'),
-                                  )
-                              ),
+                              // decoration: BoxDecoration(
+                              //     image: DecorationImage(
+                              //       image: AssetImage('assets/image/calllpng.png'),
+                              //     )
+                              // ),
                             ),
                             Text('${usersList[0].mobile}')
                           ],
@@ -92,11 +92,11 @@ class _FinalPageState extends State<FinalPage> {
                             Container(
                               height: 40,
                               width: 40,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage('assets/image/emailLogo.png'),
-                                )
-                              ),
+                              // decoration: BoxDecoration(
+                              //   image: DecorationImage(
+                              //     image: AssetImage('assets/image/emailLogo.png'),
+                              //   )
+                              // ),
                             ),
                             Text('${usersList[0].email}')
                           ],
@@ -106,11 +106,11 @@ class _FinalPageState extends State<FinalPage> {
                             Container(
                               height: 40,
                               width: 40,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage('assets/image/location.png'),
-                                  )
-                              ),
+                              // decoration: BoxDecoration(
+                              //     image: DecorationImage(
+                              //       image: AssetImage('assets/image/location.png'),
+                              //     )
+                              // ),
                             ),
                             Text('${usersList[0].email}')
                           ],
