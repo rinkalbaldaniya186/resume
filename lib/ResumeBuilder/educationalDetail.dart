@@ -54,10 +54,10 @@ Future<void> addEdu(Education education, BuildContext context) async {
     print("Error adding user: $e");
   }
 }
-bool showContainer1 = true;
-bool showContainer2 = true;
-bool showContainer3 = true;
-bool showContainer4 = true;
+bool showContainer1 = false;
+bool showContainer2 = false;
+bool showContainer3 = false;
+bool showContainer4 = false;
 
 TextEditingController _sNameTController = TextEditingController();
 TextEditingController _timeTController = TextEditingController();
@@ -107,435 +107,460 @@ class _EducationalDetailState extends State<EducationalDetail> {
         backgroundColor: Colors.blue.shade400,
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  color: Colors.lightBlue,
-                    height: 60,
-                    width: 330,
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        showContainer1 = !showContainer1;
-                      });
-                    },
-                    child: Text('Add 10th Detail',
-                      style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 27,
-                              fontWeight: FontWeight.bold
-                          ),),
-                    // icon: Icon(Icons.add),
+        child: Container(
+          height: 2100,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fitHeight,
+                image: NetworkImage('https://img.freepik.com/premium-vector/hand-painted-watercolor-abstract-background_889452-17399.jpg'),
+              )
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                if (showContainer1)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.blue.shade100,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(color: Colors.black,width: 2)
-                      ),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'School Name',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                prefixIcon: Icon(Icons.school, color: Colors.black, size: 30),
-                              ),
-                               controller: _sNameTController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Passing Month/Year',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                prefixIcon: Icon(Icons.calendar_month, color: Colors.black, size: 30),
-                              ),
-                              controller: _timeTController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Percentage',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                prefixIcon: Icon(Icons.grade, color: Colors.black, size: 30),
-                              ),
-                              controller: _perTController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ],
-                      ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ),
-        
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  color: Colors.lightBlue,
-                  height: 60,
-                  width: 330,
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        showContainer2 = !showContainer2;
-                      });
-                    },
-                    child: Text('Add 12th Detail',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 27,
-                          fontWeight: FontWeight.bold
-                      ),),
-                    // icon: Icon(Icons.add),
-                  ),
-                ),
-                if (showContainer2)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.blue.shade100,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(color: Colors.black,width: 2)
-                      ),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, bottom: 20, left: 20, right: 20),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'School Name',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                prefixIcon: Icon(Icons.school, color: Colors.black, size: 30),
-                              ),
-                              controller: _sNameTwController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Stream',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                prefixIcon: Icon(Icons.stream, color: Colors.black, size: 30),
-                              ),
-                               controller: _StreamTwController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Passing Month/Year',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                prefixIcon: Icon(Icons.calendar_month, color: Colors.black, size: 30),
-                              ),
-                              controller: _timeTwController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Percentage',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                prefixIcon: Icon(Icons.grade, color: Colors.black, size: 30),
-                              ),
-                              controller: _perTwController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  color: Colors.lightBlue,
-                  height: 60,
-                  width: 330,
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        showContainer3 = !showContainer3;
-                      });
-                    },
-                    child: Text('Add Graduation Detail',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 27,
-                          fontWeight: FontWeight.bold
-                      ),),
-                    // icon: Icon(Icons.add),
-                  ),
-                ),
-                if (showContainer3)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.blue.shade100,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(color: Colors.black,width: 2)
-                      ),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Collage/University Name',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                              ),
-                               controller: _GrsNameController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Location',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                              ),
-                               controller: _GrsLocationController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Passing Month/Year',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                              ),
-                               controller: _GrtimeController
-
-                              ,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Percentage',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                              ),
-                              controller: _GrresultController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-        
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  color: Colors.lightBlue,
-                  height: 60,
-                  width: 330,
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        showContainer4 = !showContainer4;
-                      });
-                    },
-                    child: Text('Add More Detail',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 27,
-                          fontWeight: FontWeight.bold
-                      ),),
-                    // icon: Icon(Icons.add),
-                  ),
-                ),
-                if (showContainer4)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.blue.shade100,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          border: Border.all(color: Colors.black,width: 2)
-                      ),
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Collage/University Name',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                              ),
-                               controller: _MosNameController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Location',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                              ),
-                               controller: _MosLocationController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Passing Month/Year',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                              ),
-                               controller: _MotimeController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: 'Percentage',
-                                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-                              ),
-                               controller: _MoresultController,
-                              keyboardType: TextInputType.text,
-                              cursorHeight: 35,
-                              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 22, left: 20, right: 20,bottom: 22),
-                  child: Container(
-                    color: Colors.lightBlue,
                     height: 60,
                     width: 330,
                     child: TextButton(
-                      child: Text(
-                        'Next',
+                      onPressed: () {
+                        setState(() {
+                          showContainer1 = !showContainer1;
+                        });
+                      },
+                      child: Text('Add 10th Detail',
+                        style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 27,
+                                fontWeight: FontWeight.bold
+                            ),),
+                      // icon: Icon(Icons.add),
+                    ),
+                  ),
+                  if (showContainer1)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.shade100,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(color: Colors.black,width: 2)
+                        ),
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'School Name',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  prefixIcon: Icon(Icons.school, color: Colors.black, size: 30),
+                                ),
+                                 controller: _sNameTController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Passing Month/Year',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  prefixIcon: Icon(Icons.calendar_month, color: Colors.black, size: 30),
+                                ),
+                                controller: _timeTController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Percentage',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  prefixIcon: Icon(Icons.grade, color: Colors.black, size: 30),
+                                ),
+                                controller: _perTController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 60,
+                    width: 330,
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          showContainer2 = !showContainer2;
+                        });
+                      },
+                      child: Text('Add 12th Detail',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 27,
                             fontWeight: FontWeight.bold
                         ),),
-                      onPressed: () async {
-                       //  Education education = Education(
-                       //    ide: 1,
-                       //    sNameT: _sNameTController.text,
-                       //    timeT: _timeTController.text,
-                       //    perT: int.parse(_perTController.text),
-                       //
-                       //    sNameTw: _sNameTwController.text,
-                       //    streamTw: _StreamTwController.text,
-                       //    timeTw: _timeTwController.text,
-                       //    perTw: int.parse(_perTwController.text),
-                       //
-                       //    sNameGr: _GrsNameController.text,
-                       //    locationGr: _GrsLocationController.text,
-                       //    timeGr: _GrtimeController.text,
-                       //    resultGr: int.parse(_GrresultController.text),
-                       //
-                       //    sNameMo: _MosNameController.text,
-                       //    locationMo: _MosLocationController.text,
-                       //    timeMo: _MotimeController.text,
-                       //    resultMo: int.parse(_MoresultController.text),
-                       //
-                       //  );
-                       //
-                       // // await addUser(user, context);
-                       //  await addEdu(education, context);
-
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ExperienceDetail(),
-                          ),
-                        );
-                      },
+                      // icon: Icon(Icons.add),
                     ),
                   ),
-                ),
-              ],
+                  if (showContainer2)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.shade100,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(color: Colors.black,width: 2)
+                        ),
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10, bottom: 20, left: 20, right: 20),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'School Name',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  prefixIcon: Icon(Icons.school, color: Colors.black, size: 30),
+                                ),
+                                controller: _sNameTwController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Stream',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  prefixIcon: Icon(Icons.stream, color: Colors.black, size: 30),
+                                ),
+                                 controller: _StreamTwController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Passing Month/Year',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  prefixIcon: Icon(Icons.calendar_month, color: Colors.black, size: 30),
+                                ),
+                                controller: _timeTwController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Percentage',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  prefixIcon: Icon(Icons.grade, color: Colors.black, size: 30),
+                                ),
+                                controller: _perTwController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 60,
+                    width: 330,
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          showContainer3 = !showContainer3;
+                        });
+                      },
+                      child: Text('Add Graduation Detail',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold
+                        ),),
+                      // icon: Icon(Icons.add),
+                    ),
+                  ),
+                  if (showContainer3)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.shade100,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(color: Colors.black,width: 2)
+                        ),
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Collage/University Name',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                ),
+                                 controller: _GrsNameController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Location',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                ),
+                                 controller: _GrsLocationController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Passing Month/Year',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                ),
+                                 controller: _GrtimeController
+
+                                ,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Percentage',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                ),
+                                controller: _GrresultController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 60,
+                    width: 330,
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          showContainer4 = !showContainer4;
+                        });
+                      },
+                      child: Text('Add More Detail',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold
+                        ),),
+                      // icon: Icon(Icons.add),
+                    ),
+                  ),
+                  if (showContainer4)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20,left: 20, right: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.shade100,
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border: Border.all(color: Colors.black,width: 2)
+                        ),
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Collage/University Name',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                ),
+                                 controller: _MosNameController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Location',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                ),
+                                 controller: _MosLocationController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Passing Month/Year',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                ),
+                                 controller: _MotimeController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  labelText: 'Percentage',
+                                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                                  //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                ),
+                                 controller: _MoresultController,
+                                keyboardType: TextInputType.text,
+                                cursorHeight: 35,
+                                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 22, left: 20, right: 20,bottom: 22),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.lightBlue,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      height: 60,
+                      width: 330,
+                      child: TextButton(
+                        child: Text(
+                          'Next',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 27,
+                              fontWeight: FontWeight.bold
+                          ),),
+                        onPressed: () async {
+                         //  Education education = Education(
+                         //    ide: 1,
+                         //    sNameT: _sNameTController.text,
+                         //    timeT: _timeTController.text,
+                         //    perT: int.parse(_perTController.text),
+                         //
+                         //    sNameTw: _sNameTwController.text,
+                         //    streamTw: _StreamTwController.text,
+                         //    timeTw: _timeTwController.text,
+                         //    perTw: int.parse(_perTwController.text),
+                         //
+                         //    sNameGr: _GrsNameController.text,
+                         //    locationGr: _GrsLocationController.text,
+                         //    timeGr: _GrtimeController.text,
+                         //    resultGr: int.parse(_GrresultController.text),
+                         //
+                         //    sNameMo: _MosNameController.text,
+                         //    locationMo: _MosLocationController.text,
+                         //    timeMo: _MotimeController.text,
+                         //    resultMo: int.parse(_MoresultController.text),
+                         //
+                         //  );
+                         //
+                         // // await addUser(user, context);
+                         //  await addEdu(education, context);
+
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ExperienceDetail(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+        ),
       )
     );
   }
-
 }
 
 // class TextFieldInput extends StatefulWidget {

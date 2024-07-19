@@ -63,9 +63,12 @@ class _AppHomePageState extends State<AppHomePage> {
                   height: 100,
                 ),
                 Container(
-                  height: 70,
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
                   width: 330,
-                  color: Colors.blue,
                   child: TextButton(
                       onPressed: () {
                         Navigator.push(

@@ -69,264 +69,274 @@ class _PersonalDetailState extends State<PersonalDetail> {
         ),
         backgroundColor: Colors.blue.shade400,
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'First Name',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-              ),
-              controller: _firstNameController,
-              keyboardType: TextInputType.text,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Middle Name',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-              ),
-              controller: _middleNameController,
-              keyboardType: TextInputType.text,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Last Name',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-              ),
-              controller: _lastNameController,
-              keyboardType: TextInputType.text,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Job Title',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
-              ),
-              controller: _jobtitleController,
-              keyboardType: TextInputType.text,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Date of Birth',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.date_range, color: Colors.black, size: 30),
-              ),
-              controller: _dobController,
-              keyboardType: TextInputType.datetime,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Gender',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.people, color: Colors.black, size: 30),
-                suffix: PopupMenuButton(
-                  itemBuilder: (context) {
-                    return [
-                      PopupMenuItem(
-                        child: Text('Male'),
-                        onTap: () {
-                          var gprint = 'Male';
-                          _genderController.text = gprint;
-                        //  print(gprint);
-                        },
-                      ),
-                      PopupMenuItem(
-                        child: Text('Female'),
-                        onTap: () {
-                          var gprint = 'Female';
-                          _genderController.text = gprint;
-                        //  print(gprint);
-                        },
-                      ),
-                      PopupMenuItem(
-                        child: Text('Other'),
-                        onTap: () {
-                          var gprint = 'Other';
-                          _genderController.text = gprint;
-                          //  print(gprint);
-                        },
-                      )
-                    ];
-                  },
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(fit: BoxFit.fitHeight,
+              image: NetworkImage('https://img.freepik.com/premium-vector/hand-painted-watercolor-abstract-background_889452-17399.jpg'),
+            )
+        ),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'First Name',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
                 ),
+                controller: _firstNameController,
+                keyboardType: TextInputType.text,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
               ),
-              controller: _genderController,
-              keyboardType: TextInputType.text,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Mobile Number',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.phone, color: Colors.black, size: 30),
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Middle Name',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                ),
+                controller: _middleNameController,
+                keyboardType: TextInputType.text,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
               ),
-              controller: _mNumController,
-              keyboardType: TextInputType.number,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Email Address',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.email, color: Colors.black, size: 30),
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Last Name',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                ),
+                controller: _lastNameController,
+                keyboardType: TextInputType.text,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
               ),
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Current Address',
-                labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                prefixIcon: Icon(Icons.location_on_rounded, color: Colors.black, size: 30),
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Job Title',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                ),
+                controller: _jobtitleController,
+                keyboardType: TextInputType.text,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
               ),
-              controller: _addressController,
-              keyboardType: TextInputType.streetAddress,
-              cursorHeight: 35,
-              style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
-
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 22, left: 20, right: 20,bottom: 22),
-            child: Container(
-              color: Colors.lightBlue,
-              height: 60,
-              width: 330,
-              child: TextButton(
-                child: Text(
-                  'Next',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Date of Birth',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.date_range, color: Colors.black, size: 30),
+                ),
+                controller: _dobController,
+                keyboardType: TextInputType.datetime,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Gender',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.people, color: Colors.black, size: 30),
+                  suffix: PopupMenuButton(
+                    itemBuilder: (context) {
+                      return [
+                        PopupMenuItem(
+                          child: Text('Male'),
+                          onTap: () {
+                            var gprint = 'Male';
+                            _genderController.text = gprint;
+                          //  print(gprint);
+                          },
+                        ),
+                        PopupMenuItem(
+                          child: Text('Female'),
+                          onTap: () {
+                            var gprint = 'Female';
+                            _genderController.text = gprint;
+                          //  print(gprint);
+                          },
+                        ),
+                        PopupMenuItem(
+                          child: Text('Other'),
+                          onTap: () {
+                            var gprint = 'Other';
+                            _genderController.text = gprint;
+                            //  print(gprint);
+                          },
+                        )
+                      ];
+                    },
                   ),
                 ),
-                // onPressed: () async {
-                //   Users user = Users(
-                //       id: 1,
-                //       firstName: _firstNameController.text,
-                //       middleName: _middleNameController.text,
-                //       lastName: _lastNameController.text,
-                //       dob: _dobController.text,
-                //       gender: _genderController.text,
-                //       mobile: int.parse(_mNumController.text),
-                //       email: _emailController.text,
-                //       address: _addressController.text);
-                //
-                //   var fullName = pFname + ' ' + pMname + ' ' + pLname;
-                //   // print('First Name : $pFname');
-                //   // print('Middle Name : $pMname');
-                //   // print('Last Name : $pLname');
-                //   print('Full Name : $fullName');
-                //   print('Dob : $pDob');
-                //   print('Gender : $pGender');
-                //   print('Mobile Number : $pMnum');
-                //   print('Email Address : $pEmail');
-                //   print('Current Address : $pAddress');
-                //
-                //   addUser(user, context);
-                //
-                //   Navigator.pushReplacement(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) => EducationalDetail(),
-                //       )
-                //   );
-                // },
-                onPressed: () async {
-                  // Users user = Users(
-                  //   id: 1, // Example ID, adjust as per your schema or auto-increment in DB
-                  //   firstName: _firstNameController.text,
-                  //   middleName: _middleNameController.text,
-                  //   lastName: _lastNameController.text,
-                  //   jobtitle: _jobtitleController.text,
-                  //   dob: _dobController.text,
-                  //   gender: _genderController.text,
-                  //   mobile: int.parse(_mNumController.text),
-                  //   email: _emailController.text,
-                  //   address: _addressController.text,
-                  // );
-                  //
-                  // await addUser(user, context);
-
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EducationalDetail(),
-                    ),
-                  );
-                },
+                controller: _genderController,
+                keyboardType: TextInputType.text,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Mobile Number',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.phone, color: Colors.black, size: 30),
+                ),
+                controller: _mNumController,
+                keyboardType: TextInputType.number,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Email Address',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.email, color: Colors.black, size: 30),
+                ),
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Current Address',
+                  labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
+                  prefixIcon: Icon(Icons.location_on_rounded, color: Colors.black, size: 30),
+                ),
+                controller: _addressController,
+                keyboardType: TextInputType.streetAddress,
+                cursorHeight: 35,
+                style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400),
 
               ),
             ),
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.end,
-          //     children: [
-          //       InkWell(
-          //         child: Text(
-          //           'Next',
-          //           style: TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 25,
-          //               fontWeight: FontWeight.w700),
-          //         ),
-          //         onTap: () {
-          // Navigator.pushReplacement(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => EducationalDetail(),
-          //     ));
-          //         },
-          //       )
-          //     ],
-          //   ),
-          // )
-        ],
+            Padding(
+              padding: const EdgeInsets.only(top: 22, left: 20, right: 20,bottom: 22),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 60,
+                width: 330,
+                child: TextButton(
+                  child: Text(
+                    'Next',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 27,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  // onPressed: () async {
+                  //   Users user = Users(
+                  //       id: 1,
+                  //       firstName: _firstNameController.text,
+                  //       middleName: _middleNameController.text,
+                  //       lastName: _lastNameController.text,
+                  //       dob: _dobController.text,
+                  //       gender: _genderController.text,
+                  //       mobile: int.parse(_mNumController.text),
+                  //       email: _emailController.text,
+                  //       address: _addressController.text);
+                  //
+                  //   var fullName = pFname + ' ' + pMname + ' ' + pLname;
+                  //   // print('First Name : $pFname');
+                  //   // print('Middle Name : $pMname');
+                  //   // print('Last Name : $pLname');
+                  //   print('Full Name : $fullName');
+                  //   print('Dob : $pDob');
+                  //   print('Gender : $pGender');
+                  //   print('Mobile Number : $pMnum');
+                  //   print('Email Address : $pEmail');
+                  //   print('Current Address : $pAddress');
+                  //
+                  //   addUser(user, context);
+                  //
+                  //   Navigator.pushReplacement(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => EducationalDetail(),
+                  //       )
+                  //   );
+                  // },
+                  onPressed: () async {
+                    // Users user = Users(
+                    //   id: 1, // Example ID, adjust as per your schema or auto-increment in DB
+                    //   firstName: _firstNameController.text,
+                    //   middleName: _middleNameController.text,
+                    //   lastName: _lastNameController.text,
+                    //   jobtitle: _jobtitleController.text,
+                    //   dob: _dobController.text,
+                    //   gender: _genderController.text,
+                    //   mobile: int.parse(_mNumController.text),
+                    //   email: _emailController.text,
+                    //   address: _addressController.text,
+                    // );
+                    //
+                    // await addUser(user, context);
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EducationalDetail(),
+                      ),
+                    );
+                  },
+
+                ),
+              ),
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 22, left: 20, right: 20),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.end,
+            //     children: [
+            //       InkWell(
+            //         child: Text(
+            //           'Next',
+            //           style: TextStyle(
+            //               color: Colors.black,
+            //               fontSize: 25,
+            //               fontWeight: FontWeight.w700),
+            //         ),
+            //         onTap: () {
+            // Navigator.pushReplacement(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => EducationalDetail(),
+            //     ));
+            //         },
+            //       )
+            //     ],
+            //   ),
+            // )
+          ],
+        ),
       ),
     );
   }

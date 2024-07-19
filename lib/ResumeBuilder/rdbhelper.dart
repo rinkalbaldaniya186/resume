@@ -1,6 +1,7 @@
 import 'package:path/path.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
 import 'package:rnewapp/ResumeBuilder/model/education.dart';
+import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
@@ -13,6 +14,7 @@ class DbHelper {
   // tables name
   static final String _tableUser = 'resume';
   static final String _tableEdu = 'Education';
+  static final String _tableExp = 'Experience';
 
   // Column name Personal Detail
   static final String _id = 'id';
@@ -47,6 +49,12 @@ class DbHelper {
   static final String _timeMo = 'timeMo';
   static final String _resultMo = 'resultMo';
 
+  // Column name Experience Detail
+  static final String _title = 'title';
+  static final String _company = 'company';
+  static final String _duration = 'duration';
+  static final String _description = 'description';
+
   static Database? _database;
 
   Future<Database?> getDatabase() async {
@@ -73,12 +81,21 @@ class DbHelper {
     print('Insert success Personal Detail');
     return await db!.insert(_tableUser, user.toMap());
   }
+
 // educational detail page no data insert :-
   Future<int> insertEdu(Education education) async {
     final db = await getDatabase();
     print('Insert success Educational Detail');
     return await db!.insert(_tableEdu, education.toMap());
   }
+
+  // educational detail page no data insert :-
+  Future<int> insertExp(Experience experience) async {
+    final db = await getDatabase();
+    print('Insert success Experience Detail');
+    return await db!.insert(_tableExp, experience.toMap());
+  }
+
 // personal detail page no data get :-
   Future<List<Users>?> getUsersList() async {
     final db = await getDatabase();
@@ -128,6 +145,21 @@ class DbHelper {
           resultMo: element['resultMo'] as int,
 
     ),)
+        .toList();
+  }
+
+  // personal detail page no data get :-
+  Future<List<Experience>?> getExpList() async {
+    final db = await getDatabase();
+    final List<Map<String, Object?>>? expMaps = await db?.query(_tableExp);
+
+    return expMaps
+        ?.map((element) => Experience(
+      title: element['title'] as String,
+      company: element['Company'] as String,
+      duration: element['duration'] as String,
+      description: element['desripation'] as String,
+    ))
         .toList();
   }
 
