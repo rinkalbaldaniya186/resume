@@ -50,6 +50,7 @@ class DbHelper {
   static final String _resultMo = 'resultMo';
 
   // Column name Experience Detail
+  static final String _idex = 'idex';
   static final String _title = 'title';
   static final String _company = 'company';
   static final String _duration = 'duration';
@@ -155,6 +156,7 @@ class DbHelper {
 
     return expMaps
         ?.map((element) => Experience(
+      idex: element['idex'] as int,
       title: element['title'] as String,
       company: element['Company'] as String,
       duration: element['duration'] as String,
@@ -193,6 +195,13 @@ class DbHelper {
           '$_locationMo TEXT NOT NULL,'
           '$_timeMo TEXT NOT NULL,'
           '$_resultMo INTEGER NOT NULL)');
+
+    await db.execute('CREATE TABLE $_tableExp ('
+        '$_idex INTEGER PRIMARY KEY AUTOINCREMENT,'
+        '$_title TEXT NOT NULL,'
+        '$_company TEXT NOT NULL,'
+        '$_duration TEXT NOT NULL,'
+        '$_description TEXT NOT NULL)');
   }
 }
 

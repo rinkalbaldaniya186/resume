@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/projectDetail.dart';
+import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 
 class ExperienceDetail extends StatefulWidget {
   const ExperienceDetail({super.key});
 
   @override
   State<ExperienceDetail> createState() => _ExperienceDetailState();
+}
+
+final DbHelper _dbHelper = DbHelper();
+
+Future<void> addUser(Experience experience, BuildContext context) async {
+  try {
+    var idex = await _dbHelper.insertExp(experience);
+    if (idex != -1) {
+      idex++;
+      print("Experience added successfully with ID: $idex");
+
+    } else {
+      print("Failed to add user");
+    }
+  } catch (e) {
+    print("Error adding user: $e");
+  }
 }
 
 class _ExperienceDetailState extends State<ExperienceDetail> {
@@ -78,7 +96,9 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,
-                            fontWeight: FontWeight.w500)),
+                            fontWeight: FontWeight.w500
+                      )
+                    ),
                   ],
                 ),
                 if (_isExperienceSelected) Flexible(child: ExperienceFieldForm()),
@@ -146,6 +166,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
       setState(() {
         // Create an Experience object and add to _submittedData
         _submittedData.add(Experience(
+          idex: 1,
           title: _textFieldController.text,
           company: _textFieldController2.text,
           duration: _textFieldController3.text,
@@ -163,6 +184,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
 
   @override
   Widget build(BuildContext context) {
+    String error = 'Please Enter above detail';
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -326,7 +348,20 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
             itemBuilder: (context, index) {
               return ListTile(
                 tileColor: Colors.grey.shade200,
-                title: Text(_submittedData[index].title, style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(_submittedData[index].title!, style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
+                     IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _submittedData.removeAt(index);
+                        });
+                      },
+                      icon: Icon(Icons.delete),
+                    ),
+                  ],
+                ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -349,10 +384,26 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
               width: 330,
               child: TextButton(
                 onPressed: () {
+                  // if (_textFieldController.text.isNotEmpty &&
+                  //     _textFieldController2.text.isNotEmpty &&
+                  //     _textFieldController3.text.isNotEmpty &&
+                  //     _textFieldController4.text.isNotEmpty){
+                  //
+                  // }
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => ProjectDetail()));
+                  // else{
+                  //   print('Enter Detail');
+                  //    Center(
+                  //     child: Column(
+                  //       children: [
+                  //         Text(error)
+                  //       ],
+                  //     ),
+                  //   );
+                  // }
                 },
                 child: Text(
                   'Next',
@@ -363,7 +414,12 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                 ),
               ),
             ),
-          )
+          ),
+          // Column(
+          //   children: [
+          //     Text('$error',style: TextStyle(color: Colors.red, fontSize: 25),),
+          //   ],
+          // )
         ],
       ),
     );

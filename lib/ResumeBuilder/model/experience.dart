@@ -1,19 +1,22 @@
 class Experience {
-  final String title;
-  final String company;
-  final String duration;
-  final String description;
+  int idex;
+  String? title;
+  String? company;
+  String? duration;
+  String? description;
 
   Experience({
-    required this.title,
-    required this.company,
-    required this.duration,
-    required this.description,
+    required this.idex,
+    this.title,
+    this.company,
+    this.duration,
+    this.description,
   });
 
-  Map<String, Object> toMap() {
+  Map<String, Object?> toMap() {
     return {
-      'title' : title,
+      'ide' : idex,
+      'sNameT': title,
       'company': company,
       'duration': duration,
       'description': description,
