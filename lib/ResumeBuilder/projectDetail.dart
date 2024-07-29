@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/model/project.dart';
+import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 import 'package:rnewapp/ResumeBuilder/skillPage.dart';
 
 class ProjectDetail extends StatefulWidget {
@@ -8,6 +8,27 @@ class ProjectDetail extends StatefulWidget {
 
   @override
   State<ProjectDetail> createState() => _ProjectDetailState();
+}
+
+final DbHelper _dbHelper = DbHelper();
+
+Future<void> addPro(Project project, BuildContext context) async {
+  try {
+    var idpro = await _dbHelper.insertPro(project);
+    if (idpro != -1) {
+      idpro++;
+      print("Experience added successfully with ID: $idpro");
+      print('Title : $pTitleP');
+      print('Company Name : $pCompanyP');
+      print('Duration : $pDurationP');
+      print('Descripation : $pDescriptionP');
+
+    } else {
+      print("Failed to add user");
+    }
+  } catch (e) {
+    print("Error adding user: $e");
+  }
 }
 
 class _ProjectDetailState extends State<ProjectDetail> {
@@ -118,6 +139,16 @@ class _ProjectDetailState extends State<ProjectDetail> {
   }
 }
 
+final TextEditingController _textFieldController = TextEditingController();
+final TextEditingController _textFieldController2 = TextEditingController();
+final TextEditingController _textFieldController3 = TextEditingController();
+final TextEditingController _textFieldController4 = TextEditingController();
+
+var pTitleP = _textFieldController.text;
+var pCompanyP = _textFieldController2.text;
+var pDurationP = _textFieldController3.text;
+var pDescriptionP  = _textFieldController4.text;
+
 class ExperienceFieldForm extends StatefulWidget {
   const ExperienceFieldForm({super.key});
 
@@ -131,7 +162,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
   final TextEditingController _textFieldController2 = TextEditingController();
   final TextEditingController _textFieldController3 = TextEditingController();
   final TextEditingController _textFieldController4 = TextEditingController();
-  final List<ProjectClass> _submitData = []; // Changed to List<Experience>
+  final List<Project> _submitData = []; // Changed to List<Experience>
 
   void _toggleForm() {
     setState(() {
@@ -145,7 +176,8 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
         _textFieldController3.text.isNotEmpty &&
         _textFieldController4.text.isNotEmpty) {
       setState(() {
-        _submitData.add(ProjectClass(
+        _submitData.add(Project(
+          idpro: 1,
           pTitle: _textFieldController.text,
           pCompany: _textFieldController2.text,
           pDuration: _textFieldController3.text,
@@ -298,7 +330,20 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                         height: 60,
                         width: 330,
                         child: TextButton(
-                          onPressed: _addData,
+                          onPressed: () async {
+                            _addData();
+
+                            Project project = Project(
+                              idpro: 1,
+                              pTitle: _textFieldController.text,
+                              pCompany: _textFieldController2.text,
+                              pDescription: _textFieldController3.text,
+                              pDuration: _textFieldController4.text,
+                            );
+                            await addPro(project, context);
+                            print('add button pressed');
+
+                          },
                           child: const Text(
                             'Add',
                             style: TextStyle(
@@ -326,13 +371,26 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
             itemBuilder: (context, index) {
               return ListTile(
                 tileColor: Colors.grey.shade200,
-                title: Text(
-                  _submitData[index].pTitle,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                  ),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      _submitData[index].pTitle!,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                     IconButton(
+                       onPressed: () {
+                         setState(() {
+                           _submitData.removeAt(index);
+                         });
+                       },
+                      icon: Icon(Icons.delete),
+                     ),
+                  ],
                 ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -377,15 +435,12 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
               width: 330,
               child: TextButton(
                 onPressed: () {
-                  if (_textFieldController.text.isNotEmpty &&
-                      _textFieldController2.text.isNotEmpty &&
-                      _textFieldController3.text.isNotEmpty &&
-                      _textFieldController4.text.isNotEmpty) {
+
                        Navigator.pushReplacement(
                            context,
                            MaterialPageRoute(
                                builder: (context) => SkillPage()));
-                      }
+
                 },
                 child: Text(
                   'Next',

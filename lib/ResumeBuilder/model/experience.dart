@@ -15,8 +15,8 @@ class Experience {
 
   Map<String, Object?> toMap() {
     return {
-      'ide' : idex,
-      'sNameT': title,
+      'idex' : idex,
+      'title': title,
       'company': company,
       'duration': duration,
       'description': description,

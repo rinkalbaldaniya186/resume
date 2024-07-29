@@ -61,6 +61,7 @@
 // }
 ///
 import 'package:flutter/material.dart';
+import 'package:rnewapp/ResumeBuilder/finalPage.dart';
 
 class SkillPage extends StatefulWidget {
   @override
@@ -142,6 +143,34 @@ class _SkillPageState extends State<SkillPage> {
               ),
               SizedBox(height: 20.0),
               Text('Selected Chips: ${_selectedChips.join(', ')}'),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  width: 330,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FinalPage()));
+                    },
+                    child: Text(
+                      'Next',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 27,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -149,6 +178,72 @@ class _SkillPageState extends State<SkillPage> {
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+//
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text('Flutter Chips Example'),
+//         ),
+//         body: Padding(
+//           padding: const EdgeInsets.all(16.0),
+//           child: Column(
+//             children: <Widget>[
+//               // Basic Chip with onTap
+//               InkWell(
+//                 onTap: () {
+//                   Colors.blue;
+//                 },
+//                 child: Chip(
+//                   label: Text('Basic Chip'),
+//                 ),
+//               ),
+//               SizedBox(height: 10),
+//
+//               // Chip with Icon and onTap
+//               InkWell(
+//                 onTap: () {
+//                   print('Chip with Icon tapped');
+//                 },
+//                 child: Chip(
+//                   avatar: CircleAvatar(
+//                     backgroundColor: Colors.blue.shade900,
+//                     child: Text('AB'),
+//                   ),
+//                   label: Text('Chip with Icon'),
+//                 ),
+//               ),
+//               SizedBox(height: 10),
+//
+//               // Chip with Delete Icon and onTap
+//               InkWell(
+//                 onTap: () {
+//                   print('Chip with Delete Icon tapped');
+//                 },
+//                 child: Chip(
+//                   label: Text('Chip with Delete Icon'),
+//                   onDeleted: () {
+//                     print('Delete icon pressed');
+//                   },
+//                   deleteIcon: Icon(Icons.cancel),
+//                   deleteIconColor: Colors.red,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 // import 'package:flutter/material.dart';
 //

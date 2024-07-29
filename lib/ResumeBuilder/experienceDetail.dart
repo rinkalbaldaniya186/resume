@@ -10,14 +10,27 @@ class ExperienceDetail extends StatefulWidget {
   State<ExperienceDetail> createState() => _ExperienceDetailState();
 }
 
+List<Experience> exList = [];
+List<String> allData = [];
+//
+// var ar = {s1,s2,s3,s4};
+// var s1 = _textFieldController.text;
+// var s2 = _textFieldController.text;
+// var s3 = _textFieldController.text;
+// var s4 = _textFieldController.text;
+
 final DbHelper _dbHelper = DbHelper();
 
-Future<void> addUser(Experience experience, BuildContext context) async {
+Future<void> addExp(Experience experience, BuildContext context) async {
   try {
     var idex = await _dbHelper.insertExp(experience);
     if (idex != -1) {
       idex++;
       print("Experience added successfully with ID: $idex");
+      print('Title : $titleP');
+      print('Company Name : $companyP');
+      print('Duration : $durationP');
+      print('Descripation : $descriptionP');
 
     } else {
       print("Failed to add user");
@@ -137,6 +150,16 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
   }
 }
 
+final TextEditingController _textFieldController = TextEditingController();
+final TextEditingController _textFieldController2 = TextEditingController();
+final TextEditingController _textFieldController3 = TextEditingController();
+final TextEditingController _textFieldController4 = TextEditingController();
+
+var titleP = _textFieldController.text;
+var companyP = _textFieldController2.text;
+var durationP = _textFieldController3.text;
+var descriptionP  = _textFieldController4.text;
+
 class ExperienceFieldForm extends StatefulWidget {
   const ExperienceFieldForm({super.key});
 
@@ -144,12 +167,10 @@ class ExperienceFieldForm extends StatefulWidget {
   State<ExperienceFieldForm> createState() => _ExperienceFieldFormState();
 }
 
+
 class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
   bool _isFormVisible = false;
-  final TextEditingController _textFieldController = TextEditingController();
-  final TextEditingController _textFieldController2 = TextEditingController();
-  final TextEditingController _textFieldController3 = TextEditingController();
-  final TextEditingController _textFieldController4 = TextEditingController();
+
   final List<Experience> _submittedData = []; // Changed to List<Experience>
 
   void _toggleForm() {
@@ -172,7 +193,6 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
           duration: _textFieldController3.text,
           description: _textFieldController4.text,
         ));
-
         // Clear text fields after adding data
         _textFieldController.clear();
         _textFieldController2.clear();
@@ -320,7 +340,20 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                         height: 60,
                         width: 330,
                         child: TextButton(
-                          onPressed: _addData,
+                          onPressed: () async {
+                            _addData();
+                            Experience experience = Experience(
+                                idex: 1,
+                                title: _textFieldController.text,
+                                company: _textFieldController2.text,
+                                duration: _textFieldController3.text,
+                                description: _textFieldController4.text,
+                            );
+                            await addExp(experience, context);
+                            print('add button pressed');
+
+                          },
+
                           child: const Text(
                             'Add',
                             style: TextStyle(
@@ -417,7 +450,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
           ),
           // Column(
           //   children: [
-          //     Text('$error',style: TextStyle(color: Colors.red, fontSize: 25),),
+          //     Text('',style: TextStyle(color: Colors.red, fontSize: 25),),
           //   ],
           // )
         ],

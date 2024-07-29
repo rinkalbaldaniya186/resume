@@ -2,6 +2,7 @@ import 'package:path/path.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
 import 'package:rnewapp/ResumeBuilder/model/education.dart';
 import 'package:rnewapp/ResumeBuilder/model/experience.dart';
+import 'package:rnewapp/ResumeBuilder/model/project.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
@@ -15,6 +16,7 @@ class DbHelper {
   static final String _tableUser = 'resume';
   static final String _tableEdu = 'Education';
   static final String _tableExp = 'Experience';
+  static final String _tablePro = 'Project';
 
   // Column name Personal Detail
   static final String _id = 'id';
@@ -56,6 +58,13 @@ class DbHelper {
   static final String _duration = 'duration';
   static final String _description = 'description';
 
+  // Column name Experience Detail
+  static final String _idpro = 'idpro';
+  static final String _pTitle = 'pTitle';
+  static final String _pCompany = 'pCompany';
+  static final String _pDuration = 'pDuration';
+  static final String _pDescription = 'pDescription';
+
   static Database? _database;
 
   Future<Database?> getDatabase() async {
@@ -95,6 +104,13 @@ class DbHelper {
     final db = await getDatabase();
     print('Insert success Experience Detail');
     return await db!.insert(_tableExp, experience.toMap());
+  }
+
+  // educational detail page no data insert :-
+  Future<int> insertPro(Project project) async {
+    final db = await getDatabase();
+    print('Insert success Project Detail');
+    return await db!.insert(_tablePro, project.toMap());
   }
 
 // personal detail page no data get :-
@@ -160,7 +176,23 @@ class DbHelper {
       title: element['title'] as String,
       company: element['Company'] as String,
       duration: element['duration'] as String,
-      description: element['desripation'] as String,
+      description: element['description'] as String,
+    ))
+        .toList();
+  }
+
+  // personal detail page no data get :-
+  Future<List<Project>?> getProList() async {
+    final db = await getDatabase();
+    final List<Map<String, Object?>>? proMaps = await db?.query(_tablePro);
+
+    return proMaps
+        ?.map((element) => Project(
+      idpro: element['idpro'] as int,
+      pTitle: element['pTitle'] as String,
+      pCompany: element['pCompany'] as String,
+      pDuration: element['pDuration'] as String,
+      pDescription: element['pDescription'] as String,
     ))
         .toList();
   }
@@ -202,6 +234,13 @@ class DbHelper {
         '$_company TEXT NOT NULL,'
         '$_duration TEXT NOT NULL,'
         '$_description TEXT NOT NULL)');
+
+    await db.execute('CREATE TABLE $_tablePro ('
+        '$_idpro INTEGER PRIMARY KEY AUTOINCREMENT,'
+        '$_pTitle TEXT NOT NULL,'
+        '$_pCompany TEXT NOT NULL,'
+        '$_pDuration TEXT NOT NULL,'
+        '$_pDescription TEXT NOT NULL)');
   }
 }
 

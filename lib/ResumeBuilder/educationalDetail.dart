@@ -345,7 +345,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                                 decoration: InputDecoration(
                                   labelText: 'Collage/University Name',
                                   labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                  //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                  prefixIcon: Icon(Icons.school, color: Colors.black, size: 30),
                                 ),
                                  controller: _GrsNameController,
                                 keyboardType: TextInputType.text,
@@ -357,9 +357,9 @@ class _EducationalDetailState extends State<EducationalDetail> {
                               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
                               child: TextField(
                                 decoration: InputDecoration(
-                                  labelText: 'Location',
+                                  labelText: 'Degree/Course Name',
                                   labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                  //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                  prefixIcon: Icon(Icons.app_registration, color: Colors.black, size: 30),
                                 ),
                                  controller: _GrsLocationController,
                                 keyboardType: TextInputType.text,
@@ -373,7 +373,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                                 decoration: InputDecoration(
                                   labelText: 'Passing Month/Year',
                                   labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                  //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                  prefixIcon: Icon(Icons.calendar_month, color: Colors.black, size: 30),
                                 ),
                                  controller: _GrtimeController
 
@@ -389,7 +389,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                                 decoration: InputDecoration(
                                   labelText: 'Percentage',
                                   labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                  //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                  prefixIcon: Icon(Icons.grade, color: Colors.black, size: 30),
                                 ),
                                 controller: _GrresultController,
                                 keyboardType: TextInputType.text,
@@ -445,7 +445,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                                 decoration: InputDecoration(
                                   labelText: 'Collage/University Name',
                                   labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                  //   prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                  prefixIcon: Icon(Icons.school, color: Colors.black, size: 30),
                                 ),
                                  controller: _MosNameController,
                                 keyboardType: TextInputType.text,
@@ -457,9 +457,9 @@ class _EducationalDetailState extends State<EducationalDetail> {
                               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
                               child: TextField(
                                 decoration: InputDecoration(
-                                  labelText: 'Location',
+                                  labelText: 'Degree/Course Name',
                                   labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                  //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                  prefixIcon: Icon(Icons.app_registration, color: Colors.black, size: 30),
                                 ),
                                  controller: _MosLocationController,
                                 keyboardType: TextInputType.text,
@@ -473,7 +473,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                                 decoration: InputDecoration(
                                   labelText: 'Passing Month/Year',
                                   labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                  //     prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                  prefixIcon: Icon(Icons.calendar_month, color: Colors.black, size: 30),
                                 ),
                                  controller: _MotimeController,
                                 keyboardType: TextInputType.text,
@@ -487,7 +487,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                                 decoration: InputDecoration(
                                   labelText: 'Percentage',
                                   labelStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w700),
-                                  //    prefixIcon: Icon(Icons.person, color: Colors.black, size: 30),
+                                  prefixIcon: Icon(Icons.grade, color: Colors.black, size: 30),
                                 ),
                                  controller: _MoresultController,
                                 keyboardType: TextInputType.text,
@@ -517,7 +517,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                               fontSize: 27,
                               fontWeight: FontWeight.bold
                           ),),
-                        onPressed: () async {
+                        onPressed: () {
                          //  Education education = Education(
                          //    ide: 1,
                          //    sNameT: _sNameTController.text,
@@ -538,7 +538,6 @@ class _EducationalDetailState extends State<EducationalDetail> {
                          //    locationMo: _MosLocationController.text,
                          //    timeMo: _MotimeController.text,
                          //    resultMo: int.parse(_MoresultController.text),
-                         //
                          //  );
                          //
                          // // await addUser(user, context);
