@@ -76,7 +76,7 @@ class _FinalPageState extends State<FinalPage> {
                       //   Text(usersList[0].gender),
                       //   Text(usersList[0].address),
                       ],
-                    ),
+                  ),
                 ],
               ),
             ),

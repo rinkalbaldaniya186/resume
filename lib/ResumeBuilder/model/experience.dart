@@ -5,7 +5,8 @@ class Experience {
   String? duration;
   String? description;
 
-  Experience({
+  Experience(
+      {
     required this.idex,
     this.title,
     this.company,

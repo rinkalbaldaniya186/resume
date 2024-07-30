@@ -24,7 +24,6 @@ class _AppHomePageState extends State<AppHomePage> {
     super.initState();
     _initializeDB();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

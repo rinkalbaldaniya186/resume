@@ -127,6 +127,7 @@ class DbHelper {
     return await db!.insert(_tableSkill, skill.toMap());
   }
 
+
 // personal detail page no data get :-
   Future<List<Users>?> getUsersList() async {
     final db = await getDatabase();

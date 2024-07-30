@@ -224,6 +224,7 @@ class _SkillPageState extends State<SkillPage> {
 //               ),
 //               SizedBox(height: 10),
 //
+
 //               // Chip with Delete Icon and onTap
 //               InkWell(
 //                 onTap: () {

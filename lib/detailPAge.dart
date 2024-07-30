@@ -7,6 +7,7 @@ class DetailPage extends StatefulWidget {
   State<DetailPage> createState() => _DetailPageState();
 }
 
+
 class _DetailPageState extends State<DetailPage> {
 
   @override

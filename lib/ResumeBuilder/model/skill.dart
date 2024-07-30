@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
     this.skill,
   });
 
+
   Map<String, Object?> toMap() {
     return {
       'idsk' : idsk,

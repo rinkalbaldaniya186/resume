@@ -20,8 +20,7 @@ class Education{
   int? resultMo;
 
   Education(
-      {
-      required this.ide,
+      {required this.ide,
       this.sNameT,
       this.timeT,
       this.perT,

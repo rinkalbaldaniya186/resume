@@ -542,7 +542,6 @@ class _EducationalDetailState extends State<EducationalDetail> {
                          //
                          // // await addUser(user, context);
                          //  await addEdu(education, context);
-
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
