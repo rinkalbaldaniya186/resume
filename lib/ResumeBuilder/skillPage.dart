@@ -60,6 +60,7 @@
 //   }
 // }
 ///
+
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/finalPage.dart';
 
@@ -311,4 +312,107 @@ class _SkillPageState extends State<SkillPage> {
 //       ),
 //     );
 //   }
+// }
+// import 'package:flutter/material.dart';
+//
+// class Skill {
+//   String name;
+//
+//   Skill(this.name);
+// }
+//
+// class SkillPage extends StatefulWidget {
+//   @override
+//   _SkillPageState createState() => _SkillPageState();
+// }
+//
+// class _SkillPageState extends State<SkillPage> {
+//   final List<Skill> skills = [];
+//   final TextEditingController _controller = TextEditingController();
+//
+//   void _addSkill(String skillName) {
+//     setState(() {
+//       skills.add(Skill(skillName));
+//     });
+//     _controller.clear();
+//   }
+//
+//   void _removeSkill(Skill skill) {
+//     setState(() {
+//       skills.remove(skill);
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//           title: const Text(
+//             'Language & Skill Detail',
+//             style: TextStyle(color: Colors.white, fontSize: 30),
+//           ),
+//           backgroundColor: Colors.blue.shade400,
+//         ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             TextField(
+//               controller: _controller,
+//               decoration: InputDecoration(
+//                 labelText: 'Enter a skill',
+//                 suffixIcon: IconButton(
+//                   icon: Icon(Icons.add),
+//                   onPressed: () {
+//                     if (_controller.text.isNotEmpty) {
+//                       _addSkill(_controller.text);
+//                     }
+//                   },
+//                 ),
+//               ),
+//               onSubmitted: (value) {
+//                 if (value.isNotEmpty) {
+//                   _addSkill(value);
+//                 }
+//               },
+//             ),
+//             SizedBox(height: 20),
+//             Wrap(
+//               spacing: 8.0,
+//               runSpacing: 4.0,
+//               children: skills.map((skill) {
+//                 return InputChip(
+//                   label: Text(skill.name),
+//                   onDeleted: () {
+//                     _removeSkill(skill);
+//                   },
+//                 );
+//               }).toList(),
+//             ),
+//             SizedBox(height: 20),
+//             ElevatedButton(
+//               onPressed: () {
+//
+//                 // Print all skills to console
+//                 for (var skill in skills) {
+//                   print(skill.name);
+//                   List<String> allSkill = [];
+//                   allSkill.add(skill.name);
+//                   print('allSkill : ${allSkill}');
+//                 }
+//               },
+//               child: Text('Add All Skills'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// void main() {
+//   runApp(MaterialApp(
+//     home: SkillPage(),
+//   ));
 // }

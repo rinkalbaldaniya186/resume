@@ -5,6 +5,8 @@ import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/model/project.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'model/skill.dart';
+
 class DbHelper {
   // database name
   static final String _dbName = 'resume.db';
@@ -17,6 +19,7 @@ class DbHelper {
   static final String _tableEdu = 'Education';
   static final String _tableExp = 'Experience';
   static final String _tablePro = 'Project';
+  static final String _tableSkill = 'Project';
 
   // Column name Personal Detail
   static final String _id = 'id';
@@ -65,6 +68,10 @@ class DbHelper {
   static final String _pDuration = 'pDuration';
   static final String _pDescription = 'pDescription';
 
+  // Column name Skill Detail
+  static final String _idsk = 'idsk';
+  static final String _skill = 'skill';
+
   static Database? _database;
 
   Future<Database?> getDatabase() async {
@@ -111,6 +118,13 @@ class DbHelper {
     final db = await getDatabase();
     print('Insert success Project Detail');
     return await db!.insert(_tablePro, project.toMap());
+  }
+
+  // educational detail page no data insert :-
+  Future<int> insertSk(Skill skill) async {
+    final db = await getDatabase();
+    print('Insert success Skill Detail');
+    return await db!.insert(_tableSkill, skill.toMap());
   }
 
 // personal detail page no data get :-
@@ -165,7 +179,7 @@ class DbHelper {
         .toList();
   }
 
-  // personal detail page no data get :-
+  // Experience detail page no data get :-
   Future<List<Experience>?> getExpList() async {
     final db = await getDatabase();
     final List<Map<String, Object?>>? expMaps = await db?.query(_tableExp);
@@ -181,7 +195,7 @@ class DbHelper {
         .toList();
   }
 
-  // personal detail page no data get :-
+  // Project detail page no data get :-
   Future<List<Project>?> getProList() async {
     final db = await getDatabase();
     final List<Map<String, Object?>>? proMaps = await db?.query(_tablePro);
@@ -193,6 +207,19 @@ class DbHelper {
       pCompany: element['pCompany'] as String,
       pDuration: element['pDuration'] as String,
       pDescription: element['pDescription'] as String,
+    ))
+        .toList();
+  }
+
+  // Skill detail page no data get :-
+  Future<List<Skill>?> getSkList() async {
+    final db = await getDatabase();
+    final List<Map<String, Object?>>? skMaps = await db?.query(_tableSkill);
+
+    return skMaps
+        ?.map((element) => Skill(
+      idsk: element['idsk'] as int,
+      skill: element['skill'] as String,
     ))
         .toList();
   }
@@ -241,6 +268,11 @@ class DbHelper {
         '$_pCompany TEXT NOT NULL,'
         '$_pDuration TEXT NOT NULL,'
         '$_pDescription TEXT NOT NULL)');
+
+    await db.execute('CREATE TABLE $_tableSkill ('
+        '$_idpro INTEGER PRIMARY KEY AUTOINCREMENT,'
+        '$_skill TEXT NOT NULL,');
+
   }
 }
 
