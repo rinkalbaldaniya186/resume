@@ -1,44 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+import 'package:rnewapp/ResumeBuilder/model/education.dart';
 import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/projectDetail.dart';
-import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 
 class ExperienceDetail extends StatefulWidget {
-  const ExperienceDetail({super.key});
+  Education education;
+  Users users;
+  ExperienceDetail(this.education, this.users, {super.key});
 
   @override
   State<ExperienceDetail> createState() => _ExperienceDetailState();
 }
 
-List<Experience> exList = [];
-List<String> allData = [];
-//
-// var ar = {s1,s2,s3,s4};
-// var s1 = _textFieldController.text;
-// var s2 = _textFieldController.text;
-// var s3 = _textFieldController.text;
-// var s4 = _textFieldController.text;
+// List<Experience> exList = [];
+// List<String> allData = [];
 
-final DbHelper _dbHelper = DbHelper();
-
-Future<void> addExp(Experience experience, BuildContext context) async {
-  try {
-    var idex = await _dbHelper.insertExp(experience);
-    if (idex != -1) {
-      idex++;
-      print("Experience added successfully with ID: $idex");
-      print('Title : $titleP');
-      print('Company Name : $companyP');
-      print('Duration : $durationP');
-      print('Descripation : $descriptionP');
-
-    } else {
-      print("Failed to add user");
-    }
-  } catch (e) {
-    print("Error adding user: $e");
-  }
-}
 
 class _ExperienceDetailState extends State<ExperienceDetail> {
   bool _isExperienceSelected = false;
@@ -110,7 +87,7 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                             color: Colors.black,
                             fontSize: 25,
                             fontWeight: FontWeight.w500
-                      )
+                        )
                     ),
                   ],
                 ),
@@ -127,10 +104,10 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
                       width: 330,
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ProjectDetail()));
+                          // Navigator.pushReplacement(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => ProjectDetail()));
                         },
                         child: Text(
                           'Next',
@@ -187,7 +164,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
       setState(() {
         // Create an Experience object and add to _submittedData
         _submittedData.add(Experience(
-          idex: 1,
+          idex: _submittedData.length + 1,
           title: _textFieldController.text,
           company: _textFieldController2.text,
           duration: _textFieldController3.text,
@@ -201,6 +178,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -343,13 +321,13 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                           onPressed: () async {
                             _addData();
                             Experience experience = Experience(
-                                idex: 1,
-                                title: _textFieldController.text,
-                                company: _textFieldController2.text,
-                                duration: _textFieldController3.text,
-                                description: _textFieldController4.text,
+                              idex: 1,
+                              title: _textFieldController.text,
+                              company: _textFieldController2.text,
+                              duration: _textFieldController3.text,
+                              description: _textFieldController4.text,
                             );
-                            await addExp(experience, context);
+
                             print('add button pressed');
 
                           },
@@ -385,7 +363,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(_submittedData[index].title!, style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
-                     IconButton(
+                    IconButton(
                       onPressed: () {
                         setState(() {
                           _submittedData.removeAt(index);
@@ -417,36 +395,30 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
               width: 330,
               child: TextButton(
                 onPressed: () {
-                  // if (_textFieldController.text.isNotEmpty &&
-                  //     _textFieldController2.text.isNotEmpty &&
-                  //     _textFieldController3.text.isNotEmpty &&
-                  //     _textFieldController4.text.isNotEmpty){
-                  //
-                  // }
-                  Navigator.pushReplacement(
+                  if (_submittedData.isNotEmpty) {
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ProjectDetail()));
-
-                  // else{
-                  //   print('Enter Detail');
-                  //    Center(
-                  //     child: Column(
-                  //       children: [
-                  //         Text(error)
-                  //       ],
-                  //     ),
-                  //   );
-                  // }
+                        builder: (context) => ProjectDetail(_submittedData),
+                      ),
+                    );
+                  } else {
+                    // Handle the case where no experience data is added
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Please add at least one experience')),
+                    );
+                  }
                 },
                 child: Text(
                   'Next',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 27,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
+
             ),
           ),
           // Column(

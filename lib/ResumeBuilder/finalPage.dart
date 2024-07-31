@@ -70,7 +70,7 @@ class _FinalPageState extends State<FinalPage> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text('${usersList[0].middleName} ${usersList[0].firstName}         ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),),
-                        Text(usersList.isNotEmpty ? usersList[0].jobtitle : '',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
+                        Text(usersList.isNotEmpty ? usersList[0].jobTitle : '',style: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w500),),
                       //  Text('${eduList[index].resultMo}'),
                       //   Text(usersList[0].dob),
                       //   Text(usersList[0].gender),
@@ -148,7 +148,7 @@ class _FinalPageState extends State<FinalPage> {
                               SizedBox(
                                 width: 13,
                               ),
-                              Text('${usersList[0].mobile}')
+                              Text('${usersList[0].mobileNum}')
                             ],
                           ),
                           Row(

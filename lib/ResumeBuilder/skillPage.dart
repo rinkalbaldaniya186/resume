@@ -63,8 +63,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/finalPage.dart';
+import 'package:rnewapp/ResumeBuilder/model/project.dart';
+import 'package:rnewapp/ResumeBuilder/model/skill.dart';
 
 class SkillPage extends StatefulWidget {
+  final List<Project> projects;
+  const SkillPage({required this.projects, Key? key}) : super(key: key);
+
   @override
   _SkillPageState createState() => _SkillPageState();
 }

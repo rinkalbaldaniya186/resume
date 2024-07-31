@@ -1,39 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/model/project.dart';
-import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 import 'package:rnewapp/ResumeBuilder/skillPage.dart';
 
 class ProjectDetail extends StatefulWidget {
-  const ProjectDetail({super.key});
+  final List<Experience> submittedData;
+  ProjectDetail(this.submittedData);
 
   @override
-  State<ProjectDetail> createState() => _ProjectDetailState();
-}
-
-final DbHelper _dbHelper = DbHelper();
-
-Future<void> addPro(Project project, BuildContext context) async {
-  try {
-    var idpro = await _dbHelper.insertPro(project);
-    if (idpro != -1) {
-      idpro++;
-      print("Experience added successfully with ID: $idpro");
-      print('Title : $pTitleP');
-      print('Company Name : $pCompanyP');
-      print('Duration : $pDurationP');
-      print('Descripation : $pDescriptionP');
-
-    } else {
-      print("Failed to add user");
-    }
-  } catch (e) {
-    print("Error adding user: $e");
-  }
+  _ProjectDetailState createState() => _ProjectDetailState();
 }
 
 class _ProjectDetailState extends State<ProjectDetail> {
   bool _isExperienceSelected = false;
   bool _isFresherSelected = false;
+  final List<Project> _submitData = [];
 
   void _onExperienceChanged(bool? value) {
     setState(() {
@@ -56,105 +37,98 @@ class _ProjectDetailState extends State<ProjectDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Add Project Detail',
-            style: TextStyle(color: Colors.white, fontSize: 30),
-          ),
-          backgroundColor: Colors.blue.shade400,
+      appBar: AppBar(
+        title: const Text(
+          'Add Project Detail',
+          style: TextStyle(color: Colors.white, fontSize: 30),
         ),
-        body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fitHeight,
-                image: NetworkImage('https://img.freepik.com/premium-vector/hand-painted-watercolor-abstract-background_889452-17399.jpg'),
-              )
+        backgroundColor: Colors.blue.shade400,
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fitHeight,
+            image: NetworkImage(
+                'https://img.freepik.com/premium-vector/hand-painted-watercolor-abstract-background_889452-17399.jpg'),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Checkbox(
-                      value: _isExperienceSelected,
-                      onChanged: _onExperienceChanged,
-                    ),
-                    const Text(
-                      'Project',
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Checkbox(
+                    value: _isExperienceSelected,
+                    onChanged: _onExperienceChanged,
+                  ),
+                  const Text(
+                    'Project',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: _isFresherSelected,
+                    onChanged: _onFresherChanged,
+                  ),
+                  const Text('Non - Project',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 25,
-                          fontWeight: FontWeight.w500
-                      ),
+                          fontWeight: FontWeight.w500)),
+                ],
+              ),
+              if (_isExperienceSelected) Flexible(child: ExperienceFieldForm(_submitData)),
+              if (_isFresherSelected)
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: _isFresherSelected,
-                      onChanged: _onFresherChanged,
-                    ),
-                    const Text('Non - Project',
+                    height: 60,
+                    width: 330,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SkillPage(projects: _submitData),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Next',
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500)),
-                  ],
-                ),
-                if (_isExperienceSelected) Flexible(child: ExperienceFieldForm()),
-                if (_isFresherSelected)
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 60,
-                      width: 330,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SkillPage()));
-                         },
-                        child: Text(
-                          'Next',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 27,
-                              fontWeight: FontWeight.bold),
-                        ),
+                            color: Colors.white,
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-                  )
-              ],
-            ),
+                  ),
+                )
+            ],
           ),
-        )
+        ),
+      ),
     );
   }
 }
 
-final TextEditingController _textFieldController = TextEditingController();
-final TextEditingController _textFieldController2 = TextEditingController();
-final TextEditingController _textFieldController3 = TextEditingController();
-final TextEditingController _textFieldController4 = TextEditingController();
-
-var pTitleP = _textFieldController.text;
-var pCompanyP = _textFieldController2.text;
-var pDurationP = _textFieldController3.text;
-var pDescriptionP  = _textFieldController4.text;
-
 class ExperienceFieldForm extends StatefulWidget {
-  const ExperienceFieldForm({super.key});
+  final List<Project> submitData;
+  const ExperienceFieldForm(this.submitData, {Key? key}) : super(key: key);
 
   @override
-  State<ExperienceFieldForm> createState() => _ExperienceFieldFormState();
+  _ExperienceFieldFormState createState() => _ExperienceFieldFormState();
 }
 
 class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
@@ -163,7 +137,6 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
   final TextEditingController _textFieldController2 = TextEditingController();
   final TextEditingController _textFieldController3 = TextEditingController();
   final TextEditingController _textFieldController4 = TextEditingController();
-  final List<Project> _submitData = []; // Changed to List<Experience>
 
   void _toggleForm() {
     setState(() {
@@ -177,284 +150,202 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
         _textFieldController3.text.isNotEmpty &&
         _textFieldController4.text.isNotEmpty) {
       setState(() {
-        _submitData.add(Project(
+        widget.submitData.add(Project(
           idpro: 1,
           pTitle: _textFieldController.text,
           pCompany: _textFieldController2.text,
           pDuration: _textFieldController3.text,
           pDescription: _textFieldController4.text,
         ));
-
-        // Clear text fields after adding data
-        _textFieldController.clear();
-        _textFieldController2.clear();
-        _textFieldController3.clear();
-        _textFieldController4.clear();
       });
     }
+    _toggleForm();
+    _textFieldController.clear();
+    _textFieldController2.clear();
+    _textFieldController3.clear();
+    _textFieldController4.clear();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.lightBlue,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          height: 60,
+          width: 330,
+          child: TextButton(
+            onPressed: _toggleForm,
+            child: Text(
+              'Add Details',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 27,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        if (_isFormVisible)
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.lightBlue,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black, width: 2),
               ),
-              height: 60,
-              width: 330,
-              child: TextButton(
-                onPressed: _toggleForm,
-                child: Text(
-                  _isFormVisible ? 'Hide Form' : 'Show Form',
-                  style: const TextStyle(
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _textFieldController,
+                    decoration: InputDecoration(
+                      labelText: 'Project Title',
+                    ),
+                  ),
+                  TextField(
+                    controller: _textFieldController2,
+                    decoration: InputDecoration(
+                      labelText: 'Company/Organisation',
+                    ),
+                  ),
+                  TextField(
+                    controller: _textFieldController3,
+                    decoration: InputDecoration(
+                      labelText: 'Duration',
+                    ),
+                  ),
+                  TextField(
+                    controller: _textFieldController4,
+                    decoration: InputDecoration(
+                      labelText: 'Description',
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    height: 60,
+                    width: 330,
+                    child: TextButton(
+                      onPressed: _addData,
+                      child: const Text(
+                        'Add',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 27,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ListView.separated(
+          separatorBuilder: (context, index) {
+            return Container(
+              height: 3,
+              color: Colors.black,
+            );
+          },
+          shrinkWrap: true,
+          itemCount: widget.submitData.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              tileColor: Colors.grey.shade200,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    widget.submitData[index].pTitle!,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        widget.submitData.removeAt(index);
+                      });
+                    },
+                    icon: Icon(Icons.delete),
+                  ),
+                ],
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Company: ${widget.submitData[index].pCompany}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    'Duration: ${widget.submitData[index].pDuration}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    'Description: ${widget.submitData[index].pDescription}',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.lightBlue,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            height: 60,
+            width: 330,
+            child: TextButton(
+              onPressed: () {
+                if (widget.submitData.isNotEmpty) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SkillPage(projects: widget.submitData),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Please add at least one project')),
+                  );
+                }
+              },
+              child: Text(
+                'Next',
+                style: TextStyle(
                     color: Colors.white,
                     fontSize: 27,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ),
-          if (_isFormVisible)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade100,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(color: Colors.black, width: 2),
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, bottom: 25),
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'Title',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        controller: _textFieldController,
-                        keyboardType: TextInputType.text,
-                        cursorHeight: 35,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, bottom: 25),
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'Company Name',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        controller: _textFieldController2,
-                        keyboardType: TextInputType.text,
-                        cursorHeight: 35,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, bottom: 25),
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'Start Date - End Date',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        controller: _textFieldController3,
-                        keyboardType: TextInputType.text,
-                        cursorHeight: 35,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, bottom: 25),
-                      child: TextField(
-                        decoration: const InputDecoration(
-                          labelText: 'Description',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        controller: _textFieldController4,
-                        keyboardType: TextInputType.text,
-                        cursorHeight: 35,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 10, left: 20, right: 20, bottom: 20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.lightBlue,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        height: 60,
-                        width: 330,
-                        child: TextButton(
-                          onPressed: () async {
-                            _addData();
-
-                            Project project = Project(
-                              idpro: 1,
-                              pTitle: _textFieldController.text,
-                              pCompany: _textFieldController2.text,
-                              pDescription: _textFieldController3.text,
-                              pDuration: _textFieldController4.text,
-                            );
-                            await addPro(project, context);
-                            print('add button pressed');
-
-                          },
-                          child: const Text(
-                            'Add',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 27,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ListView.separated(
-            separatorBuilder: (context, index) {
-              return Container(
-                height: 3,
-                color: Colors.black,
-              );
-            },
-            shrinkWrap: true,
-            itemCount: _submitData.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                tileColor: Colors.grey.shade200,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      _submitData[index].pTitle!,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                     IconButton(
-                       onPressed: () {
-                         setState(() {
-                           _submitData.removeAt(index);
-                         });
-                       },
-                      icon: Icon(Icons.delete),
-                     ),
-                  ],
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Company: ${_submitData[index].pCompany}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Text(
-                      'Duration: ${_submitData[index].pDuration}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Text(
-                      'Description: ${_submitData[index].pDescription}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.lightBlue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              height: 60,
-              width: 330,
-              child: TextButton(
-                onPressed: () {
-
-                       Navigator.pushReplacement(
-                           context,
-                           MaterialPageRoute(
-                               builder: (context) => SkillPage()));
-
-                },
-                child: Text(
-                  'Next',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

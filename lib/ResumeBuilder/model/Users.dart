@@ -3,37 +3,37 @@ class Users {
   String firstName;
   String middleName;
   String lastName;
-  String jobtitle;
+  String jobTitle; // Ensure this field exists
   String dob;
   String gender;
-  int mobile;
+  String mobileNum;
   String email;
   String address;
-
 
   Users({
     required this.id,
     required this.firstName,
     required this.middleName,
     required this.lastName,
-    required this.jobtitle,
+    required this.jobTitle,
     required this.dob,
     required this.gender,
-    required this.mobile,
+    required this.mobileNum,
     required this.email,
     required this.address,
   });
 
- Map<String, Object> toMap() {
+
+Map<String, Object> toMap() {
     return {
       'id': id,
       'firstName': firstName,
       'middleName': middleName,
       'lastName': lastName,
-      'jobtitle': jobtitle,
+      'jobtitle': jobTitle,
       'dob': dob,
       'gender': gender,
-      'mobile': mobile,
+      'mobile': mobileNum,
       'email': email,
       'address': address,
     };

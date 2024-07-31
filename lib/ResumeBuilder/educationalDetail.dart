@@ -1,59 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/experienceDetail.dart';
 import 'package:rnewapp/ResumeBuilder/finalPage.dart';
+import 'package:rnewapp/ResumeBuilder/model/Users.dart';
 import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 import 'model/education.dart';
 
 class EducationalDetail extends StatefulWidget {
-  const EducationalDetail({super.key});
+  Users users;
+  EducationalDetail(this.users, {super.key});
 
   @override
-  State<EducationalDetail> createState() => _EducationalDetailState();
+  State<EducationalDetail> createState() => _EducationalDetailState(users);
 }
 
 bool controller = false;
 
- final DbHelper _dbHelper = DbHelper();
+//  final DbHelper _dbHelper = DbHelper();
+//
+// Future<void> addEdu(Education education, BuildContext context) async {
+//   try {
+//     var ide = await _dbHelper.insertEdu(education);
+//     if (ide != -1) {
+//       ide++;
+//       print("Education added successfully");
+//       print("Education Detail added successfully with ID: $ide");
+//
+//       print('10th Detail :- ');
+//       print('$psNameT');
+//       print('$ptimeT');
+//       print('$pperT');
+//
+//       print('12th Detail :- ');
+//       print('$psNameTw');
+//       print('$pStreamTw');
+//       print('$ptimeTw');
+//       print('$pperTw');
+//
+//       print('Graduation Detail :- ');
+//       print('$psNameGr');
+//       print('$plocationGr');
+//       print('$ptimeGr');
+//       print('$pboeGr');
+//
+//       print('More Detail :- ');
+//       print('$psNameMo');
+//       print('$plocationMo');
+//       print('$ptimeMo');
+//       print('$pperMo');
+//
+//       // Navigate to next screen or perform any additional action
+//     } else {
+//       print("Failed to add user");
+//     }
+//   } catch (e) {
+//     print("Error adding user: $e");
+//   }
+// }
 
-Future<void> addEdu(Education education, BuildContext context) async {
-  try {
-    var ide = await _dbHelper.insertEdu(education);
-    if (ide != -1) {
-      ide++;
-      print("Education added successfully");
-      print("Education Detail added successfully with ID: $ide");
-
-      print('10th Detail :- ');
-      print('$psNameT');
-      print('$ptimeT');
-      print('$pperT');
-
-      print('12th Detail :- ');
-      print('$psNameTw');
-      print('$pStreamTw');
-      print('$ptimeTw');
-      print('$pperTw');
-
-      print('Graduation Detail :- ');
-      print('$psNameGr');
-      print('$plocationGr');
-      print('$ptimeGr');
-      print('$pboeGr');
-
-      print('More Detail :- ');
-      print('$psNameMo');
-      print('$plocationMo');
-      print('$ptimeMo');
-      print('$pperMo');
-
-      // Navigate to next screen or perform any additional action
-    } else {
-      print("Failed to add user");
-    }
-  } catch (e) {
-    print("Error adding user: $e");
-  }
-}
 bool showContainer1 = false;
 bool showContainer2 = false;
 bool showContainer3 = false;
@@ -99,6 +102,9 @@ var pperMo = _MoresultController.text;
 
 
 class _EducationalDetailState extends State<EducationalDetail> {
+  Users users;
+  _EducationalDetailState(this.users);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -510,42 +516,42 @@ class _EducationalDetailState extends State<EducationalDetail> {
                       height: 60,
                       width: 330,
                       child: TextButton(
-                        child: Text(
-                          'Next',
+                        child: Text('Next',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 27,
                               fontWeight: FontWeight.bold
-                          ),),
+                          ),
+                        ),
                         onPressed: () {
-                         //  Education education = Education(
-                         //    ide: 1,
-                         //    sNameT: _sNameTController.text,
-                         //    timeT: _timeTController.text,
-                         //    perT: int.parse(_perTController.text),
-                         //
-                         //    sNameTw: _sNameTwController.text,
-                         //    streamTw: _StreamTwController.text,
-                         //    timeTw: _timeTwController.text,
-                         //    perTw: int.parse(_perTwController.text),
-                         //
-                         //    sNameGr: _GrsNameController.text,
-                         //    locationGr: _GrsLocationController.text,
-                         //    timeGr: _GrtimeController.text,
-                         //    resultGr: int.parse(_GrresultController.text),
-                         //
-                         //    sNameMo: _MosNameController.text,
-                         //    locationMo: _MosLocationController.text,
-                         //    timeMo: _MotimeController.text,
-                         //    resultMo: int.parse(_MoresultController.text),
-                         //  );
-                         //
+                          Education education = Education(
+                            ide: 1,
+                            sNameT: _sNameTController.text,
+                            timeT: _timeTController.text,
+                            perT: int.parse(_perTController.text),
+
+                            sNameTw: _sNameTwController.text,
+                            streamTw: _StreamTwController.text,
+                            timeTw: _timeTwController.text,
+                            perTw: int.parse(_perTwController.text),
+
+                            sNameGr: _GrsNameController.text,
+                            locationGr: _GrsLocationController.text,
+                            timeGr: _GrtimeController.text,
+                            resultGr: int.parse(_GrresultController.text),
+
+                            sNameMo: _MosNameController.text,
+                            locationMo: _MosLocationController.text,
+                            timeMo: _MotimeController.text,
+                            resultMo: int.parse(_MoresultController.text),
+                          );
+
                          // // await addUser(user, context);
                          //  await addEdu(education, context);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const ExperienceDetail(),
+                              builder: (context) => ExperienceDetail(education,widget.users),
                             ),
                           );
                         },
