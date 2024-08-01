@@ -67,11 +67,11 @@ import 'package:rnewapp/ResumeBuilder/model/project.dart';
 import 'package:rnewapp/ResumeBuilder/model/skill.dart';
 
 class SkillPage extends StatefulWidget {
-  final List<Project> projects;
-  const SkillPage({required this.projects, Key? key}) : super(key: key);
+  final List<Project> _submittedDataP;
+  SkillPage(this._submittedDataP);
 
   @override
-  _SkillPageState createState() => _SkillPageState();
+  _SkillPageState createState() => _SkillPageState(_submittedDataP);
 }
 
 class _SkillPageState extends State<SkillPage> {
@@ -94,6 +94,9 @@ class _SkillPageState extends State<SkillPage> {
   ];
 
   List<String> _selectedChips = [];
+
+  List<Project> _submittedDataP;
+  _SkillPageState(this._submittedDataP);
 
   void _onChipSelected(String chip) {
     setState(() {

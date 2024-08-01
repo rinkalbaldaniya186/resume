@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+import 'package:rnewapp/ResumeBuilder/model/education.dart';
 import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/model/project.dart';
 import 'package:rnewapp/ResumeBuilder/skillPage.dart';
 
 class ProjectDetail extends StatefulWidget {
-  final List<Experience> submittedData;
-  ProjectDetail(this.submittedData);
+  final List<Experience> _submittedDataE;
+  Education education;
+  Users users;
+  ProjectDetail(this._submittedDataE, this.education, this.users);
 
   @override
-  _ProjectDetailState createState() => _ProjectDetailState();
+  _ProjectDetailState createState() => _ProjectDetailState(_submittedDataE,education,users);
 }
 
 class _ProjectDetailState extends State<ProjectDetail> {
   bool _isExperienceSelected = false;
   bool _isFresherSelected = false;
-  final List<Project> _submitData = [];
+
+  List<Experience> _submittedDataE;
+  Education education;
+  Users users;
+  _ProjectDetailState(this._submittedDataE, this.education, this.users);
 
   void _onExperienceChanged(bool? value) {
     setState(() {
@@ -85,7 +93,7 @@ class _ProjectDetailState extends State<ProjectDetail> {
                           fontWeight: FontWeight.w500)),
                 ],
               ),
-              if (_isExperienceSelected) Flexible(child: ExperienceFieldForm(_submitData)),
+              if (_isExperienceSelected) Flexible(child: ExperienceFieldForm(_submittedDataE, widget.education, widget.users)),
               if (_isFresherSelected)
                 Padding(
                   padding: const EdgeInsets.all(15.0),
@@ -98,12 +106,12 @@ class _ProjectDetailState extends State<ProjectDetail> {
                     width: 330,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SkillPage(projects: _submitData),
-                          ),
-                        );
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => SkillPage(_submittedDataE),
+                        //   ),
+                        // );
                       },
                       child: Text(
                         'Next',
@@ -124,8 +132,10 @@ class _ProjectDetailState extends State<ProjectDetail> {
 }
 
 class ExperienceFieldForm extends StatefulWidget {
-  final List<Project> submitData;
-  const ExperienceFieldForm(this.submitData, {Key? key}) : super(key: key);
+  final List<Experience> _submittedDataE;
+  Education education;
+  Users users;
+  ExperienceFieldForm(this._submittedDataE, this.education, this.users, {Key? key}) : super(key: key);
 
   @override
   _ExperienceFieldFormState createState() => _ExperienceFieldFormState();
@@ -133,6 +143,9 @@ class ExperienceFieldForm extends StatefulWidget {
 
 class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
   bool _isFormVisible = false;
+
+  final List<Project> _submittedDataP = [];
+
   final TextEditingController _textFieldController = TextEditingController();
   final TextEditingController _textFieldController2 = TextEditingController();
   final TextEditingController _textFieldController3 = TextEditingController();
@@ -150,7 +163,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
         _textFieldController3.text.isNotEmpty &&
         _textFieldController4.text.isNotEmpty) {
       setState(() {
-        widget.submitData.add(Project(
+        _submittedDataP.add(Project(
           idpro: 1,
           pTitle: _textFieldController.text,
           pCompany: _textFieldController2.text,
@@ -168,184 +181,325 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.lightBlue,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 60,
-          width: 330,
-          child: TextButton(
-            onPressed: _toggleForm,
-            child: Text(
-              'Add Details',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 27,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-        if (_isFormVisible)
+    return SingleChildScrollView(
+      child: Column(
+        children: [
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.lightBlue,
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black, width: 2),
               ),
-              child: Column(
-                children: [
-                  TextField(
-                    controller: _textFieldController,
-                    decoration: InputDecoration(
-                      labelText: 'Project Title',
-                    ),
+              height: 60,
+              width: 330,
+              child: TextButton(
+                onPressed: _toggleForm,
+                child: Text(
+                  _isFormVisible ? 'Hide Form' : 'Show Form',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 27,
+                    fontWeight: FontWeight.bold,
                   ),
-                  TextField(
-                    controller: _textFieldController2,
-                    decoration: InputDecoration(
-                      labelText: 'Company/Organisation',
-                    ),
-                  ),
-                  TextField(
-                    controller: _textFieldController3,
-                    decoration: InputDecoration(
-                      labelText: 'Duration',
-                    ),
-                  ),
-                  TextField(
-                    controller: _textFieldController4,
-                    decoration: InputDecoration(
-                      labelText: 'Description',
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.lightBlue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: 60,
-                    width: 330,
-                    child: TextButton(
-                      onPressed: _addData,
-                      child: const Text(
-                        'Add',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 27,
-                          fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          if (_isFormVisible)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade100,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  border: Border.all(color: Colors.black, width: 2),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 25),
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          labelText: 'Title',
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        controller: _textFieldController,
+                        keyboardType: TextInputType.text,
+                        cursorHeight: 35,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 25),
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          labelText: 'Company Name',
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        controller: _textFieldController2,
+                        keyboardType: TextInputType.text,
+                        cursorHeight: 35,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 25),
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          labelText: 'Start Date - End Date',
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        controller: _textFieldController3,
+                        keyboardType: TextInputType.text,
+                        cursorHeight: 35,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 25),
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          labelText: 'Description',
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        controller: _textFieldController4,
+                        keyboardType: TextInputType.text,
+                        cursorHeight: 35,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        height: 60,
+                        width: 330,
+                        child: TextButton(
+                          onPressed: () async {
+                            _addData();
+                            Experience experience = Experience(
+                              idex: 1,
+                              title: _textFieldController.text,
+                              company: _textFieldController2.text,
+                              duration: _textFieldController3.text,
+                              description: _textFieldController4.text,
+                            );
+
+                            print('add button pressed');
+
+                          },
+
+                          child: const Text(
+                            'Add',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 27,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
+          ListView.separated(
+            separatorBuilder: (context, index) {
+              return Container(
+                height: 3,
+                color: Colors.black,
+              );
+            },
+            shrinkWrap: true,
+            itemCount: _submittedDataP.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                tileColor: Colors.grey.shade200,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      _submittedDataP[index].pTitle!,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _submittedDataP.removeAt(index);
+                        });
+                      },
+                      icon: Icon(Icons.delete),
+                    ),
+                  ],
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Company: ${_submittedDataP[index].pCompany}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Text(
+                      'Duration: ${_submittedDataP[index].pDuration}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Text(
+                      'Description: ${_submittedDataP[index].pDescription}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
-        ListView.separated(
-          separatorBuilder: (context, index) {
-            return Container(
-              height: 3,
-              color: Colors.black,
-            );
-          },
-          shrinkWrap: true,
-          itemCount: widget.submitData.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              tileColor: Colors.grey.shade200,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    widget.submitData[index].pTitle!,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        widget.submitData.removeAt(index);
-                      });
-                    },
-                    icon: Icon(Icons.delete),
-                  ),
-                ],
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.lightBlue,
+                borderRadius: BorderRadius.circular(10),
               ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Company: ${widget.submitData[index].pCompany}',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    'Duration: ${widget.submitData[index].pDuration}',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    'Description: ${widget.submitData[index].pDescription}',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.lightBlue,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            height: 60,
-            width: 330,
-            child: TextButton(
-              onPressed: () {
-                if (widget.submitData.isNotEmpty) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SkillPage(projects: widget.submitData),
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Please add at least one project')),
-                  );
-                }
-              },
-              child: Text(
-                'Next',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold),
+              height: 60,
+              width: 330,
+              child: TextButton(
+                onPressed: () {
+      
+      
+                  print('Personal Details :--');
+                  print('id : ${widget.users.id}');
+                  print('firstName : ${widget.users.firstName}');
+                  print('middleName : ${widget.users.middleName}');
+                  print('lastName : ${widget.users.lastName}');
+                  print('jobTitle : ${widget.users.jobTitle}');
+                  print('dob : ${widget.users.dob}');
+                  print('gender : ${widget.users.gender}');
+                  print('mobileNum : ${widget.users.mobileNum}');
+                  print('email : ${widget.users.email}');
+                  print('address : ${widget.users.address}');
+      
+                  print(' ');
+      
+                  print('Educational Details :--');
+      
+                  print('10th Detail :-');
+                  print('ide : ${widget.education.ide}');
+                  print('School Name : ${widget.education.sNameT}');
+                  print('Passing Date : ${widget.education.timeT}');
+                  print('Result : ${widget.education.perT}');
+      
+                  print('12th Detail :-');
+                  print('School Name : ${widget.education.sNameTw}');
+                  print('Stream : ${widget.education.streamTw}');
+                  print('Passing Date : ${widget.education.timeTw}');
+                  print('Result : ${widget.education.perTw}');
+      
+                  print('Graduation Detail :-');
+                  print('Collage/Institute Name : ${widget.education.sNameGr}');
+                  print('Degree/Course : ${widget.education.locationGr}');
+                  print('Passing Date : ${widget.education.timeGr}');
+                  print('Result : ${widget.education.resultGr}');
+      
+                  print('More Detail :-');
+                  print('Collage/Institute Name : ${widget.education.sNameMo}');
+                  print('Degree/Course : ${widget.education.locationMo}');
+                  print('Passing Date : ${widget.education.timeMo}');
+                  print('Result : ${widget.education.resultMo}');
+      
+                  print('1 ');
+      
+                  print('Experience Detail :--');
+                  print('Title : ${widget._submittedDataE[0].title}');
+                  print('Company Name : ${widget._submittedDataE[0].company}');
+                  print('Duration : ${widget._submittedDataE[0].duration}');
+                  print('Descripation : ${widget._submittedDataE[0].description}');
+      
+                  print('Title : ${widget._submittedDataE[1].title}');
+                  print('Company Name : ${widget._submittedDataE[1].company}');
+                  print('Duration : ${widget._submittedDataE[1].duration}');
+                  print('Descripation : ${widget._submittedDataE[1].description}');
+      
+                  if (_submittedDataP.isNotEmpty) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SkillPage(_submittedDataP),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Please add at least one project')),
+                    );
+                  }
+                },
+                child: Text(
+                  'Next',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

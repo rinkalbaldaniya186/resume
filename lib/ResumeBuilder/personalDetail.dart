@@ -223,7 +223,16 @@ class _PersonalDetailState extends State<PersonalDetail> {
                           email: _emailController.text,
                           address: _addressController.text,
                         );
-
+                        print('id : ${users.id}');
+                        print('firstName : ${users.firstName}');
+                        print('middleName : ${users.middleName}');
+                        print('lastName : ${users.lastName}');
+                        print('jobTitle : ${users.jobTitle}');
+                        print('dob : ${users.dob}');
+                        print('gender : ${users.gender}');
+                        print('mobileNum : ${users.mobileNum}');
+                        print('email : ${users.email}');
+                        print('address : ${users.address}');
                         // Navigate to the next screen, passing the user object
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => EducationalDetail(users)

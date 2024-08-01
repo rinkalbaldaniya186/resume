@@ -228,7 +228,6 @@ class _FinalPageState extends State<FinalPage> {
                           Text('Stream: ${eduList[0].locationMo}'),
                           Text('Complete in ${eduList[0].timeMo}'),
                           Text('Result: ${eduList[0].resultMo} %'),
-
                           SizedBox(height: 10),
                           Text('Experience Details',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500),),
                           SizedBox(height: 10),

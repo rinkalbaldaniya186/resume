@@ -545,6 +545,45 @@ class _EducationalDetailState extends State<EducationalDetail> {
                             timeMo: _MotimeController.text,
                             resultMo: int.parse(_MoresultController.text),
                           );
+                          print('Personal Details :--');
+                          print('id : ${users.id}');
+                          print('firstName : ${users.firstName}');
+                          print('middleName : ${users.middleName}');
+                          print('lastName : ${users.lastName}');
+                          print('jobTitle : ${users.jobTitle}');
+                          print('dob : ${users.dob}');
+                          print('gender : ${users.gender}');
+                          print('mobileNum : ${users.mobileNum}');
+                          print('email : ${users.email}');
+                          print('address : ${users.address}');
+
+                          print(' ');
+
+                          print('Educational Details :--');
+
+                          print('10th Detail :-');
+                          print('ide : ${education.ide}');
+                          print('School Name : ${education.sNameT}');
+                          print('Passing Date : ${education.timeT}');
+                          print('Result : ${education.perT}');
+
+                          print('12th Detail :-');
+                          print('School Name : ${education.sNameTw}');
+                          print('Stream : ${education.streamTw}');
+                          print('Passing Date : ${education.timeTw}');
+                          print('Result : ${education.perTw}');
+
+                          print('Graduation Detail :-');
+                          print('Collage/Institute Name : ${education.sNameGr}');
+                          print('Degree/Course : ${education.locationGr}');
+                          print('Passing Date : ${education.timeGr}');
+                          print('Result : ${education.resultGr}');
+
+                          print('More Detail :-');
+                          print('Collage/Institute Name : ${education.sNameMo}');
+                          print('Degree/Course : ${education.locationMo}');
+                          print('Passing Date : ${education.timeMo}');
+                          print('Result : ${education.resultMo}');
 
                          // // await addUser(user, context);
                          //  await addEdu(education, context);
