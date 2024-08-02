@@ -63,15 +63,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/finalPage.dart';
+import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+import 'package:rnewapp/ResumeBuilder/model/education.dart';
+import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/model/project.dart';
-import 'package:rnewapp/ResumeBuilder/model/skill.dart';
 
 class SkillPage extends StatefulWidget {
   final List<Project> _submittedDataP;
-  SkillPage(this._submittedDataP);
+  List<Experience> submittedDataE;
+  Education education;
+  Users users;
+  SkillPage(this._submittedDataP, this.submittedDataE, this.education, this.users);
 
   @override
-  _SkillPageState createState() => _SkillPageState(_submittedDataP);
+  _SkillPageState createState() => _SkillPageState(_submittedDataP, submittedDataE, education, users);
 }
 
 class _SkillPageState extends State<SkillPage> {
@@ -96,7 +101,10 @@ class _SkillPageState extends State<SkillPage> {
   List<String> _selectedChips = [];
 
   List<Project> _submittedDataP;
-  _SkillPageState(this._submittedDataP);
+  List<Experience> submittedDataE;
+  Education education;
+  Users users;
+  _SkillPageState(this._submittedDataP, this.submittedDataE, this.education, this.users);
 
   void _onChipSelected(String chip) {
     setState(() {
@@ -278,7 +286,7 @@ class _SkillPageState extends State<SkillPage> {
 //   @override
 //   _ChipsChoiceState createState() => _ChipsChoiceState();
 // }
-//
+
 // class _ChipsChoiceState extends State<ChipsChoice> {
 //   final List<String> chipTypes = ['English', 'Gujarati', 'Cheese', 'Sour Cream & Onion', 'Spicy'];
 //   String? selectedChip;

@@ -306,7 +306,8 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 20),
+                      padding: const EdgeInsets.only(
+                          top: 10, left: 20, right: 20, bottom: 20),
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.lightBlue,
@@ -314,15 +315,15 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                         ),
                         height: 60,
                         width: 330,
-                        child: TextButton(
-                          onPressed: () async {
+                        child:TextButton(
+                          onPressed: () {
                             _addData();
-                            Experience experience = Experience(
-                              idex: 1,
-                              title: _textFieldController.text,
-                              company: _textFieldController2.text,
-                              duration: _textFieldController3.text,
-                              description: _textFieldController4.text,
+                            Project project = Project(
+                              idpro: 1,
+                              pTitle: _textFieldController.text,
+                              pCompany: _textFieldController2.text,
+                              pDuration: _textFieldController3.text,
+                              pDescription: _textFieldController4.text,
                             );
 
                             print('add button pressed');
@@ -420,8 +421,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
               width: 330,
               child: TextButton(
                 onPressed: () {
-      
-      
+
                   print('Personal Details :--');
                   print('id : ${widget.users.id}');
                   print('firstName : ${widget.users.firstName}');
@@ -462,7 +462,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                   print('Passing Date : ${widget.education.timeMo}');
                   print('Result : ${widget.education.resultMo}');
       
-                  print('1 ');
+                  print(' ');
       
                   print('Experience Detail :--');
                   print('Title : ${widget._submittedDataE[0].title}');
@@ -474,12 +474,25 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                   print('Company Name : ${widget._submittedDataE[1].company}');
                   print('Duration : ${widget._submittedDataE[1].duration}');
                   print('Descripation : ${widget._submittedDataE[1].description}');
+
+                  print(' ');
+
+                  print('Project Detail :--');
+                  print('Title : ${_submittedDataP[0].pTitle}');
+                  print('Company Name : ${_submittedDataP[0].pCompany}');
+                  print('Duration : ${_submittedDataP[0].pDuration}');
+                  print('Descripation : ${_submittedDataP[0].pDescription}');
+
+                  print('Title : ${_submittedDataP[1].pTitle}');
+                  print('Company Name : ${_submittedDataP[1].pCompany}');
+                  print('Duration : ${_submittedDataP[1].pDuration}');
+                  print('Descripation : ${_submittedDataP[1].pDescription}');
       
                   if (_submittedDataP.isNotEmpty) {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SkillPage(_submittedDataP),
+                        builder: (context) => SkillPage(_submittedDataP, widget._submittedDataE, widget.education, widget.users),
                       ),
                     );
                   } else {

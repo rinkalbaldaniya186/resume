@@ -235,7 +235,6 @@ class _FinalPageState extends State<FinalPage> {
                           Text('Stream: ${exList[0].company}'),
                           Text('Complete in ${exList[0].duration}'),
                           Text('Result: ${exList[0].description} '),
-
                         ],
                       ),
                     ),
