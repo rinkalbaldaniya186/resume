@@ -79,6 +79,7 @@ class SkillPage extends StatefulWidget {
   _SkillPageState createState() => _SkillPageState(_submittedDataP, submittedDataE, education, users);
 }
 
+
 class _SkillPageState extends State<SkillPage> {
   List<String> _chipData = [
     'Communication',
