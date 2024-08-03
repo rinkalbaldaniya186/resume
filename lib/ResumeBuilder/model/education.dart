@@ -68,6 +68,7 @@ class Education{
       'locationMo': locationMo,
       'timeMo': timeMo,
       'resultMo': resultMo,
+
     };
   }
 

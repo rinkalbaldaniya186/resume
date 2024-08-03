@@ -23,6 +23,7 @@ class Project {
       'pCompany': pCompany,
       'pDuration': pDuration,
       'pDescription': pDescription,
+
     };
   }
 }

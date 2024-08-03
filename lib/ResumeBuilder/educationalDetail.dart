@@ -523,6 +523,7 @@ class _EducationalDetailState extends State<EducationalDetail> {
                               fontWeight: FontWeight.bold
                           ),
                         ),
+
                         onPressed: () {
                           Education education = Education(
                             ide: 1,

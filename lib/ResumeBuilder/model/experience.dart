@@ -21,6 +21,7 @@ class Experience {
       'company': company,
       'duration': duration,
       'description': description,
+
     };
   }
 

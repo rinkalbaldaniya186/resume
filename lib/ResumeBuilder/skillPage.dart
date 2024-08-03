@@ -171,6 +171,7 @@ class _SkillPageState extends State<SkillPage> {
                     color: Colors.lightBlue,
                     borderRadius: BorderRadius.circular(10),
                   ),
+
                   height: 60,
                   width: 330,
                   child: TextButton(

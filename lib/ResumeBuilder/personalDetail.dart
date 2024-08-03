@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/educationalDetail.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
-import 'package:rnewapp/ResumeBuilder/model/allClass.dart';
+// import 'package:rnewapp/ResumeBuilder/model/allClass.dart';
 // import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 
 class PersonalDetail extends StatefulWidget {
@@ -192,6 +192,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
                 style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w400),
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.only(top: 22, left: 20, right: 20, bottom: 22),
               child: Container(

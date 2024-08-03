@@ -329,7 +329,6 @@ class _ExperienceDetailState extends State<ExperienceDetail> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

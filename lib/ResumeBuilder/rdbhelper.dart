@@ -105,7 +105,6 @@ class DbHelper {
     print('Insert success Educational Detail');
     return await db!.insert(_tableEdu, education.toMap());
   }
-
   // educational detail page no data insert :-
   Future<int> insertExp(Experience experience) async {
     final db = await getDatabase();

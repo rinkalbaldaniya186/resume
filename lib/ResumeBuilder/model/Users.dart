@@ -38,4 +38,5 @@ Map<String, Object> toMap() {
       'address': address,
     };
   }
+
 }

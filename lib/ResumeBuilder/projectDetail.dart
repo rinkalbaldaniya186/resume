@@ -488,7 +488,6 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                   print('Company Name : ${_submittedDataP[1].pCompany}');
                   print('Duration : ${_submittedDataP[1].pDuration}');
                   print('Descripation : ${_submittedDataP[1].pDescription}');
-      
                   if (_submittedDataP.isNotEmpty) {
                     Navigator.pushReplacement(
                       context,

@@ -7,6 +7,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
+
   @override
   State<OnboardingScreen> createState() => _OnboradingScreenState();
 }
