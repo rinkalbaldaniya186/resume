@@ -27,6 +27,7 @@ void getListofUsers() async {
   print(usersList.length);
 }
 
+
 void getListofEdu() async {
   print('i am called education');
   eduList = (await _dbHelper.getEduList())!;
