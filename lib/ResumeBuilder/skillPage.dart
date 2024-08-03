@@ -175,11 +175,11 @@ class _SkillPageState extends State<SkillPage> {
                   width: 330,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FinalPage()));
-                    },
+                    //   Navigator.pushReplacement(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: (context) => FinalPage()));
+                     },
                     child: Text(
                       'Next',
                       style: TextStyle(

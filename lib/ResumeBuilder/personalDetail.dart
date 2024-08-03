@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/educationalDetail.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+import 'package:rnewapp/ResumeBuilder/model/allClass.dart';
 // import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 
 class PersonalDetail extends StatefulWidget {
@@ -12,15 +13,15 @@ class PersonalDetail extends StatefulWidget {
 }
 
 class _PersonalDetailState extends State<PersonalDetail> {
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _middleNameController = TextEditingController();
-  TextEditingController _lastNameController = TextEditingController();
-  TextEditingController _jobtitleController = TextEditingController();
-  TextEditingController _dobController = TextEditingController();
-  TextEditingController _genderController = TextEditingController();
-  TextEditingController _mNumController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _addressController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _middleNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _jobtitleController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _mNumController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -223,6 +224,19 @@ class _PersonalDetailState extends State<PersonalDetail> {
                           email: _emailController.text,
                           address: _addressController.text,
                         );
+                        // AllClass users = AllClass.users(
+                        //   id: 1, // Example ID, adjust as per your schema
+                        //   firstName: _firstNameController.text,
+                        //   middleName: _middleNameController.text,
+                        //   lastName: _lastNameController.text,
+                        //   jobTitle: _jobtitleController.text, // Ensure this matches the Users class
+                        //   dob: _dobController.text,
+                        //   gender: _genderController.text,
+                        //   mobileNum: _mNumController.text.isEmpty ? '' : _mNumController.text,
+                        //   email: _emailController.text,
+                        //   address: _addressController.text,
+                        // );
+
                         print('id : ${users.id}');
                         print('firstName : ${users.firstName}');
                         print('middleName : ${users.middleName}');

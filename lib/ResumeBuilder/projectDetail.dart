@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rnewapp/ResumeBuilder/finalPage.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
 import 'package:rnewapp/ResumeBuilder/model/education.dart';
 import 'package:rnewapp/ResumeBuilder/model/experience.dart';
@@ -492,7 +493,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SkillPage(_submittedDataP, widget._submittedDataE, widget.education, widget.users),
+                        builder: (context) => FinalPage(_submittedDataP, widget._submittedDataE, widget.education, widget.users),
                       ),
                     );
                   } else {
