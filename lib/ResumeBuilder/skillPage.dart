@@ -67,6 +67,8 @@ import 'package:rnewapp/ResumeBuilder/model/Users.dart';
 import 'package:rnewapp/ResumeBuilder/model/education.dart';
 import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/model/project.dart';
+
+
 class SkillPage extends StatefulWidget {
   final List<Project> _submittedDataP;
   List<Experience> submittedDataE;
