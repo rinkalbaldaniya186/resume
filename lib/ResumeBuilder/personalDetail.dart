@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/educationalDetail.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+
+import 'model/allClass.dart';
 // import 'package:rnewapp/ResumeBuilder/model/allClass.dart';
 // import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 
@@ -213,19 +215,7 @@ class _PersonalDetailState extends State<PersonalDetail> {
                   ),
                     onPressed: () {
                       try {
-                        Users users = Users(
-                          id: 1, // Example ID, adjust as per your schema
-                          firstName: _firstNameController.text,
-                          middleName: _middleNameController.text,
-                          lastName: _lastNameController.text,
-                          jobTitle: _jobtitleController.text, // Ensure this matches the Users class
-                          dob: _dobController.text,
-                          gender: _genderController.text,
-                          mobileNum: _mNumController.text.isEmpty ? '' : _mNumController.text,
-                          email: _emailController.text,
-                          address: _addressController.text,
-                        );
-                        // AllClass users = AllClass.users(
+                        // Users users = Users(
                         //   id: 1, // Example ID, adjust as per your schema
                         //   firstName: _firstNameController.text,
                         //   middleName: _middleNameController.text,
@@ -237,20 +227,33 @@ class _PersonalDetailState extends State<PersonalDetail> {
                         //   email: _emailController.text,
                         //   address: _addressController.text,
                         // );
+                        Resume resume = Resume.users(
+                           1, // Example ID, adjust as per your schema
+                          _firstNameController.text,
+                          _middleNameController.text,
+                          _lastNameController.text,
+                          _jobtitleController.text, // Ensure this matches the Users class
+                          _dobController.text,
+                          _genderController.text,
+                          _mNumController.text.isEmpty ? '' : _mNumController.text,
+                          _emailController.text,
+                          _addressController.text,
+                        );
 
-                        print('id : ${users.id}');
-                        print('firstName : ${users.firstName}');
-                        print('middleName : ${users.middleName}');
-                        print('lastName : ${users.lastName}');
-                        print('jobTitle : ${users.jobTitle}');
-                        print('dob : ${users.dob}');
-                        print('gender : ${users.gender}');
-                        print('mobileNum : ${users.mobileNum}');
-                        print('email : ${users.email}');
-                        print('address : ${users.address}');
+                        print('id : ${resume.id}');
+                        print('firstName : ${resume.firstName}');
+                        print('middleName : ${resume.middleName}');
+                        print('lastName : ${resume.lastName}');
+                        print('jobTitle : ${resume.jobTitle}');
+                        print('dob : ${resume.dob}');
+                        print('gender : ${resume.gender}');
+                        print('mobileNum : ${resume.mobileNum}');
+                        print('email : ${resume.email}');
+                        print('address : ${resume.address}');
                         // Navigate to the next screen, passing the user object
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => EducationalDetail(users)
+                            builder: (context) => EducationalDetail(resume: resume)
+
                         ));
                       } catch (e) {
                         // Handle any errors here
@@ -273,7 +276,6 @@ class _PersonalDetailState extends State<PersonalDetail> {
                         );
                       }
                     }
-
                 ),
               ),
             ),

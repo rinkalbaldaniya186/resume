@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/experienceDetail.dart';
 import 'package:rnewapp/ResumeBuilder/finalPage.dart';
 import 'package:rnewapp/ResumeBuilder/model/Users.dart';
+import 'package:rnewapp/ResumeBuilder/model/allClass.dart';
 import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
 import 'model/education.dart';
 
 class EducationalDetail extends StatefulWidget {
-  Users users;
-  EducationalDetail(this.users, {super.key});
+
+  final Resume resume;
+  EducationalDetail({super.key, required this.resume});
 
   @override
-  State<EducationalDetail> createState() => _EducationalDetailState(users);
+  State<EducationalDetail> createState() => _EducationalDetailState();
 }
 
 bool controller = false;
@@ -102,11 +104,9 @@ var pperMo = _MoresultController.text;
 
 
 class _EducationalDetailState extends State<EducationalDetail> {
-  Users users;
-  _EducationalDetailState(this.users);
-
   @override
   Widget build(BuildContext context) {
+    print(widget.resume.firstName);
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Educational Detail',style: TextStyle(color: Colors.white,fontSize: 30),),
@@ -525,73 +525,105 @@ class _EducationalDetailState extends State<EducationalDetail> {
                         ),
 
                         onPressed: () {
-                          Education education = Education(
-                            ide: 1,
-                            sNameT: _sNameTController.text,
-                            timeT: _timeTController.text,
-                            perT: int.parse(_perTController.text),
-
-                            sNameTw: _sNameTwController.text,
-                            streamTw: _StreamTwController.text,
-                            timeTw: _timeTwController.text,
-                            perTw: int.parse(_perTwController.text),
-
-                            sNameGr: _GrsNameController.text,
-                            locationGr: _GrsLocationController.text,
-                            timeGr: _GrtimeController.text,
-                            resultGr: int.parse(_GrresultController.text),
-
-                            sNameMo: _MosNameController.text,
-                            locationMo: _MosLocationController.text,
-                            timeMo: _MotimeController.text,
-                            resultMo: int.parse(_MoresultController.text),
+                          // Education education = Education(
+                          //   ide: 1,
+                          //   sNameT: _sNameTController.text,
+                          //   timeT: _timeTController.text,
+                          //   perT: int.parse(_perTController.text),
+                          //
+                          //   sNameTw: _sNameTwController.text,
+                          //   streamTw: _StreamTwController.text,
+                          //   timeTw: _timeTwController.text,
+                          //   perTw: int.parse(_perTwController.text),
+                          //
+                          //   sNameGr: _GrsNameController.text,
+                          //   locationGr: _GrsLocationController.text,
+                          //   timeGr: _GrtimeController.text,
+                          //   resultGr: int.parse(_GrresultController.text),
+                          //
+                          //   sNameMo: _MosNameController.text,
+                          //   locationMo: _MosLocationController.text,
+                          //   timeMo: _MotimeController.text,
+                          //   resultMo: int.parse(_MoresultController.text),
+                          // );
+                          Resume resume = Resume.education(
+                            widget.resume.id,
+                            widget.resume.firstName,
+                            widget.resume.middleName,
+                            widget.resume.lastName,
+                            widget.resume.jobTitle,
+                            widget.resume.dob,
+                            widget.resume.gender,
+                            widget.resume.mobileNum,
+                            widget.resume.email,
+                            widget.resume.address,
+                              _sNameTController.text,
+                              _timeTController.text,
+                              _perTController.text,
+                              _sNameTwController.text,
+                              _StreamTwController.text,
+                              _timeTwController.text,
+                              _perTwController.text,
+                              _GrsNameController.text,
+                              _GrsLocationController.text,
+                              _GrtimeController.text,
+                              _GrresultController.text,
+                              _MosNameController.text,
+                              _MosLocationController.text,
+                              _MotimeController.text,
+                              _MoresultController.text,
                           );
-                          print('Personal Details :--');
-                          print('id : ${users.id}');
-                          print('firstName : ${users.firstName}');
-                          print('middleName : ${users.middleName}');
-                          print('lastName : ${users.lastName}');
-                          print('jobTitle : ${users.jobTitle}');
-                          print('dob : ${users.dob}');
-                          print('gender : ${users.gender}');
-                          print('mobileNum : ${users.mobileNum}');
-                          print('email : ${users.email}');
-                          print('address : ${users.address}');
-
-                          print(' ');
-
-                          print('Educational Details :--');
-
-                          print('10th Detail :-');
-                          print('ide : ${education.ide}');
-                          print('School Name : ${education.sNameT}');
-                          print('Passing Date : ${education.timeT}');
-                          print('Result : ${education.perT}');
-
-                          print('12th Detail :-');
-                          print('School Name : ${education.sNameTw}');
-                          print('Stream : ${education.streamTw}');
-                          print('Passing Date : ${education.timeTw}');
-                          print('Result : ${education.perTw}');
-
-                          print('Graduation Detail :-');
-                          print('Collage/Institute Name : ${education.sNameGr}');
-                          print('Degree/Course : ${education.locationGr}');
-                          print('Passing Date : ${education.timeGr}');
-                          print('Result : ${education.resultGr}');
-
-                          print('More Detail :-');
-                          print('Collage/Institute Name : ${education.sNameMo}');
-                          print('Degree/Course : ${education.locationMo}');
-                          print('Passing Date : ${education.timeMo}');
-                          print('Result : ${education.resultMo}');
+                          // print('Personal Details :--');
+                          // print('id : ${widget.resume.id}');
+                          // print('firstName : ${widget.resume.firstName}');
+                          // print('middleName : ${widget.resume.middleName}');
+                          // print('lastName : ${widget.resume.lastName}');
+                          // print('jobTitle : ${widget.resume.jobTitle}');
+                          // print('dob : ${widget.resume.dob}');
+                          // print('gender : ${widget.resume.gender}');
+                          // print('mobileNum : ${widget.resume.mobileNum}');
+                          // print('email : ${widget.resume.email}');
+                          // print('address : ${widget.resume.address}');
+                          //
+                          // print(' ');
+                          //
+                          // print('Educational Details :--');
+                          //
+                          // print('10th Detail :-');
+                          //
+                          // print('School Name : ${widget.resume.sNameT}');
+                          // print('Passing Date : ${widget.resume.timeT}');
+                          // print('Result : ${widget.resume.perT}');
+                          //
+                          // print('12th Detail :-');
+                          // print('School Name : ${widget.resume.sNameTw}');
+                          // print('Stream : ${widget.resume.streamTw}');
+                          // print('Passing Date : ${widget.resume.timeTw}');
+                          // print('Result : ${widget.resume.perTw}');
+                          //
+                          // print('Graduation Detail :-');
+                          // print('Collage/Institute Name : ${widget.resume.sNameGr}');
+                          // print('Degree/Course : ${widget.resume.locationGr}');
+                          // print('Passing Date : ${widget.resume.timeGr}');
+                          // print('Result : ${widget.resume.resultGr}');
+                          //
+                          // print('More Detail :-');
+                          // print('Collage/Institute Name : ${widget.resume.sNameMo}');
+                          // print('Degree/Course : ${widget.resume.locationMo}');
+                          // print('Passing Date : ${widget.resume.timeMo}');
+                          // print('Result : ${widget.resume.resultMo}');
 
                          // // await addUser(user, context);
                          //  await addEdu(education, context);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content:
+                                Text('Form submitted successfully!')),
+                          );
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ExperienceDetail(education,widget.users),
+                              builder: (context) => ExperienceDetail(resume: resume),
                             ),
                           );
                         },

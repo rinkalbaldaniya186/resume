@@ -6,24 +6,31 @@ import 'package:rnewapp/ResumeBuilder/model/experience.dart';
 import 'package:rnewapp/ResumeBuilder/model/project.dart';
 import 'package:rnewapp/ResumeBuilder/skillPage.dart';
 
-class ProjectDetail extends StatefulWidget {
-  final List<Experience> _submittedDataE;
-  Education education;
-  Users users;
-  ProjectDetail(this._submittedDataE, this.education, this.users);
+import 'model/allClass.dart';
 
-  @override
-  _ProjectDetailState createState() => _ProjectDetailState(_submittedDataE,education,users);
+class ProjectDetail extends StatefulWidget {
+
+  final Resume resume;
+  late List experienceDetails = [];
+
+   ProjectDetail.experience(this.resume, this.experienceDetails);
+   ProjectDetail({super.key, required this.resume});
+  ProjectDetail.fresher(this.resume);
+
+
+@override
+  _ProjectDetailState createState() => _ProjectDetailState(resume,experienceDetails);
+  // ProjectDetail.fresher(this.resume);
 }
 
 class _ProjectDetailState extends State<ProjectDetail> {
   bool _isExperienceSelected = false;
   bool _isFresherSelected = false;
 
-  List<Experience> _submittedDataE;
-  Education education;
-  Users users;
-  _ProjectDetailState(this._submittedDataE, this.education, this.users);
+  Resume resume;
+  late List experienceDetails = [];
+  _ProjectDetailState(this.resume, this.experienceDetails);
+
 
   void _onExperienceChanged(bool? value) {
     setState(() {
@@ -45,6 +52,9 @@ class _ProjectDetailState extends State<ProjectDetail> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.resume.firstName);
+    print(widget.resume.sNameT);
+    print(widget.experienceDetails.length);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -94,7 +104,7 @@ class _ProjectDetailState extends State<ProjectDetail> {
                           fontWeight: FontWeight.w500)),
                 ],
               ),
-              if (_isExperienceSelected) Flexible(child: ExperienceFieldForm(_submittedDataE, widget.education, widget.users)),
+              if (_isExperienceSelected) Flexible(child: ExperienceFieldForm(resume,experienceDetails)),
               if (_isFresherSelected)
                 Padding(
                   padding: const EdgeInsets.all(15.0),
@@ -107,12 +117,12 @@ class _ProjectDetailState extends State<ProjectDetail> {
                     width: 330,
                     child: TextButton(
                       onPressed: () {
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => SkillPage(_submittedDataE),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SkillPage.fresher(
+                                  widget.resume, widget.experienceDetails)),
+                        );
                       },
                       child: Text(
                         'Next',
@@ -133,24 +143,31 @@ class _ProjectDetailState extends State<ProjectDetail> {
 }
 
 class ExperienceFieldForm extends StatefulWidget {
-  final List<Experience> _submittedDataE;
-  Education education;
-  Users users;
-  ExperienceFieldForm(this._submittedDataE, this.education, this.users, {Key? key}) : super(key: key);
+
+  Resume resume;
+  late List experienceDetails = [];
+  ExperienceFieldForm(this.resume, this.experienceDetails);
+
 
   @override
-  _ExperienceFieldFormState createState() => _ExperienceFieldFormState();
+  _ExperienceFieldFormState createState() => _ExperienceFieldFormState(resume,experienceDetails);
 }
 
 class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
   bool _isFormVisible = false;
 
-  final List<Project> _submittedDataP = [];
+  final List<Resume> _submittedDataP = [];
 
   final TextEditingController _textFieldController = TextEditingController();
   final TextEditingController _textFieldController2 = TextEditingController();
   final TextEditingController _textFieldController3 = TextEditingController();
   final TextEditingController _textFieldController4 = TextEditingController();
+
+  List ProjectDetails = [];
+
+  Resume resume;
+  late List experienceDetails = [];
+  _ExperienceFieldFormState(this.resume, this.experienceDetails);
 
   void _toggleForm() {
     setState(() {
@@ -158,18 +175,17 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
     });
   }
 
-  void _addData() {
+  void _addProjectDetail() {
     if (_textFieldController.text.isNotEmpty &&
         _textFieldController2.text.isNotEmpty &&
         _textFieldController3.text.isNotEmpty &&
         _textFieldController4.text.isNotEmpty) {
       setState(() {
-        _submittedDataP.add(Project(
-          idpro: 1,
-          pTitle: _textFieldController.text,
-          pCompany: _textFieldController2.text,
-          pDuration: _textFieldController3.text,
-          pDescription: _textFieldController4.text,
+        ProjectDetails.add(ProjectDetailC(
+          title: _textFieldController.text,
+          company: _textFieldController2.text,
+          typeofproject: _textFieldController3.text,
+          description: _textFieldController4.text,
         ));
       });
     }
@@ -182,6 +198,9 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.resume.firstName);
+    print(widget.resume.sNameT);
+    print(widget.experienceDetails.length);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -317,20 +336,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                         height: 60,
                         width: 330,
                         child:TextButton(
-                          onPressed: () {
-                            _addData();
-                            Project project = Project(
-                              idpro: 1,
-                              pTitle: _textFieldController.text,
-                              pCompany: _textFieldController2.text,
-                              pDuration: _textFieldController3.text,
-                              pDescription: _textFieldController4.text,
-                            );
-
-                            print('add button pressed');
-
-                          },
-
+                          onPressed: _addProjectDetail,
                           child: const Text(
                             'Add',
                             style: TextStyle(
@@ -354,7 +360,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
               );
             },
             shrinkWrap: true,
-            itemCount: _submittedDataP.length,
+            itemCount: ProjectDetails.length,
             itemBuilder: (context, index) {
               return ListTile(
                 tileColor: Colors.grey.shade200,
@@ -362,7 +368,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      _submittedDataP[index].pTitle!,
+                      ProjectDetails[index].title!,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
@@ -372,7 +378,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                     IconButton(
                       onPressed: () {
                         setState(() {
-                          _submittedDataP.removeAt(index);
+                          ProjectDetails.removeAt(index);
                         });
                       },
                       icon: Icon(Icons.delete),
@@ -383,7 +389,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Company: ${_submittedDataP[index].pCompany}',
+                      'Company: ${ProjectDetails[index].company}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -391,7 +397,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                       ),
                     ),
                     Text(
-                      'Duration: ${_submittedDataP[index].pDuration}',
+                      'Duration: ${ProjectDetails[index].typeofproject}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -399,7 +405,7 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
                       ),
                     ),
                     Text(
-                      'Description: ${_submittedDataP[index].pDescription}',
+                      'Description: ${ProjectDetails[index].description}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -422,78 +428,77 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
               width: 330,
               child: TextButton(
                 onPressed: () {
-
-                  print('Personal Details :--');
-                  print('id : ${widget.users.id}');
-                  print('firstName : ${widget.users.firstName}');
-                  print('middleName : ${widget.users.middleName}');
-                  print('lastName : ${widget.users.lastName}');
-                  print('jobTitle : ${widget.users.jobTitle}');
-                  print('dob : ${widget.users.dob}');
-                  print('gender : ${widget.users.gender}');
-                  print('mobileNum : ${widget.users.mobileNum}');
-                  print('email : ${widget.users.email}');
-                  print('address : ${widget.users.address}');
-      
-                  print(' ');
-      
-                  print('Educational Details :--');
-      
-                  print('10th Detail :-');
-                  print('ide : ${widget.education.ide}');
-                  print('School Name : ${widget.education.sNameT}');
-                  print('Passing Date : ${widget.education.timeT}');
-                  print('Result : ${widget.education.perT}');
-      
-                  print('12th Detail :-');
-                  print('School Name : ${widget.education.sNameTw}');
-                  print('Stream : ${widget.education.streamTw}');
-                  print('Passing Date : ${widget.education.timeTw}');
-                  print('Result : ${widget.education.perTw}');
-      
-                  print('Graduation Detail :-');
-                  print('Collage/Institute Name : ${widget.education.sNameGr}');
-                  print('Degree/Course : ${widget.education.locationGr}');
-                  print('Passing Date : ${widget.education.timeGr}');
-                  print('Result : ${widget.education.resultGr}');
-      
-                  print('More Detail :-');
-                  print('Collage/Institute Name : ${widget.education.sNameMo}');
-                  print('Degree/Course : ${widget.education.locationMo}');
-                  print('Passing Date : ${widget.education.timeMo}');
-                  print('Result : ${widget.education.resultMo}');
-      
-                  print(' ');
-      
-                  print('Experience Detail :--');
-                  print('Title : ${widget._submittedDataE[0].title}');
-                  print('Company Name : ${widget._submittedDataE[0].company}');
-                  print('Duration : ${widget._submittedDataE[0].duration}');
-                  print('Descripation : ${widget._submittedDataE[0].description}');
-      
-                  print('Title : ${widget._submittedDataE[1].title}');
-                  print('Company Name : ${widget._submittedDataE[1].company}');
-                  print('Duration : ${widget._submittedDataE[1].duration}');
-                  print('Descripation : ${widget._submittedDataE[1].description}');
-
-                  print(' ');
-
-                  print('Project Detail :--');
-                  print('Title : ${_submittedDataP[0].pTitle}');
-                  print('Company Name : ${_submittedDataP[0].pCompany}');
-                  print('Duration : ${_submittedDataP[0].pDuration}');
-                  print('Descripation : ${_submittedDataP[0].pDescription}');
-
-                  print('Title : ${_submittedDataP[1].pTitle}');
-                  print('Company Name : ${_submittedDataP[1].pCompany}');
-                  print('Duration : ${_submittedDataP[1].pDuration}');
-                  print('Descripation : ${_submittedDataP[1].pDescription}');
-                  if (_submittedDataP.isNotEmpty) {
-                    Navigator.pushReplacement(
+                //
+                //   print('Personal Details :--');
+                //   print('id : ${widget.resume.id}');
+                //   print('firstName : ${widget.resume.firstName}');
+                //   print('middleName : ${widget.resume.middleName}');
+                //   print('lastName : ${widget.resume.lastName}');
+                //   print('jobTitle : ${widget.resume.jobTitle}');
+                //   print('dob : ${widget.resume.dob}');
+                //   print('gender : ${widget.resume.gender}');
+                //   print('mobileNum : ${widget.resume.mobileNum}');
+                //   print('email : ${widget.resume.email}');
+                //   print('address : ${widget.resume.address}');
+                //
+                //   print(' ');
+                //
+                //   print('Educational Details :--');
+                //
+                //   print('10th Detail :-');
+                // 3
+                //   print('School Name : ${widget.resume.sNameT}');
+                //   print('Passing Date : ${widget.resume.timeT}');
+                //   print('Result : ${widget.resume.perT}');
+                //
+                //   print('12th Detail :-');
+                //   print('School Name : ${widget.resume.sNameTw}');
+                //   print('Stream : ${widget.resume.streamTw}');
+                //   print('Passing Date : ${widget.resume.timeTw}');
+                //   print('Result : ${widget.resume.perTw}');
+                //
+                //   print('Graduation Detail :-');
+                //   print('Collage/Institute Name : ${widget.resume.sNameGr}');
+                //   print('Degree/Course : ${widget.resume.locationGr}');
+                //   print('Passing Date : ${widget.resume.timeGr}');
+                //   print('Result : ${widget.resume.resultGr}');
+                //
+                //   print('More Detail :-');
+                //   print('Collage/Institute Name : ${widget.resume.sNameMo}');
+                //   print('Degree/Course : ${widget.resume.locationMo}');
+                //   print('Passing Date : ${widget.resume.timeMo}');
+                //   print('Result : ${widget.resume.resultMo}');
+                //
+                //   print(' ');
+                //
+                //   print('Experience Detail :--');
+                //   print('Title : ${widget.resume.title}');
+                //   print('Company Name : ${widget.resume.company}');
+                //   print('Duration : ${widget.resume.duration}');
+                //   print('Descripation : ${widget.resume.description}');
+                //
+                //   print('Title : ${widget.resume.title}');
+                //   print('Company Name : ${widget.resume.company}');
+                //   print('Duration : ${widget.resume.duration}');
+                //   print('Descripation : ${widget.resume.description}');
+                //
+                //   print(' ');
+                //
+                //   print('Project Detail :--');
+                //   print('Title : ${resume.pTitle}');
+                //   print('Company Name : ${resume.pCompany}');
+                //   print('Duration : ${resume.pDuration}');
+                //   print('Descripation : ${resume.pDescription}');
+                //
+                //   print('Title : ${resume.pTitle}');
+                //   print('Company Name : ${resume.pCompany}');
+                //   print('Duration : ${resume.pDuration}');
+                //   print('Descripation : ${resume.pDescription}');
+                  if (ProjectDetails.isNotEmpty) {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => FinalPage(_submittedDataP, widget._submittedDataE, widget.education, widget.users),
-                      ),
+                          builder: (context) => SkillPage(widget.resume, ProjectDetails, widget.experienceDetails)),
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -515,4 +520,19 @@ class _ExperienceFieldFormState extends State<ExperienceFieldForm> {
       ),
     );
   }
+}
+
+
+class ProjectDetailC {
+  final String title;
+  final String company;
+  final String typeofproject;
+  final String description;
+
+  const ProjectDetailC({
+    required this.title,
+    required this.company,
+    required this.typeofproject,
+    required this.description,
+  });
 }
