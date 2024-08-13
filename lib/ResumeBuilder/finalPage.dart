@@ -1,105 +1,78 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:rnewapp/ResumeBuilder/model/Users.dart';
-import 'package:rnewapp/ResumeBuilder/model/education.dart';
-import 'package:rnewapp/ResumeBuilder/rdbhelper.dart';
-import 'model/experience.dart';
-import 'model/project.dart';
+import 'package:path_provider/path_provider.dart';
 
-class FinalPage extends StatefulWidget {
-  final List<Project> _submittedDataP;
-  List<Experience> submittedDataE;
-  Education education;
-  Users users;
-  FinalPage(this._submittedDataP, this.submittedDataE, this.education, this.users);
+//import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as p ;
 
-  @override
-  State<FinalPage> createState() => _FinalPageState(_submittedDataP, submittedDataE, education, users);
-}
+import 'model/allClass.dart';
 
-DbHelper _dbHelper = DbHelper();
-List<Users> usersList = [];
-List<Education> eduList = [];
-List<Experience> exList = [];
+class readypdf extends StatefulWidget {
+  final Resume resume;
+  late List ProjectDetails;
+  late List experienceDetails;
+  late List selectedChips;
 
-void getListofUsers() async {
-  print('i am called users');
-  usersList = (await _dbHelper.getUsersList())!;
-  print(usersList.length);
-}
-
-void getListofEdu() async {
-  print('i am called education');
-  eduList = (await _dbHelper.getEduList())!;
-  print(eduList.length);
-}
-
-void getListofEx() async {
-  print('i am called experience');
-  exList = (await _dbHelper.getExpList())!;
-  print(exList.length);
-}
-
-class _FinalPageState extends State<FinalPage> {
-  List<Project> _submittedDataP;
-  List<Experience> submittedDataE;
-  Education education;
-  Users users;
-
-  _FinalPageState(this._submittedDataP, this.submittedDataE, this.education, this.users);
+  readypdf(this.resume, this.ProjectDetails, this.experienceDetails,
+      this.selectedChips);
 
   @override
-  void initState() {
-    super.initState();
-    getListofUsers();
-    getListofEdu();
-    getListofEx();
-  }
+  State<readypdf> createState() => _readypdfState();
+}
 
+class _readypdfState extends State<readypdf> {
+
+  List<Resume> usersList = [];
   @override
   Widget build(BuildContext context) {
+    print('Data :- ${widget.resume.firstName}');
+    print('Experience Length :- ${widget.experienceDetails.length}');
+    print('Project Length :- ${widget.ProjectDetails[0].title}');
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              color: Colors.blue.shade50,
-              height: 110,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  CircleAvatar(
-                      radius: 45,
-                      backgroundImage: AssetImage('assets/image/girl3.jpg')
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                        Text('${widget.users.middleName} ${widget.users.firstName}', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w500),),
-                      Text('${widget.users.jobTitle}', style: TextStyle(color: Colors.black, fontSize: 26, fontWeight: FontWeight.w500),),
-                    ],
-                  ),
-                ],
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                color: Colors.blue.shade50,
+                height: 110,
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CircleAvatar(
+                        radius: 45,
+                        backgroundImage: AssetImage('assets/image/girl3.jpg')
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text('${widget.resume.middleName} ${widget.resume.firstName}', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w500),),
+                        Text('${widget.resume.jobTitle}', style: TextStyle(color: Colors.black, fontSize: 26, fontWeight: FontWeight.w500),),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(12),
-                      color: Colors.blue.shade100,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Personal Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
-                          SizedBox(height: 10),
-                          if (usersList.isNotEmpty) ...[
+              Expanded(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(12),
+                        color: Colors.blue.shade100,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Personal Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
+                            SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -113,7 +86,7 @@ class _FinalPageState extends State<FinalPage> {
                                   ),
                                 ),
                                 SizedBox(width: 10),
-                                Text('${usersList[0].gender}'),
+                                Text('${widget.resume.gender}'),
                               ],
                             ),
                             Row(
@@ -128,7 +101,7 @@ class _FinalPageState extends State<FinalPage> {
                                   ),
                                 ),
                                 SizedBox(width: 10),
-                                Text('${widget.users.dob}'),
+                                Text('${widget.resume.dob}'),
                               ],
                             ),
                             Row(
@@ -143,7 +116,7 @@ class _FinalPageState extends State<FinalPage> {
                                   ),
                                 ),
                                 SizedBox(width: 13),
-                                Text('${usersList[0].mobileNum}')
+                                Text('${widget.resume.mobileNum}')
                               ],
                             ),
                             Row(
@@ -158,7 +131,7 @@ class _FinalPageState extends State<FinalPage> {
                                   ),
                                 ),
                                 SizedBox(width: 10),
-                                Text('${usersList[0].email}')
+                                Text('${widget.resume.email}'),
                               ],
                             ),
                             Row(
@@ -173,69 +146,111 @@ class _FinalPageState extends State<FinalPage> {
                                   ),
                                 ),
                                 SizedBox(width: 12),
-                                Text('${usersList[0].address}'),
+                                Text('${widget.resume.address}'),
                               ],
                             ),
+
+                            SizedBox(height: 10),
+                            Text('Skills Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
+                            Text('${widget.selectedChips}'),
+
+                            SizedBox(height: 10),
+                            Text('Experience Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
+                            SizedBox(height: 5),
+                            Text('${widget.experienceDetails[0].title}'),
+                            Text('Company: ${widget.experienceDetails[0].company}'),
+                            Text('Duration: ${widget.experienceDetails[0].duration}'),
+                            Text('Descripation: ${widget.experienceDetails[0].description} '),
+                            SizedBox(height: 10),
+                            Text('${widget.experienceDetails[1].title}'),
+                            Text('Company: ${widget.experienceDetails[1].company}'),
+                            Text('Duration: ${widget.experienceDetails[1].duration}'),
+                            Text('Descripation: ${widget.experienceDetails[1].description} '),
                           ],
-                          SizedBox(height: 10),
-                          Text('Skills Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(12),
-                      color: Colors.blue.shade200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('Education Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
-                          SizedBox(height: 10),
-                          if (eduList.isNotEmpty) ...[
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(12),
+                        color: Colors.blue.shade200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Education Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
+                            SizedBox(height: 10),
                             Text('10th Detail', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
-                            Text('${eduList[0].sNameT}'),
-                            Text('Complete in ${eduList[0].timeT}'),
-                            Text('Result: ${eduList[0].perT} %'),
+                            Text('${widget.resume.sNameT}'),
+                            Text('Complete in ${widget.resume.timeT}'),
+                            Text('Result: ${widget.resume.perT} %'),
                             SizedBox(height: 10),
                             Text('12th Detail', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
-                            Text('${eduList[0].sNameTw}'),
-                            Text('Stream: ${eduList[0].streamTw}'),
-                            Text('Complete in ${eduList[0].timeTw}'),
-                            Text('Result: ${eduList[0].perTw} %'),
+                            Text('${widget.resume.sNameTw}'),
+                            Text('Stream: ${widget.resume.streamTw}'),
+                            Text('Complete in ${widget.resume.timeTw}'),
+                            Text('Result: ${widget.resume.perTw} %'),
                             SizedBox(height: 10),
                             Text('More Detail', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
-                            Text('${eduList[0].sNameGr}'),
-                            Text('Stream: ${eduList[0].locationGr}'),
-                            Text('Complete in ${eduList[0].timeGr}'),
-                            Text('Result: ${eduList[0].resultGr} %'),
+                            Text('${widget.resume.sNameGr}'),
+                            Text('Stream: ${widget.resume.locationGr}'),
+                            Text('Complete in ${widget.resume.timeGr}'),
+                            Text('Result: ${widget.resume.resultGr} %'),
                             SizedBox(height: 10),
                             Text('More Detail', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
-                            Text('${eduList[0].sNameMo}'),
-                            Text('Stream: ${eduList[0].locationMo}'),
-                            Text('Complete in ${eduList[0].timeMo}'),
-                            Text('Result: ${eduList[0].resultMo} %'),
+                            Text('${widget.resume.sNameMo}'),
+                            Text('Stream: ${widget.resume.locationMo}'),
+                            Text('Complete in ${widget.resume.timeMo}'),
+                            Text('Result: ${widget.resume.resultMo} %'),
+
+                            SizedBox(height: 10),
+                            Text('Project Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
+                            SizedBox(height: 10),
+                            Text('${widget.ProjectDetails[0].title}'),
+                            Text('Company: ${widget.ProjectDetails[0].company}'),
+                            Text('Duration: ${widget.ProjectDetails[0].typeofproject}'),
+                            Text('Descripation: ${widget.ProjectDetails[0].description} '),
+
+                            TextButton(
+                                onPressed: () {
+                                  makePdf();
+                                },
+                                child: Text('Create Pdf'),
+                            ),
+
                           ],
-                          SizedBox(height: 10),
-                          Text('Experience Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
-                          SizedBox(height: 10),
-                          if (exList.isNotEmpty) ...[
-                            Text('${exList[0].title}'),
-                            Text('Stream: ${exList[0].company}'),
-                            Text('Complete in ${exList[0].duration}'),
-                            Text('Result: ${exList[0].description} '),
-                          ],
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
+
+  Future<void> makePdf() async{
+
+    final pdf = p.Document();
+    pdf.addPage(
+      p.Page(build: (context){
+        return p.Column(
+          children: [
+            p.Text('Pdf')
+          ],
+        );
+      })
+    );
+
+   Directory root = await getApplicationDocumentsDirectory();
+   String path = '${root.path}/test.pdf';
+   final file = File(path);
+   await file.writeAsBytes(await pdf.save());
+   print('Path : $path');
+
+  }
+
 }

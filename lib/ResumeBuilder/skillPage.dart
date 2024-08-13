@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rnewapp/ResumeBuilder/ready.dart';
 
+import 'finalPage.dart';
 import 'model/allClass.dart';
 
 class SkillPage extends StatefulWidget {
@@ -38,6 +39,9 @@ class _SkillPageState extends State<SkillPage> {
 
   List<String> _itskill = [
     'JavaScript',
+    'C',
+    'C++',
+    'Dart',
     'Flutter',
     'Python',
     'HTML',
@@ -45,7 +49,7 @@ class _SkillPageState extends State<SkillPage> {
     'Java',
     'SQL',
     'NoSQL',
-    'C++',
+
   ];
 
   List<String> selectedChips = [];
