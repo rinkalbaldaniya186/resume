@@ -16,7 +16,7 @@ class UserResponse {
       this.total, 
       this.totalPages, 
       this.userList,
-      this.support,});
+      this.support});
 
   UserResponse.fromJson(dynamic json) {
     page = json['page'];

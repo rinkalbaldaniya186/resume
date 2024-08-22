@@ -21,7 +21,6 @@ class User {
     avatar = json['avatar'];
   }
 
-
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;

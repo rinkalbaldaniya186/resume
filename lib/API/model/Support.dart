@@ -12,7 +12,6 @@ class Support {
     text = json['text'];
   }
 
-
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['url'] = url;
