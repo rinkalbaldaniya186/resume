@@ -1,12 +1,16 @@
 import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
+import 'dart:math';
+import 'dart:typed_data';
+// import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'model/allClass.dart';
-import 'package:pdf/widgets.dart' as p ;
+import 'package:pdf/widgets.dart' as pw ;
+
+import 'package:screenshot/screenshot.dart';
+import 'package:date_format/date_format.dart';
+
 
 class ready extends StatefulWidget {
   final Resume resume;
@@ -24,11 +28,13 @@ class ready extends StatefulWidget {
 class _readyState extends State<ready> {
 
   List<Resume> usersList = [];
+
   @override
   Widget build(BuildContext context) {
     print('Data :- ${widget.resume.firstName}');
     print('Experience Length :- ${widget.experienceDetails.length}');
     print('Project Length :- ${widget.ProjectDetails[0].title}');
+    final ScreenshotController _screenshotController = ScreenshotController();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -49,8 +55,14 @@ class _readyState extends State<ready> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text('${widget.resume.middleName} ${widget.resume.firstName}', style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w500),),
-                        Text('${widget.resume.jobTitle}', style: TextStyle(color: Colors.black, fontSize: 26, fontWeight: FontWeight.w500),),
+                        Text('${widget.resume.middleName} ${widget.resume
+                            .firstName}', style: TextStyle(color: Colors.black,
+                            fontSize: 21,
+                            fontWeight: FontWeight.w500),),
+                        Text('${widget.resume.jobTitle}',
+                          style: TextStyle(color: Colors.black,
+                              fontSize: 26,
+                              fontWeight: FontWeight.w500),),
                       ],
                     ),
                   ],
@@ -61,8 +73,12 @@ class _readyState extends State<ready> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Container(
-                    height: (MediaQuery.sizeOf(context).height),
-                    width: (MediaQuery.sizeOf(context).width)/2,
+                    height: (MediaQuery
+                        .sizeOf(context)
+                        .height),
+                    width: (MediaQuery
+                        .sizeOf(context)
+                        .width) / 2,
                     padding: EdgeInsets.all(12),
                     color: Colors.blue.shade100,
                     child: Column(
@@ -70,169 +86,205 @@ class _readyState extends State<ready> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Personal Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
+                        Text('Personal Details', style: TextStyle(color: Colors
+                            .black, fontSize: 20, fontWeight: FontWeight
+                            .w500),),
                         SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 17,
-                                width: 17,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/image/genderLogo.png'),
-                                    )
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text('${widget.resume.gender}'),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 17,
-                                width: 17,
-                                decoration: BoxDecoration(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 17,
+                              width: 17,
+                              decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('assets/image/dobLogo.png'),
-                                  ),
+                                    image: AssetImage(
+                                        'assets/image/genderLogo.png'),
+                                  )
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Text('${widget.resume.gender}'),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 17,
+                              width: 17,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/image/dobLogo.png'),
                                 ),
                               ),
-                              SizedBox(width: 10),
-                              Text('${widget.resume.dob}'),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 15,
-                                width: 15,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/image/callLogo.png'),
-                                    )
-                                ),
+                            ),
+                            SizedBox(width: 10),
+                            Text('${widget.resume.dob}'),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 15,
+                              width: 15,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/image/callLogo.png'),
+                                  )
                               ),
-                              SizedBox(width: 13),
-                              Text('${widget.resume.mobileNum}')
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 20,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/image/emailLogo.webp'),
-                                    )
-                                ),
+                            ),
+                            SizedBox(width: 13),
+                            Text('${widget.resume.mobileNum}')
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 20,
+                              width: 20,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/image/emailLogo.webp'),
+                                  )
                               ),
-                              SizedBox(width: 10),
-                              Text('${widget.resume.email}'),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 15,
-                                width: 15,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/image/location.png'),
-                                    )
-                                ),
+                            ),
+                            SizedBox(width: 10),
+                            Text('${widget.resume.email}'),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 15,
+                              width: 15,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/image/location.png'),
+                                  )
                               ),
-                              SizedBox(width: 12),
-                              Text('${widget.resume.address}'),
-                            ],
-                          ),
+                            ),
+                            SizedBox(width: 12),
+                            Text('${widget.resume.address}'),
+                          ],
+                        ),
 
                         SizedBox(height: 10),
-                        Text('Skills Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
+                        Text('Skills Details', style: TextStyle(color: Colors
+                            .black, fontSize: 20, fontWeight: FontWeight
+                            .w500),),
                         Text('${widget.selectedChips}'),
 
                         SizedBox(height: 10),
-                        Text('Experience Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
+                        Text(
+                          'Experience Details', style: TextStyle(color: Colors
+                            .black, fontSize: 20, fontWeight: FontWeight
+                            .w500),),
                         SizedBox(height: 5),
                         Text('${widget.experienceDetails[0].title}'),
                         Text('Company: ${widget.experienceDetails[0].company}'),
-                        Text('Duration: ${widget.experienceDetails[0].duration}'),
-                        Text('Descripation: ${widget.experienceDetails[0].description} '),
-                        SizedBox(height: 10),
-                        Text('${widget.experienceDetails[1].title}'),
-                        Text('Company: ${widget.experienceDetails[1].company}'),
-                        Text('Duration: ${widget.experienceDetails[1].duration}'),
-                        Text('Descripation: ${widget.experienceDetails[1].description} '),
+                        Text('Duration: ${widget.experienceDetails[0]
+                            .duration}'),
+                        Text('Descripation: ${widget.experienceDetails[0]
+                            .description} '),
+                        // SizedBox(height: 10),
+                        // Text('${widget.experienceDetails[1].title}'),
+                        // Text('Company: ${widget.experienceDetails[1].company}'),
+                        // Text('Duration: ${widget.experienceDetails[1].duration}'),
+                        // Text('Descripation: ${widget.experienceDetails[1].description} '),
                       ],
                     ),
                   ),
                   Container(
-                    height: (MediaQuery.sizeOf(context).height),
-                    width: (MediaQuery.sizeOf(context).width)/2,
+                    height: (MediaQuery
+                        .sizeOf(context)
+                        .height),
+                    width: (MediaQuery
+                        .sizeOf(context)
+                        .width) / 2,
                     padding: EdgeInsets.all(12),
                     color: Colors.blue.shade200,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('Education Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
-                         SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Container(
-                                height: 15,
-                                width: 15,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/image/singleDotLogo.png'),
-                                    )
-                                ),
-                              ),
-                              Text('10th Detail :-', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
-                            ],
-                          ),
-                        SizedBox(height: 5),
-                          Text('${widget.resume.sNameT}'),
-                          Text('Complete in ${widget.resume.timeT}'),
-                          Text('Result: ${widget.resume.perT} %'),
-                          SizedBox(height: 10),
-                          Text('12th Detail :-', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
-                        SizedBox(height: 5),
-                          Text('${widget.resume.sNameTw}'),
-                          Text('Stream: ${widget.resume.streamTw}'),
-                          Text('Complete in ${widget.resume.timeTw}'),
-                          Text('Result: ${widget.resume.perTw} %'),
-                          SizedBox(height: 10),
-                          Text('More Detail', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
-                        SizedBox(height: 5),
-                          Text('${widget.resume.sNameGr}'),
-                          Text('Stream: ${widget.resume.locationGr}'),
-                          Text('Complete in ${widget.resume.timeGr}'),
-                          Text('Result: ${widget.resume.resultGr} %'),
-                          SizedBox(height: 10),
-                          Text('More Detail', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
-                        SizedBox(height: 5),
-                          Text('${widget.resume.sNameMo}'),
-                          Text('Stream: ${widget.resume.locationMo}'),
-                          Text('Complete in ${widget.resume.timeMo}'),
-                          Text('Result: ${widget.resume.resultMo} %'),
-                          SizedBox(height: 10),
-                          Text('Project Details', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
-                          SizedBox(height: 10),
-                          Text('${widget.ProjectDetails[0].title}'),
-                          Text('Company: ${widget.ProjectDetails[0].company}'),
-                          Text('Duration: ${widget.ProjectDetails[0].typeofproject}'),
-                          Text('Descripation: ${widget.ProjectDetails[0].description} '),
+                        Text('Education Details', style: TextStyle(color: Colors
+                            .black, fontSize: 20, fontWeight: FontWeight
+                            .w500),),
                         SizedBox(height: 10),
-                        TextButton(
-                          onPressed: () {
-                            makePdf();
-                          },
-                          child: Text('Create Pdf'),
+                        Row(
+                          children: [
+                            // Container(
+                            //   height: 15,
+                            //   width: 15,
+                            //   decoration: BoxDecoration(
+                            //       image: DecorationImage(
+                            //         image: AssetImage('assets/image/singleDotLogo.png'),
+                            //       )
+                            //   ),
+                            // ),
+                            Text('10th Detail :-', style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400),),
+                          ],
                         ),
-
+                        SizedBox(height: 5),
+                        Text('${widget.resume.sNameT}'),
+                        Text('Complete in ${widget.resume.timeT}'),
+                        Text('Result: ${widget.resume.perT} %'),
+                        SizedBox(height: 10),
+                        Text('12th Detail :-', style: TextStyle(color: Colors
+                            .black, fontSize: 17, fontWeight: FontWeight
+                            .w400),),
+                        SizedBox(height: 5),
+                        Text('${widget.resume.sNameTw}'),
+                        Text('Stream: ${widget.resume.streamTw}'),
+                        Text('Complete in ${widget.resume.timeTw}'),
+                        Text('Result: ${widget.resume.perTw} %'),
+                        SizedBox(height: 10),
+                        Text('More Detail', style: TextStyle(color: Colors
+                            .black, fontSize: 17, fontWeight: FontWeight
+                            .w400),),
+                        SizedBox(height: 5),
+                        Text('${widget.resume.sNameGr}'),
+                        Text('Stream: ${widget.resume.locationGr}'),
+                        Text('Complete in ${widget.resume.timeGr}'),
+                        Text('Result: ${widget.resume.resultGr} %'),
+                        SizedBox(height: 10),
+                        Text('More Detail', style: TextStyle(color: Colors
+                            .black, fontSize: 17, fontWeight: FontWeight
+                            .w400),),
+                        SizedBox(height: 5),
+                        Text('${widget.resume.sNameMo}'),
+                        Text('Stream: ${widget.resume.locationMo}'),
+                        Text('Complete in ${widget.resume.timeMo}'),
+                        Text('Result: ${widget.resume.resultMo} %'),
+                        SizedBox(height: 10),
+                        Text('Project Details', style: TextStyle(color: Colors
+                            .black, fontSize: 20, fontWeight: FontWeight
+                            .w500),),
+                        SizedBox(height: 10),
+                        Text('${widget.ProjectDetails[0].title}'),
+                        Text('Company: ${widget.ProjectDetails[0].company}'),
+                        Text('Duration: ${widget.ProjectDetails[0]
+                            .typeofproject}'),
+                        Text('Descripation: ${widget.ProjectDetails[0]
+                            .description} '),
+                        SizedBox(height: 50),
+                        Container(
+                          color: Colors.white38,
+                          height: 50,
+                          width: 180,
+                          child: TextButton(
+                            onPressed: () {
+                              _takeScreenshot(context);
+                            },
+                            child: Text('Create Pdf', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -244,48 +296,103 @@ class _readyState extends State<ready> {
       ),
     );
   }
-
-Future<void> makePdf() async{
-
-  final pdf = p.Document();
-  pdf.addPage(
-      p.Page(build: (context){
-        return p.Column(
-          children: [
-            p.Container(
-              color: PdfColors.blue.shade(50),
-              // height: 110,
-              // width: double.infinity,
-              child: p.Row(
-                mainAxisAlignment: p.MainAxisAlignment.spaceAround,
-                children: [
-                  p.Circle(
-                     // p.radius: 45,
-                     // backgroundImage: pdf.AssetImage('assets/image/girl3.jpg')
-                  ),
-                  p.Column(
-                    mainAxisAlignment: p.MainAxisAlignment.center,
-                    crossAxisAlignment: p.CrossAxisAlignment.end,
-                    children: [
-                      p.Text('${widget.resume.middleName} ${widget.resume.firstName}', style: p.TextStyle(color: PdfColors.black, fontSize: 21),),
-                      p.Text('${widget.resume.jobTitle}', style: p.TextStyle(color: PdfColors.black, fontSize: 26),),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      })
-  );
-
-
-  Directory root = await getApplicationDocumentsDirectory();
-  String path = '${root.path}/test.pdf';
-  final file = File(path);
-  await file.writeAsBytes(await pdf.save());
-  print('Path : $path');
-
 }
-}
+
+// Future<void> makePdf() async{
+//
+//   final pdf = p.Document();
+//   pdf.addPage(
+//       p.Page(
+//           pageFormat: PdfPageFormat.a4,
+//           build: (p.Context context){
+//         return p.Column(
+//           children: [
+//             p.Container(
+//               //color: PdfColors.blue.shade(50),
+//               // height: 110,
+//               // width: double.infinity,
+//               child: p.Row(
+//                 mainAxisAlignment: p.MainAxisAlignment.spaceAround,
+//                 children: [
+//                   p.Circle(
+//                      // p.radius: 45,
+//                      // backgroundImage: pdf.AssetImage('assets/image/girl3.jpg')
+//                   ),
+//                   p.Column(
+//                     mainAxisAlignment: p.MainAxisAlignment.center,
+//                     crossAxisAlignment: p.CrossAxisAlignment.end,
+//                     children: [
+//                       p.Text('${widget.resume.middleName} ${widget.resume.firstName}', style: p.TextStyle(color: PdfColors.black, fontSize: 21),),
+//                       p.Text('${widget.resume.jobTitle}', style: p.TextStyle(color: PdfColors.black, fontSize: 26),),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         );
+//       })
+//   );
+//
+//
+//     var root = await getApplicationDocumentsDirectory();
+//     String pathPDF = '${root.path}/Newtest.pdf';
+//     final file = File(pathPDF);
+//     await file.writeAsBytes(await pdf.save());
+//     print('Path : $pathPDF');
+//
+//   }
+
+  final ScreenshotController _screenshotController = ScreenshotController();
+  _someWidget() {
+    return Text('Hope it will help you');
+  }
+
+  String _getRandomString(int length) {
+    const chars =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    Random rnd = Random();
+    return String.fromCharCodes(Iterable.generate(
+        length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+  }
+
+  _takeScreenshot(BuildContext context) {
+    Widget container = _someWidget();
+    _screenshotController
+        .captureFromWidget(
+        InheritedTheme.captureAll(context, Material(child: container)),
+        delay: const Duration(seconds: 1))
+        .then((capturedImage) {
+      _exportScreenshotToPdf(context, capturedImage);
+    });
+  }
+
+  Future<dynamic> _exportScreenshotToPdf(
+      BuildContext context, Uint8List screenShot) async {
+    pw.Document pdf = pw.Document();
+    pdf.addPage(
+      pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (context) {
+          return pw.Expanded(
+            child: pw.Image(pw.MemoryImage(screenShot), fit: pw.BoxFit.contain),
+          );
+        },
+      ),
+    );
+
+    Directory documentDirectory = await getApplicationDocumentsDirectory();
+    String documentPath = documentDirectory.path;
+
+    File pdfFile = File(
+        '$documentPath/${'${_getRandomString(10)}-${formatDate(DateTime.now(), [
+          dd,
+          '-',
+          mm,
+          '-',
+          yyyy
+        ])}'}.pdf');
+    pdfFile.writeAsBytesSync(await pdf.save());
+  }
+
 

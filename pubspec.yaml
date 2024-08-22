@@ -41,6 +41,10 @@ dependencies:
   shared_preferences: ^2.2.3
   pdf:
   path_provider: ^2.1.4
+  screenshot:
+  date_format:
+  http:
+
 
 dev_dependencies:
   flutter_test:

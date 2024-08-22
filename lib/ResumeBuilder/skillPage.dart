@@ -120,7 +120,7 @@ class _SkillPageState extends State<SkillPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ready(
+                        builder: (context) => Ready(
                             widget.resume,
                             widget.ProjectDetails,
                             widget.experienceDetails,
