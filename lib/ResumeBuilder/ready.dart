@@ -596,7 +596,8 @@ Future<void> _createPDF(
               ),
               if (selectedChips != null && selectedChips.isNotEmpty)
                 pw.Container(
-                  // Reduced width
+                  height: 200, // Reduced height
+                  width: 160, // Reduced width
                   child: pw.Column(
                     crossAxisAlignment: pw.CrossAxisAlignment.start,
                     children: [
