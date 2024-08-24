@@ -1,22 +1,17 @@
 import 'dart:io';
-import 'dart:math';
-import 'dart:typed_data';
-// import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
-import 'model/allClass.dart';
 import 'package:pdf/widgets.dart' as pw ;
-
-import 'package:screenshot/screenshot.dart';
-import 'package:date_format/date_format.dart';
-
+import 'package:rnewapp/ResumeBuilder/projectDetail.dart';
+import 'experienceDetail.dart';
+import 'model/allClass.dart';
 
 class ready extends StatefulWidget {
   final Resume resume;
   late List ProjectDetails;
   late List experienceDetails;
-  late List selectedChips;
+  late final List<String> selectedChips;
 
   ready(this.resume, this.ProjectDetails, this.experienceDetails,
       this.selectedChips);
@@ -34,7 +29,7 @@ class _readyState extends State<ready> {
     print('Data :- ${widget.resume.firstName}');
     print('Experience Length :- ${widget.experienceDetails.length}');
     print('Project Length :- ${widget.ProjectDetails[0].title}');
-    final ScreenshotController _screenshotController = ScreenshotController();
+    // final ScreenshotController _screenshotController = ScreenshotController();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -279,12 +274,23 @@ class _readyState extends State<ready> {
                           height: 50,
                           width: 180,
                           child: TextButton(
-                            onPressed: () {
-                              _takeScreenshot(context);
+                            onPressed: () async {
+                              // Collect the necessary data
+                              Resume resume = widget.resume;
+                              List projectDetails = widget.ProjectDetails;
+                              List experienceDetails = widget.experienceDetails;
+                              List<String> selectedChips = widget.selectedChips;
+
+                              // Call _createPDF with the collected data
+                              await _createPDF(resume, projectDetails, experienceDetails, selectedChips);
                             },
-                            child: Text('Create Pdf', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),),
+                            child: Text(
+                              'Create Pdf',
+                              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
+                            ),
                           ),
                         ),
+
                       ],
                     ),
                   ),
@@ -298,101 +304,341 @@ class _readyState extends State<ready> {
   }
 }
 
-// Future<void> makePdf() async{
-//
-//   final pdf = p.Document();
-//   pdf.addPage(
-//       p.Page(
-//           pageFormat: PdfPageFormat.a4,
-//           build: (p.Context context){
-//         return p.Column(
-//           children: [
-//             p.Container(
-//               //color: PdfColors.blue.shade(50),
-//               // height: 110,
-//               // width: double.infinity,
-//               child: p.Row(
-//                 mainAxisAlignment: p.MainAxisAlignment.spaceAround,
-//                 children: [
-//                   p.Circle(
-//                      // p.radius: 45,
-//                      // backgroundImage: pdf.AssetImage('assets/image/girl3.jpg')
-//                   ),
-//                   p.Column(
-//                     mainAxisAlignment: p.MainAxisAlignment.center,
-//                     crossAxisAlignment: p.CrossAxisAlignment.end,
-//                     children: [
-//                       p.Text('${widget.resume.middleName} ${widget.resume.firstName}', style: p.TextStyle(color: PdfColors.black, fontSize: 21),),
-//                       p.Text('${widget.resume.jobTitle}', style: p.TextStyle(color: PdfColors.black, fontSize: 26),),
-//                     ],
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         );
-//       })
-//   );
-//
-//
-//     var root = await getApplicationDocumentsDirectory();
-//     String pathPDF = '${root.path}/Newtest.pdf';
-//     final file = File(pathPDF);
-//     await file.writeAsBytes(await pdf.save());
-//     print('Path : $pathPDF');
-//
-//   }
+Future<void> _createPDF(
+    Resume resume,
+    List projectDetails,
+    List experienceDetails,
+    List<String> selectedChips,
+    ) async {
+  final pdf = pw.Document();
 
-  final ScreenshotController _screenshotController = ScreenshotController();
-  _someWidget() {
-    return Text('Hope it will help you');
-  }
-
-  String _getRandomString(int length) {
-    const chars =
-        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    Random rnd = Random();
-    return String.fromCharCodes(Iterable.generate(
-        length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
-  }
-
-  _takeScreenshot(BuildContext context) {
-    Widget container = _someWidget();
-    _screenshotController
-        .captureFromWidget(
-        InheritedTheme.captureAll(context, Material(child: container)),
-        delay: const Duration(seconds: 1))
-        .then((capturedImage) {
-      _exportScreenshotToPdf(context, capturedImage);
-    });
-  }
-
-  Future<dynamic> _exportScreenshotToPdf(
-      BuildContext context, Uint8List screenShot) async {
-    pw.Document pdf = pw.Document();
-    pdf.addPage(
-      pw.Page(
-        pageFormat: PdfPageFormat.a4,
-        build: (context) {
-          return pw.Expanded(
-            child: pw.Image(pw.MemoryImage(screenShot), fit: pw.BoxFit.contain),
-          );
-        },
+  pdf.addPage(
+    pw.Page(
+      build: (pw.Context context) => pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.Text(
+            '${resume.middleName} ${resume.firstName} ' ?? '',
+            style: pw.TextStyle(
+              fontSize: 28, // Reduced font size
+              fontWeight: pw.FontWeight.bold,
+              color: PdfColors.blue900,
+            ),
+          ),
+          pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            // Adjusted alignment
+            children: [
+              pw.Text(
+                resume.jobTitle ?? '',
+                style: pw.TextStyle(
+                  fontSize: 18, // Reduced font size
+                  fontWeight: pw.FontWeight.bold,
+                ),
+              ),
+              pw.Text(
+                (resume.mobileNum != null && resume.email != null)
+                    ? 'Contact:${resume.mobileNum} \nEmail:${resume.email}'
+                    : '',
+                style: pw.TextStyle(fontSize: 14), // Reduced font size
+              ),
+            ],
+          ),
+          pw.SizedBox(height: 5), // Reduced spacing
+          pw.Container(
+            width: double.maxFinite,
+            color: PdfColors.black,
+            height: 2, // Reduced height
+          ),
+          pw.SizedBox(height: 5), // Reduced spacing
+          pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Container(
+                height: 15, // Reduced height
+                width: 180, // Reduced width
+                color: PdfColors.grey300,
+                child: pw.Text('Personal Detail',
+                    textAlign: pw.TextAlign.center,
+                    style: pw.TextStyle(fontSize: 16)), // Reduced font size
+              ),
+              if (resume.middleName != null)
+                pw.Text(
+                  'Name: ${resume.middleName}',
+                  style: pw.TextStyle(fontSize: 20),
+                ),
+              if (resume.dob != null)
+                pw.Text(
+                  'DOB: ${resume.dob}',
+                  style: pw.TextStyle(fontSize: 16),
+                ),
+              if (resume.gender != null)
+                pw.Text(
+                  'Gender: ${resume.gender}',
+                  style: pw.TextStyle(fontSize: 16),
+                ),
+              if (resume.email != null)
+                pw.Text(
+                  'Email Address: ${resume.email}',
+                  style: pw.TextStyle(fontSize: 16),
+                ),
+              if (resume.address != null)
+                pw.Text(
+                  'Mobile No.: ${resume.mobileNum}',
+                  style: pw.TextStyle(fontSize: 16),
+                ),
+              if (resume.address != null)
+                pw.Text(
+                  'Address: ${resume.address}',
+                  style: pw.TextStyle(fontSize: 16), // Reduced font size
+                ),
+            ],
+          ),
+          pw.SizedBox(height: 5), // Reduced spacing
+          pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            // Adjusted alignment
+            children: [
+              if (resume.sNameT != null || resume.timeT != null ||  resume.perT != null ||
+                  resume.sNameTw != null || resume.streamTw != null ||  resume.timeTw != null ||  resume.perTw != null ||
+                  resume.sNameGr != null || resume.locationGr != null ||  resume.timeGr != null ||  resume.resultGr != null ||
+                  resume.sNameMo != null || resume.locationMo != null ||  resume.timeMo != null ||  resume.resultMo != null)
+                pw.Container(
+                  height: 140, // Reduced height
+                  width: 160, // Reduced width
+                  child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Container(
+                        width: double.maxFinite,
+                        color: PdfColors.grey300,
+                        child: pw.Text('Education Detail',
+                            textAlign: pw.TextAlign.center,
+                            style: pw.TextStyle(
+                                fontSize: 16)), // Reduced font size
+                      ),
+                      if (resume.sNameT != null)
+                        pw.Text(
+                          'School Name: ${resume.sNameT}',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.timeT != null)
+                        pw.Text(
+                          'Passing Date: ${resume.timeT}',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.perT != null)
+                        pw.Text(
+                          'Percentage: ${resume.perT} %',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.sNameTw != null)
+                        pw.Text(
+                          'School Name: ${resume.sNameTw}',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.streamTw != null)
+                        pw.Text(
+                          'Stream: ${resume.streamTw}',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.timeTw != null)
+                        pw.Text(
+                          'Passing Date: ${resume.timeTw}',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.perTw != null)
+                        pw.Text(
+                          'Percentage: ${resume.perTw} %',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.sNameGr != null)
+                        pw.Text(
+                          'Collage/Institute Name: ${resume.sNameGr}',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.locationGr != null)
+                        pw.Text(
+                          'Graduation course: ${resume.locationGr}',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.timeGr != null)
+                        pw.Text(
+                          'Passing Date: ${resume.timeGr}',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.resultGr != null)
+                        pw.Text(
+                          'Percentage: ${resume.resultGr} %',
+                          style: pw.TextStyle(fontSize: 14),
+                        ),
+                      if (resume.sNameMo != null)
+                        pw.Text(
+                          'Collage/Institute Name: ${resume.sNameMo}',
+                          style: pw.TextStyle(fontSize: 20),
+                        ),
+                      if (resume.locationMo != null)
+                        pw.Text(
+                          'Graduation course: ${resume.locationMo}',
+                          style: pw.TextStyle(fontSize: 20),
+                        ),
+                      if (resume.timeMo != null)
+                        pw.Text(
+                          'Passing Date: ${resume.timeMo}',
+                          style: pw.TextStyle(fontSize: 20),
+                        ),
+                      if (resume.resultMo != null)
+                        pw.Text(
+                          'Percentage: ${resume.resultMo} %',
+                          style: pw.TextStyle(fontSize: 20),
+                        ),
+                    ],
+                  ),
+                ),
+              pw.Container(
+                height: 140, // Reduced height
+                width: 180, // Reduced width
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Container(
+                      width: double.maxFinite,
+                      color: PdfColors.grey300,
+                      child: pw.Text('Experience Detail',
+                          textAlign: pw.TextAlign.center,
+                          style: pw.TextStyle(
+                              fontSize: 16)), // Reduced font size
+                    ),
+                    pw.Expanded(
+                      child: pw.ListView.builder(
+                        itemCount: experienceDetails.length,
+                        itemBuilder: (context, index) {
+                          return pw.Column(children: [
+                            pw.Text(
+                              experienceDetails[index].title,
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            ),
+                            pw.Text(
+                              experienceDetails[index].company,
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            ),
+                            pw.Text(
+                              experienceDetails[index].duration,
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            ),
+                            pw.Text(
+                              experienceDetails[index].description,
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            ),
+                          ]);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          pw.SizedBox(height: 5), // Reduced spacing
+          pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            // Adjusted alignment
+            children: [
+              pw.Container(
+                height: 140, // Reduced height
+                width: 160, // Reduced width
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Container(
+                      width: double.maxFinite,
+                      color: PdfColors.grey300,
+                      child: pw.Text('Project Detail',
+                          textAlign: pw.TextAlign.center,
+                          style: pw.TextStyle(
+                              fontSize: 16)), // Reduced font size
+                    ),
+                    pw.Expanded(
+                      child: pw.ListView.builder(
+                        itemCount: projectDetails.length,
+                        itemBuilder: (context, index) {
+                          return pw.Column(children: [
+                            pw.Text(
+                              projectDetails[index].title,
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            ),
+                            pw.Text(
+                              projectDetails[index].company,
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            ),
+                            pw.Text(
+                              projectDetails[index].typeofproject,
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            ),
+                            pw.Text(
+                              projectDetails[index].description,
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            ),
+                          ]);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (selectedChips != null && selectedChips.isNotEmpty)
+                pw.Container(
+                  // Reduced width
+                  child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Container(
+                        width: double.maxFinite,
+                        color: PdfColors.grey300,
+                        child: pw.Text('Skills',
+                            textAlign: pw.TextAlign.center,
+                            style: pw.TextStyle(
+                                fontSize: 16)), // Reduced font size
+                      ),
+                      pw.Expanded(
+                        child: pw.ListView.builder(
+                          itemCount: selectedChips.length,
+                          itemBuilder: (context, index) {
+                            return pw.Text(
+                              selectedChips[index],
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+        ],
       ),
-    );
+    ),
+  );
 
-    Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String documentPath = documentDirectory.path;
-
-    File pdfFile = File(
-        '$documentPath/${'${_getRandomString(10)}-${formatDate(DateTime.now(), [
-          dd,
-          '-',
-          mm,
-          '-',
-          yyyy
-        ])}'}.pdf');
-    pdfFile.writeAsBytesSync(await pdf.save());
+  try {
+    Directory root = await getApplicationDocumentsDirectory();
+    String path = '${root.path}/resumee.pdf';
+    final file = File(path);
+    await file.writeAsBytes(await pdf.save());
+    print("PDF saved at path: $path");
+  } catch (e) {
+    print("Error saving PDF: $e");
   }
+}
 
 

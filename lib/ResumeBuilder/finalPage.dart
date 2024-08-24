@@ -922,217 +922,346 @@ class _ReadyState extends State<Ready> {
     final pdf = pw.Document();
 
     pdf.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: [
-          pw.Text(
-            '${widget.resume.middleName} ${widget.resume.firstName} ' ?? '',
-            style: pw.TextStyle(
-              fontSize: 41,
-              fontWeight: pw.FontWeight.bold,
-              color: PdfColors.blue900,
+      pw.Page(
+        build: (pw.Context context) => pw.Column(
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: [
+            pw.Text(
+        '${widget.resume.middleName} ${widget.resume.firstName} ' ?? '',
+              style: pw.TextStyle(
+                fontSize: 28, // Reduced font size
+                fontWeight: pw.FontWeight.bold,
+                color: PdfColors.blue900,
+              ),
             ),
-          ),
-          pw.SizedBox(height: 10),
-          pw.Row(
-            mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
-            children: [
-              pw.Text(
-                widget.resume.jobTitle ?? '',
-                style: pw.TextStyle(
-                  fontSize: 25,
-                  fontWeight: pw.FontWeight.bold,
-                ),
-              ),
-              pw.Text(
-                (widget.resume.mobileNum != null && widget.resume.email != null)
-                    ? 'Contact:${widget.resume.mobileNum} \nEmail:${widget.resume.email}'
-                    : '',
-                style: pw.TextStyle(fontSize: 20),
-              ),
-            ],
-          ),
-          pw.SizedBox(height: 10),
-          pw.Container(
-            width: double.maxFinite,
-            color: PdfColors.black,
-            height: 3,
-          ),
-          pw.SizedBox(height: 10),
-          pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: [
-              pw.Container(
-                height: 20,
-                width: 250,
-                color: PdfColors.grey300,
-                child: pw.Text('Personal Detail', textAlign: pw.TextAlign.center),
-              ),
-              if (widget.resume.middleName != null)
+            pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+              // Adjusted alignment
+              children: [
                 pw.Text(
-                  'Name: ${widget.resume.middleName}',
-                  style: pw.TextStyle(fontSize: 20),
+                  widget.resume.jobTitle ?? '',
+                  style: pw.TextStyle(
+                    fontSize: 18, // Reduced font size
+                    fontWeight: pw.FontWeight.bold,
+                  ),
                 ),
-              if (widget.resume.dob != null)
                 pw.Text(
-                  'DOB: ${widget.resume.dob}',
-                  style: pw.TextStyle(fontSize: 20),
+                  (widget.resume.mobileNum != null && widget.resume.email != null)
+                      ? 'Contact:${widget.resume.mobileNum} \nEmail:${widget.resume.email}'
+                      : '',
+                  style: pw.TextStyle(fontSize: 14), // Reduced font size
                 ),
-              if (widget.resume.gender != null)
-                pw.Text(
-                  'Gender: ${widget.resume.gender}',
-                  style: pw.TextStyle(fontSize: 20),
+              ],
+            ),
+            pw.SizedBox(height: 5), // Reduced spacing
+            pw.Container(
+              width: double.maxFinite,
+              color: PdfColors.black,
+              height: 2, // Reduced height
+            ),
+            pw.SizedBox(height: 5), // Reduced spacing
+            pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Container(
+                  height: 15, // Reduced height
+                  width: 180, // Reduced width
+                  color: PdfColors.grey300,
+                  child: pw.Text('Personal Detail',
+                      textAlign: pw.TextAlign.center,
+                      style: pw.TextStyle(fontSize: 16)), // Reduced font size
                 ),
-              if (widget.resume.email != null)
-                pw.Text(
-                  'Email Address: ${widget.resume.email}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.address != null)
-                pw.Text(
-                  'Mobile No.: ${widget.resume.mobileNum}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.address != null)
-                pw.Text(
-                  'Address: ${widget.resume.address}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-            ],
-          ),
-          pw.SizedBox(height: 20),
-          pw.Row(
-              mainAxisAlignment: pw.MainAxisAlignment.spaceAround,
+                if (widget.resume.middleName != null)
+                  pw.Text(
+                    'Name: ${widget.resume.middleName}',
+                    style: pw.TextStyle(fontSize: 20),
+                  ),
+                if (widget.resume.dob != null)
+                  pw.Text(
+                    'DOB: ${widget.resume.dob}',
+                    style: pw.TextStyle(fontSize: 16),
+                  ),
+                if (widget.resume.gender != null)
+                  pw.Text(
+                    'Gender: ${widget.resume.gender}',
+                    style: pw.TextStyle(fontSize: 16),
+                  ),
+                if (widget.resume.email != null)
+                  pw.Text(
+                    'Email Address: ${widget.resume.email}',
+                    style: pw.TextStyle(fontSize: 16),
+                  ),
+                if (widget.resume.address != null)
+                  pw.Text(
+                    'Mobile No.: ${widget.resume.mobileNum}',
+                    style: pw.TextStyle(fontSize: 16),
+                  ),
+                if (widget.resume.address != null)
+                  pw.Text(
+                    'Address: ${widget.resume.address}',
+                    style: pw.TextStyle(fontSize: 16), // Reduced font size
+                  ),
+              ],
+            ),
+            pw.SizedBox(height: 5), // Reduced spacing
+            pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+              // Adjusted alignment
               children: [
                 if (widget.resume.sNameT != null || widget.resume.timeT != null ||  widget.resume.perT != null ||
                     widget.resume.sNameTw != null || widget.resume.streamTw != null ||  widget.resume.timeTw != null ||  widget.resume.perTw != null ||
                     widget.resume.sNameGr != null || widget.resume.locationGr != null ||  widget.resume.timeGr != null ||  widget.resume.resultGr != null ||
                     widget.resume.sNameMo != null || widget.resume.locationMo != null ||  widget.resume.timeMo != null ||  widget.resume.resultMo != null)
-          pw.Container(
-             height: 170,
-             width: 200,
-               child: pw.Column(
-                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  pw.Container(
+                    height: 140, // Reduced height
+                    width: 160, // Reduced width
+                    child: pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Container(
+                          width: double.maxFinite,
+                          color: PdfColors.grey300,
+                          child: pw.Text('Education Detail',
+                              textAlign: pw.TextAlign.center,
+                              style: pw.TextStyle(
+                                  fontSize: 16)), // Reduced font size
+                        ),
+                        if (widget.resume.sNameT != null)
+                          pw.Text(
+                            'School Name: ${widget.resume.sNameT}',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.timeT != null)
+                          pw.Text(
+                            'Passing Date: ${widget.resume.timeT}',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.perT != null)
+                          pw.Text(
+                            'Percentage: ${widget.resume.perT} %',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.sNameTw != null)
+                          pw.Text(
+                            'School Name: ${widget.resume.sNameTw}',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.streamTw != null)
+                          pw.Text(
+                            'Stream: ${widget.resume.streamTw}',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.timeTw != null)
+                          pw.Text(
+                            'Passing Date: ${widget.resume.timeTw}',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.perTw != null)
+                          pw.Text(
+                            'Percentage: ${widget.resume.perTw} %',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.sNameGr != null)
+                          pw.Text(
+                            'Collage/Institute Name: ${widget.resume.sNameGr}',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.locationGr != null)
+                          pw.Text(
+                            'Graduation course: ${widget.resume.locationGr}',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.timeGr != null)
+                          pw.Text(
+                            'Passing Date: ${widget.resume.timeGr}',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.resultGr != null)
+                          pw.Text(
+                            'Percentage: ${widget.resume.resultGr} %',
+                            style: pw.TextStyle(fontSize: 14),
+                          ),
+                        if (widget.resume.sNameMo != null)
+                          pw.Text(
+                            'Collage/Institute Name: ${widget.resume.sNameMo}',
+                            style: pw.TextStyle(fontSize: 20),
+                          ),
+                        if (widget.resume.locationMo != null)
+                          pw.Text(
+                            'Graduation course: ${widget.resume.locationMo}',
+                            style: pw.TextStyle(fontSize: 20),
+                          ),
+                        if (widget.resume.timeMo != null)
+                          pw.Text(
+                            'Passing Date: ${widget.resume.timeMo}',
+                            style: pw.TextStyle(fontSize: 20),
+                          ),
+                        if (widget.resume.resultMo != null)
+                          pw.Text(
+                            'Percentage: ${widget.resume.resultMo} %',
+                            style: pw.TextStyle(fontSize: 20),
+                          ),
+                      ],
+                    ),
+                  ),
+                pw.Container(
+                  height: 140, // Reduced height
+                  width: 180, // Reduced width
+                  child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
                     children: [
-                     pw.Container(
+                      pw.Container(
                         width: double.maxFinite,
                         color: PdfColors.grey300,
-                        child: pw.Text('Education Detail', textAlign: pw.TextAlign.center),
+                        child: pw.Text('Experience Detail',
+                            textAlign: pw.TextAlign.center,
+                            style: pw.TextStyle(
+                                fontSize: 16)), // Reduced font size
                       ),
-              pw. Text('10th Detail :-' ,style: pw.TextStyle(fontSize: 23,),),
-              if (widget.resume.sNameT != null)
-                pw.Text(
-                  'School Name: ${widget.resume.sNameT}',
-                  style: pw.TextStyle(fontSize: 20),
+                      pw.Expanded(
+                        child: pw.ListView.builder(
+                          itemCount: widget.experienceDetails.length,
+                          itemBuilder: (context, index) {
+                            return pw.Column(children: [
+                              pw.Text(
+                                widget.experienceDetails[index].title,
+                                style: pw.TextStyle(
+                                    fontSize: 14), // Reduced font size
+                              ),
+                              pw.Text(
+                                widget.experienceDetails[index].company,
+                                style: pw.TextStyle(
+                                    fontSize: 14), // Reduced font size
+                              ),
+                              pw.Text(
+                                widget.experienceDetails[index].duration,
+                                style: pw.TextStyle(
+                                    fontSize: 14), // Reduced font size
+                              ),
+                              pw.Text(
+                                widget.experienceDetails[index].description,
+                                style: pw.TextStyle(
+                                    fontSize: 14), // Reduced font size
+                              ),
+                            ]);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              if (widget.resume.timeT != null)
-                pw.Text(
-                  'Passing Date: ${widget.resume.timeT}',
-                  style: pw.TextStyle(fontSize: 20),
+              ],
+            ),
+            pw.SizedBox(height: 5), // Reduced spacing
+            pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+              // Adjusted alignment
+              children: [
+                pw.Container(
+                  height: 140, // Reduced height
+                  width: 160, // Reduced width
+                  child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Container(
+                        width: double.maxFinite,
+                        color: PdfColors.grey300,
+                        child: pw.Text('Project Detail',
+                            textAlign: pw.TextAlign.center,
+                            style: pw.TextStyle(
+                                fontSize: 16)), // Reduced font size
+                      ),
+                      pw.Expanded(
+                        child: pw.ListView.builder(
+                          itemCount: widget.ProjectDetails.length,
+                          itemBuilder: (context, index) {
+                            return pw.Column(children: [
+                              pw.Text(
+                                widget.ProjectDetails[index].title,
+                                style: pw.TextStyle(
+                                    fontSize: 14), // Reduced font size
+                              ),
+                              pw.Text(
+                                widget.ProjectDetails[index].company,
+                                style: pw.TextStyle(
+                                    fontSize: 14), // Reduced font size
+                              ),
+                              pw.Text(
+                                widget.ProjectDetails[index].typeofproject,
+                                style: pw.TextStyle(
+                                    fontSize: 14), // Reduced font size
+                              ),
+                              pw.Text(
+                                widget.ProjectDetails[index].description,
+                                style: pw.TextStyle(
+                                    fontSize: 14), // Reduced font size
+                              ),
+                            ]);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              if (widget.resume.perT != null)
-                pw.Text(
-                  'Percentage: ${widget.resume.perT} %',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-                      pw. Text('10th Detail :-' ,style: pw.TextStyle(fontSize: 23,),),
-              if (widget.resume.sNameTw != null)
-                pw.Text(
-                  'School Name: ${widget.resume.sNameTw}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.streamTw != null)
-                pw.Text(
-                  'Stream: ${widget.resume.streamTw}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.timeTw != null)
-                pw.Text(
-                  'Passing Date: ${widget.resume.timeTw}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.perTw != null)
-                pw.Text(
-                  'Percentage: ${widget.resume.perTw} %',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.sNameGr != null)
-                pw.Text(
-                  'Collage/Institute Name: ${widget.resume.sNameGr}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.locationGr != null)
-                pw.Text(
-                  'Graduation course: ${widget.resume.locationGr}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.timeGr != null)
-                pw.Text(
-                  'Passing Date: ${widget.resume.timeGr}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.resultGr != null)
-                pw.Text(
-                  'Percentage: ${widget.resume.resultGr} %',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.sNameMo != null)
-                pw.Text(
-                  'Collage/Institute Name: ${widget.resume.sNameMo}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.locationMo != null)
-                pw.Text(
-                  'Graduation course: ${widget.resume.locationMo}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.timeMo != null)
-                pw.Text(
-                  'Passing Date: ${widget.resume.timeMo}',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-              if (widget.resume.resultMo != null)
-                pw.Text(
-                  'Percentage: ${widget.resume.resultMo} %',
-                  style: pw.TextStyle(fontSize: 20),
-                ),
-            ],
-          ),
+                if (widget.selectedChips != null &&
+                    widget.selectedChips.isNotEmpty)
+                  pw.Container(
+                    height: 140, // Reduced height
+                    width: 160, // Reduced width
+                    child: pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Container(
+                          width: double.maxFinite,
+                          color: PdfColors.grey300,
+                          child: pw.Text('Skills',
+                              textAlign: pw.TextAlign.center,
+                              style: pw.TextStyle(
+                                  fontSize: 16)), // Reduced font size
+                        ),
+                        pw.ListView.builder(
+                          itemCount: widget.selectedChips.length,
+                          itemBuilder: (context, index) {
+                            return pw.Text(
+                              widget.selectedChips[index],
+                              style: pw.TextStyle(
+                                  fontSize: 14), // Reduced font size
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+            pw.SizedBox(height: 10),
+            pw.Center(
+              child: pw.Container(
+                height: 20,
+                width: 170,
+                color: PdfColors.grey300,
+                child: pw.Text('Declaration', textAlign: pw.TextAlign.center),
+              ),
+            ),
+            pw.Text(
+              'I hereby declare that the information furnished above is to the best of my knowledge.',
+              style: pw.TextStyle(fontSize: 20),
+            ),
+            pw.SizedBox(height: 10),
+          ],
         ),
-        if (widget.experienceDetails != null && widget.experienceDetails!.isNotEmpty)
-    pw.Container(
-        height: 170,
-        width: 230,
-        child: pw.Column(
-        crossAxisAlignment: pw.CrossAxisAlignment.start,
-        children: [
-        pw.Container(
-        width: double.maxFinite,
-        color: PdfColors.grey300,
-        child: pw.Text('Experience Detail', textAlign: pw.TextAlign.center),
-    ),
-    pw.Expanded(
-    child: pw.ListView.builder(
-    itemCount: widget.experienceDetails!.length,
-    itemBuilder: (context, index) {
-      return pw.Circle();
-    }
-    ),
-    ),
-    ]
-    ),
-    ),
-    ]
-    ),
-    ]
-    ),),
+      ),
     );
-         Directory root = await getApplicationDocumentsDirectory();
-         String path = '${root.path}/test.pdf';
-          final file = File(path);
-          await file.writeAsBytes(await pdf.save());
-           print('Path : $path');
 
+    try {
+      Directory root = await getApplicationDocumentsDirectory();
+      String path = '${root.path}/resume.pdf';
+      final file = File(path);
+      await file.writeAsBytes(await pdf.save());
+      print("PDF saved at path: $path");
+    } catch (e) {
+      print("Error saving PDF: $e");
+    }
   }
+
 }

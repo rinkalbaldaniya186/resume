@@ -78,7 +78,6 @@ class _ListScreenState extends State<ListScreen> {
     if (response.statusCode == 200) {
       // success
       // print('Response : ${response.body}');
-
       UserResponseP res = UserResponseP.fromJson(jsonDecode(response.body));
 
       setState(() {
