@@ -7,7 +7,6 @@ import 'package:rnewapp/weather_API/model/response.dart';
 import 'package:rnewapp/weather_API/model/sys.dart';
 import 'package:rnewapp/weather_API/model/weather.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -126,6 +125,10 @@ class _HomePageState extends State<HomePage> {
               ),
               Text(
                 'City Name: ${responsee?.name}',
+                style: TextStyle(fontSize: 18),
+              ),
+              Text(
+                'id: ${responsee?.id}',
                 style: TextStyle(fontSize: 18),
               ),
             ],
