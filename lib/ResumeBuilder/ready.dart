@@ -360,37 +360,37 @@ Future<void> _createPDF(
                 color: PdfColors.grey300,
                 child: pw.Text('Personal Detail',
                     textAlign: pw.TextAlign.center,
-                    style: pw.TextStyle(fontSize: 16)), // Reduced font size
+                    style: pw.TextStyle(fontSize: 14)), // Reduced font size
               ),
               if (resume.middleName != null)
                 pw.Text(
-                  'Name: ${resume.middleName}',
-                  style: pw.TextStyle(fontSize: 20),
+                  'Name: ${resume.middleName} ${resume.firstName}',
+                  style: pw.TextStyle(fontSize: 14),
                 ),
               if (resume.dob != null)
                 pw.Text(
                   'DOB: ${resume.dob}',
-                  style: pw.TextStyle(fontSize: 16),
+                  style: pw.TextStyle(fontSize: 14),
                 ),
               if (resume.gender != null)
                 pw.Text(
                   'Gender: ${resume.gender}',
-                  style: pw.TextStyle(fontSize: 16),
+                  style: pw.TextStyle(fontSize: 14),
                 ),
               if (resume.email != null)
                 pw.Text(
                   'Email Address: ${resume.email}',
-                  style: pw.TextStyle(fontSize: 16),
+                  style: pw.TextStyle(fontSize: 14),
                 ),
               if (resume.address != null)
                 pw.Text(
                   'Mobile No.: ${resume.mobileNum}',
-                  style: pw.TextStyle(fontSize: 16),
+                  style: pw.TextStyle(fontSize: 14),
                 ),
               if (resume.address != null)
                 pw.Text(
                   'Address: ${resume.address}',
-                  style: pw.TextStyle(fontSize: 16), // Reduced font size
+                  style: pw.TextStyle(fontSize: 14), // Reduced font size
                 ),
             ],
           ),
@@ -404,8 +404,9 @@ Future<void> _createPDF(
                   resume.sNameGr != null || resume.locationGr != null ||  resume.timeGr != null ||  resume.resultGr != null ||
                   resume.sNameMo != null || resume.locationMo != null ||  resume.timeMo != null ||  resume.resultMo != null)
                 pw.Container(
-                  height: 140, // Reduced height
-                  width: 160, // Reduced width
+                  height: 200, // Reduced height
+                  width: 160,
+                  color: PdfColors.amber100,// Reduced width
                   child: pw.Column(
                     crossAxisAlignment: pw.CrossAxisAlignment.start,
                     children: [
@@ -475,29 +476,30 @@ Future<void> _createPDF(
                       if (resume.sNameMo != null)
                         pw.Text(
                           'Collage/Institute Name: ${resume.sNameMo}',
-                          style: pw.TextStyle(fontSize: 20),
+                          style: pw.TextStyle(fontSize: 14),
                         ),
                       if (resume.locationMo != null)
                         pw.Text(
                           'Graduation course: ${resume.locationMo}',
-                          style: pw.TextStyle(fontSize: 20),
+                          style: pw.TextStyle(fontSize: 14),
                         ),
                       if (resume.timeMo != null)
                         pw.Text(
                           'Passing Date: ${resume.timeMo}',
-                          style: pw.TextStyle(fontSize: 20),
+                          style: pw.TextStyle(fontSize: 14),
                         ),
                       if (resume.resultMo != null)
                         pw.Text(
                           'Percentage: ${resume.resultMo} %',
-                          style: pw.TextStyle(fontSize: 20),
+                          style: pw.TextStyle(fontSize: 14),
                         ),
                     ],
                   ),
                 ),
               pw.Container(
-                height: 140, // Reduced height
-                width: 180, // Reduced width
+                height: 200, // Reduced height
+                width: 180,
+                color: PdfColors.amber100,// Reduced width
                 child: pw.Column(
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
                   children: [
@@ -596,10 +598,12 @@ Future<void> _createPDF(
               ),
               if (selectedChips != null && selectedChips.isNotEmpty)
                 pw.Container(
-                  height: 200, // Reduced height
-                  width: 160, // Reduced width
+                  height: 280, // Reduced height
+                  width: 160,
+                  color: PdfColors.blueAccent,// Reduced width
                   child: pw.Column(
-                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    crossAxisAlignment: pw.CrossAxisAlignment.center,
+                    mainAxisSize: pw.MainAxisSize.max,
                     children: [
                       pw.Container(
                         width: double.maxFinite,

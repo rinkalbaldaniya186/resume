@@ -52,9 +52,9 @@ class _ListScreenState extends State<ListScreen> {
         child: CircularProgressIndicator(),
       )
           : ListView.builder(
-        itemCount: usersList.length,
-        itemBuilder: (context, index) {
-          return ListTile(
+            itemCount: usersList.length,
+            itemBuilder: (context, index) {
+           return ListTile(
             leading: CircleAvatar(
               radius: 40,
               backgroundColor: Colors.grey.shade400,
