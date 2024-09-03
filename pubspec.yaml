@@ -44,6 +44,7 @@ dependencies:
   screenshot:
   date_format:
   http:
+  weather: ^3.1.1
 
 
 dev_dependencies:
