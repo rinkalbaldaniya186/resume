@@ -44,14 +44,26 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-                "https://t3.ftcdn.net/jpg/09/27/66/52/360_F_927665268_8qlhphsRBKCi8TsIfu1LRrJ23Clpuece.jpg"),
-            fit: BoxFit.cover,
+      body: Center(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                  "https://media.istockphoto.com/id/656116970/photo/blue-background.jpg?s=612x612&w=0&k=20&c=P7PWU0yK1Vc5y-0eexb96dCTSa7JS3fCKieY2G0dh9w="),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Container(
+            height: 250,
+            width: 250,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/image/weatherIcon.png"),
+                fit: BoxFit.none,
+              ),
+            ),
           ),
         ),
       ),
@@ -99,6 +111,7 @@ class _HomePageState extends State<HomePage> {
 
       setState(() {
         updateLoading(false);
+      //  List<Weather> weatherList = [];
         weatherList = res.weather ?? [];
         mainData = res.main;
         sysData = res.sys;
@@ -114,165 +127,333 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Weather App'),
-        backgroundColor: Colors.lightBlueAccent,
-      ),
+      // appBar: AppBar(
+      //   title: Text('Weather App'),
+      //   backgroundColor: Colors.lightBlueAccent,
+      // ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
-          : Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    "https://t3.ftcdn.net/jpg/09/27/66/52/360_F_927665268_8qlhphsRBKCi8TsIfu1LRrJ23Clpuece.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: _searchController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: 'Enter city name',
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          final cityName = _searchController.text.trim();
-                          if (cityName.isNotEmpty) {
-                            fetchWeatherData(cityName);
-                          }
-                        },
-                        icon: Icon(Icons.search),
-                      ),
-                    ],
-                  ),
+          : SafeArea(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "https://media.istockphoto.com/id/656116970/photo/blue-background.jpg?s=612x612&w=0&k=20&c=P7PWU0yK1Vc5y-0eexb96dCTSa7JS3fCKieY2G0dh9w="),
+                  fit: BoxFit.cover,
                 ),
-              //if (responsee != null)
-                Column(
-                  children: [
-                    Text(
-                      '${responsee!.name}',
-                      style: TextStyle(fontSize: 40),
-                    ),
-                    Text(
-                      '(${sysData?.country})',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Text(
-                      '${weatherList.isNotEmpty ? weatherList[0].description : 'No data'}',
-                      style: TextStyle(fontSize: 25),
-                    ),
-                    if (weatherList.isNotEmpty)
-                      Container(
-                        height: 180,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                'https://openweathermap.org/img/wn/${weatherList[0].icon}@4x.png'),
-                          ),
-                        ),
-                      ),
-                    Text(
-                      '${(mainData!.temp! - 273.15).toStringAsFixed(2)}°C',
-                      style: TextStyle(fontSize: 50),
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              ),
+               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5, left: 20, right: 20,bottom: 20),
+                    child: Row(
                       children: [
-                        Column(
-                          children: [
-                            Text(
-                              'Min.Temp',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            Text(
-                              '${mainData?.tempMin ?? 'N/A'}',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
+                        Expanded(
+                           child:
+                           TextField(
+                             decoration: InputDecoration(
+                                 border: OutlineInputBorder(
+                                   borderSide: BorderSide(color: Colors.black,width: 2),
+                                   borderRadius: BorderRadius.all(Radius.circular(20)),
+                                 ),
+                                 labelText: 'Location',
+                                 labelStyle: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w700),
+                                 prefixIcon: Icon(Icons.location_on_rounded, color: Colors.black, size: 30),
+                                 hintText: 'Enter city name',
+                             ),
+                             controller: _searchController,
+                             keyboardType: TextInputType.text,
+                             cursorHeight: 35,
+                             style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w400),
+                           ),
                         ),
-                        SizedBox(width: 10),
-                        Container(width: 3, height: 50, color: Colors.black),
-                        SizedBox(width: 10),
-                        Column(
-                          children: [
-                            Text(
-                              'Max.Temp',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                            Text(
-                              '${mainData?.tempMax ?? 'N/A'}',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
+                        IconButton(
+                          onPressed: () {
+                            final cityName = _searchController.text.trim();
+                            if (cityName.isNotEmpty) {
+                              fetchWeatherData(cityName);
+                            }
+                          },
+                          icon: Icon(Icons.search),
                         ),
                       ],
                     ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                if (responsee != null)
+                  Column(
                     children: [
-                      Column(
-                        children: [
-                          Text(
-                            'Humidity',
-                            style: TextStyle(fontSize: 18),
+                      Text(
+                        '${responsee!.name}',
+                        style: TextStyle(fontSize: 40,fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        '(${sysData?.country})',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      if (weatherList.isNotEmpty)
+                        Container(
+                          height: 150,
+                          width: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://openweathermap.org/img/wn/${weatherList[0].icon}@4x.png'),
+                            ),
                           ),
-                          Text(
-                            '${mainData?.humidity ?? 'N/A'}%',
-                            style: TextStyle(fontSize: 18),
+                        ),
+                      Text(
+                        '${(mainData!.temp! - 273.15).toStringAsFixed(2)}°C',
+                        style: TextStyle(fontSize: 50,fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        '${weatherList[0].description}',
+                        style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 120,
+                            width: 185,
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlueAccent,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.lightBlueAccent,
+                                  blurRadius: 15.0,
+                                ),
+                              ],
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.lightBlueAccent.shade100,
+                                  Colors.lightBlueAccent.shade200,
+                                  Colors.lightBlueAccent.shade400,
+                                ]
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/image/maxTempIcon.png")
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Max.Temp',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      '${mainData?.tempMax ?? 'N/A'}',
+                                      style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Column(
+                          //   children: [
+                          //     Text(
+                          //       'Min.Temp',
+                          //       style: TextStyle(fontSize: 18),
+                          //     ),
+                          //     Text(
+                          //       '${mainData?.tempMin ?? 'N/A'}',
+                          //       style: TextStyle(fontSize: 18),
+                          //     ),
+                          //   ],
+                          // ),
+                          SizedBox(width: 15),
+                          Container(
+                            height: 120,
+                            width: 185,
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlueAccent,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.lightBlueAccent,
+                                    blurRadius: 15.0,
+                                  ),
+                                ],
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Colors.lightBlueAccent.shade100,
+                                      Colors.lightBlueAccent.shade200,
+                                      Colors.lightBlueAccent.shade400,
+                                    ]
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage("assets/image/minTempIcon.png")
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Min.Temp',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      '${mainData?.tempMin ?? 'N/A'}',
+                                      style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                      SizedBox(width: 10),
-                      Container(width: 3, height: 50, color: Colors.black),
-                      SizedBox(width: 10),
-                      Column(
+                    SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Wind Speed',
-                            style: TextStyle(fontSize: 18),
+                          Container(
+                            height: 120,
+                            width: 185,
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlueAccent,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.lightBlueAccent,
+                                    blurRadius: 15.0,
+                                  ),
+                                ],
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Colors.lightBlueAccent.shade100,
+                                      Colors.lightBlueAccent.shade200,
+                                      Colors.lightBlueAccent.shade400,
+                                    ]
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage("assets/image/humidityIcon.png")
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Humidity',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      '${mainData?.humidity ?? 'N/A'}%',
+                                      style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          Text(
-                            '${windData?.speed ?? 'N/A'}',
-                            style: TextStyle(fontSize: 18),
+                          // Column(
+                          //   children: [
+                          //     Text(
+                          //       'Min.Temp',
+                          //       style: TextStyle(fontSize: 18),
+                          //     ),
+                          //     Text(
+                          //       '${mainData?.tempMin ?? 'N/A'}',
+                          //       style: TextStyle(fontSize: 18),
+                          //     ),
+                          //   ],
+                          // ),
+                          SizedBox(width: 15),
+                          Container(
+                            height: 120,
+                            width: 185,
+                            decoration: BoxDecoration(
+                                color: Colors.lightBlueAccent,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.lightBlueAccent,
+                                    blurRadius: 15.0,
+                                  ),
+                                ],
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Colors.lightBlueAccent.shade100,
+                                      Colors.lightBlueAccent.shade200,
+                                      Colors.lightBlueAccent.shade400,
+                                    ]
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(20))
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage("assets/image/windSpeedIcon.png")
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Wind Speed',
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      '${windData?.speed ?? 'N/A'}',
+                                      style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ],
+                    SizedBox(height: 20),
+                    Text(
+                      'Feels Like : ${mainData?.feelsLike ?? 'N/A'}',
+                      style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400, color: Colors.black),
+                    ),
+                    Text(
+                      'Air Pressure : ${mainData?.pressure ?? 'N/A'}',
+                      style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400, color: Colors.black),
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                ),
+                         ],
+                       ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Sunrise: ${sysData?.sunrise ?? 'N/A'}',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Text(
-                    'Sunset: ${sysData?.sunset ?? 'N/A'}',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'id: ${responsee?.id ?? 'N/A'}',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ],
-              ),
-                       ],
-                     ),
-      ),
+          ),
     );
   }
 }
