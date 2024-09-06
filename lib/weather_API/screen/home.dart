@@ -8,7 +8,6 @@ import 'package:rnewapp/weather_API/model/sys.dart';
 import 'package:rnewapp/weather_API/model/weather.dart';
 import 'package:rnewapp/weather_API/model/wind.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -221,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                                     Colors.lightBlueAccent.shade100,
                                     Colors.lightBlueAccent.shade200,
                                     Colors.lightBlueAccent.shade400,
-                                  ]
+                                  ],
                               ),
                               border: Border.all(color: Colors.black,width: 2),
                               borderRadius: BorderRadius.all(Radius.circular(20))
@@ -360,7 +359,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      'Feels Like : ${mainData?.feelsLike ?? 'N/A'}',
+                      'Feels Like : ${((mainData!.feelsLike!  - 273.15).toStringAsFixed(2)) ?? 'N/A'}°C',
+
                       style: TextStyle(fontSize: 25,fontWeight: FontWeight.w400, color: Colors.black),
                     ),
                     Text(
