@@ -21,18 +21,24 @@ class Scroll_HomePage extends StatefulWidget {
 
 class _Scroll_HomePageState extends State<Scroll_HomePage> {
 
-  ScrollController _scrollController = ScrollController();
-  final _list = List.generate(20, (index) => index);
+  final _scrollController = ScrollController();
+  final _list = List.generate(20, (index) => 'Item ${index + 1}');
   int _currentPage = 1;
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(loadMore);
+    _scrollController.addListener(_loadMore);
   }
 
-  void loadMore() {
-    if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _loadMore() {
+    if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
       setState(() {
         _currentPage++;
         _list.addAll(List.generate(20, (index) => 'Item ${index + 1 + _currentPage * 20}'));
@@ -47,11 +53,20 @@ class _Scroll_HomePageState extends State<Scroll_HomePage> {
         title: Text('Material App Bar'),
       ),
       body: ListView.builder(
-        controller: ScrollController(),
+        controller: _scrollController,
         itemCount: _list.length,
-        itemBuilder: (context, index) {
+        itemBuilder: (BuildContext context, int index) {
         return ListTile(
-          title: Text('Item ${_list[index]}'),
+          title: Text('List ${_list[index]}', style: TextStyle(color: Colors.black, fontSize: 20),),
+          // subtitle: Container(
+          //   height: 50,
+          //   width: double.infinity,
+          //   decoration: BoxDecoration(
+          //     image: DecorationImage(
+          //       image: NetworkImage('https://png.pngitem.com/pimgs/s/612-6125667_blue-background-png-free-background-blue-background-hd.png'),
+          //     )
+          //   ),
+          // ),
         );
        },
       ),
