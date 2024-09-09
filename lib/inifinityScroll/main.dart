@@ -18,10 +18,11 @@ class MyHomePage extends StatefulWidget {
      _MyHomePageState createState() => _MyHomePageState();
 }
 
+final _scrollController = ScrollController();
+final _list = List.generate(20, (index) => 'Item ${index + 1}');
+int _currentPage = 1;
+
 class _MyHomePageState extends State<MyHomePage> {
-  final _scrollController = ScrollController();
-  final _list = List.generate(20, (index) => 'Item ${index + 1}');
-  int _currentPage = 1;
 
   @override
   void initState() {
@@ -46,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('page load');
     return Scaffold(
       appBar: AppBar(
         title: Text('Infinite Scrolling Example'),
@@ -54,8 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
         controller: _scrollController,
         itemCount: _list.length,
         itemBuilder: (BuildContext context, int index) {
+          print('in listview');
           return ListTile(
-            title: Text(_list[index]),
+            title: Text('List ${_list[index]}', style: TextStyle(color: Colors.black)),
           );
         },
       ),
