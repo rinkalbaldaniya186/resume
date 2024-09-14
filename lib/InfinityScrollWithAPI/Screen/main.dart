@@ -30,6 +30,8 @@ class _Scroll_HomePageState extends State<Scroll_HomePage> {
   List<Posts> listofPost = [];
   bool isLoading = false;
 
+  bool hasMore = true;
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +49,6 @@ class _Scroll_HomePageState extends State<Scroll_HomePage> {
     print(_currentPage);
     if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
       _currentPage++;
-
       fetchUserList(_currentPage);
     }
   }
@@ -70,7 +71,6 @@ class _Scroll_HomePageState extends State<Scroll_HomePage> {
             controller: _scrollController,
             itemCount: listofPost.length,
             itemBuilder: (context, index) {
-          // final post = Posts![index];
             return ListTile(
               leading: CircleAvatar(
                 // foregroundColor: Colors.black,
