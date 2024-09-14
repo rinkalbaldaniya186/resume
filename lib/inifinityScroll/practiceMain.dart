@@ -57,7 +57,7 @@ class _Scroll_HomePageState extends State<Scroll_HomePage> {
         itemCount: _list.length,
         itemBuilder: (BuildContext context, int index) {
         return ListTile(
-          title: Text('List ${_list[index]}', style: TextStyle(color: Colors.black, fontSize: 20),),
+          title: Text('List ${_list[index]}', style: TextStyle(color: Colors.black, fontSize: 22),),
           // subtitle: Container(
           //   height: 50,
           //   width: double.infinity,

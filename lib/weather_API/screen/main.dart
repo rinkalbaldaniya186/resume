@@ -31,8 +31,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void screenChange(){
     Timer(Duration(seconds: 10), ()  async {
-       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
-      },
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
+    },
     );
   }
   @override

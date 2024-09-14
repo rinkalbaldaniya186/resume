@@ -84,6 +84,7 @@ class _ListScreenState extends State<ListScreen> {
         updateLoading(false);
         usersList = res.usersList ?? [];
       });
+
     } else {
       // failed
       updateLoading(false);
