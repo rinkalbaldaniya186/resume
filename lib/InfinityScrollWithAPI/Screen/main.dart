@@ -52,6 +52,7 @@ class _Scroll_HomePageState extends State<Scroll_HomePage> {
       fetchUserList(_currentPage);
     }
   }
+
   @override
   void dispose() {
     _scrollController.dispose();
