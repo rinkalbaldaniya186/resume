@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../models/person.dart';
 
 void main() => runApp(MyApp());
 
@@ -174,4 +173,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+class Person {
+  final String name;
+  final String designation;
+
+  Person(this.name, this.designation);
 }

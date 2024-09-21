@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class AnimatedGridScreen extends StatefulWidget {
   const AnimatedGridScreen({super.key});
 
@@ -74,14 +73,14 @@ class _AnimatedGridScreenState extends State<AnimatedGridScreen> {
                 itemBuilder: (context, index) {
                   return AnimatedContainer(
                     duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOutCirc,
+                    curve: Curves.easeInOut,
                     color: Colors.blue.shade400,
                     child: Center(
                       child: Text(
                       'Item ${_gridItems[index]}',
                       style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
+                      ),
+                   ),
                   );
                 },
               ),

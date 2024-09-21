@@ -406,7 +406,7 @@ Future<void> _createPDF(
                 pw.Container(
                   height: 200, // Reduced height
                   width: 160,
-                  color: PdfColors.amber100,// Reduced width
+              //    color: PdfColors.amber100,// Reduced width
                   child: pw.Column(
                     crossAxisAlignment: pw.CrossAxisAlignment.start,
                     children: [
@@ -499,7 +499,7 @@ Future<void> _createPDF(
               pw.Container(
                 height: 200, // Reduced height
                 width: 180,
-                color: PdfColors.amber100,// Reduced width
+              //  color: PdfColors.amber100,// Reduced width
                 child: pw.Column(
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
                   children: [
@@ -600,7 +600,7 @@ Future<void> _createPDF(
                 pw.Container(
                   height: 280, // Reduced height
                   width: 160,
-                  color: PdfColors.blueAccent,// Reduced width
+                //  color: PdfColors.blueAccent,// Reduced width
                   child: pw.Column(
                     crossAxisAlignment: pw.CrossAxisAlignment.center,
                     mainAxisSize: pw.MainAxisSize.max,
