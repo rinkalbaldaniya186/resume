@@ -1333,3 +1333,9 @@ pw.Widget _buildSkillsDetail(List<String> selectedChips) {
   )
       : pw.Container();
 }
+
+// resume = rnewapp
+// firebase = firebaseauth111
+// state_management = state_management
+// rinkalapp = rinkalapp
+// e_commerce_app = e_commerce_app

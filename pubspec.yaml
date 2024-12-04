@@ -39,7 +39,7 @@ dependencies:
   path:
   smooth_page_indicator: ^1.1.0
   shared_preferences: ^2.2.3
-  pdf:
+  pdf: ^3.6.0
   path_provider: ^2.1.4
   screenshot:
   date_format:
