@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: Scroll_HomePage(),
     );
@@ -62,7 +63,8 @@ class _Scroll_HomePageState extends State<Scroll_HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Material App Bar'),
+        title: Text('Infinity Scroll with API Example'),
+        backgroundColor: Colors.grey.shade300,
       ),
       body: isLoading
           ? Center(

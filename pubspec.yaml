@@ -45,6 +45,7 @@ dependencies:
   date_format:
   http:
   weather: ^3.1.1
+  url_launcher: ^6.3.1
 
 
 dev_dependencies:

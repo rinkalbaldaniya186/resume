@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Http Get',
       home: UserListScreen(),
     );
@@ -47,12 +48,16 @@ class _UserListScreenState extends State<UserListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('User List'),
+        backgroundColor: Colors.grey.shade300,
       ),
       body: isLoading
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : ListView.builder(
+          : ListView.separated(
+              separatorBuilder:(context, index) {
+                return Divider(color: Colors.black,height: 1,);
+              },
             itemCount: listofPost.length,
             itemBuilder: (context, index) {
             // final post = Posts![index];
@@ -63,8 +68,8 @@ class _UserListScreenState extends State<UserListScreen> {
                 backgroundColor: Colors.grey.shade400,
                 child: Text('${listofPost[index].id}',style: TextStyle(color: Colors.black, fontSize: 25),),
               ),
-              title: Text('${listofPost[index].title}',style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),),
-              subtitle: Text('${listofPost[index].body}',style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.w400),),
+              title: Text('${listofPost[index].title}',style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500),),
+              subtitle: Text('${listofPost[index].body}',style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w400),),
             );
         },
       ),

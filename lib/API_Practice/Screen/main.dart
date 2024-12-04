@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       home: ListScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -45,7 +46,9 @@ class _ListScreenState extends State<ListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Screen'),
+        title: Text('User List Screen',),
+          titleTextStyle: TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.w400),
+        backgroundColor: Colors.grey.shade200
       ),
       body:  isLoading
           ? Center(

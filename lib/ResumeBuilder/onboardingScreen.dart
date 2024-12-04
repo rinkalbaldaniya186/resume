@@ -39,7 +39,7 @@ class _OnboradingScreenState extends State<OnboardingScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  height: 520,
+                  height: 400,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       image: DecorationImage(
@@ -54,7 +54,7 @@ class _OnboradingScreenState extends State<OnboardingScreen> {
                   child: Text('${obList[index].description}',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400,),textAlign: TextAlign.center,),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 10,
                 ),
                 SmoothPageIndicator(
                   controller: _PageController,
@@ -62,7 +62,7 @@ class _OnboradingScreenState extends State<OnboardingScreen> {
                   axisDirection: Axis.horizontal,
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

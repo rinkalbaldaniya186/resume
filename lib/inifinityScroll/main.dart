@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
          home: MyHomePage(),
      );
   }
@@ -51,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Infinite Scrolling Example'),
+        backgroundColor: Colors.lightBlue.shade200,
       ),
       body: ListView.builder(
         controller: _scrollController,

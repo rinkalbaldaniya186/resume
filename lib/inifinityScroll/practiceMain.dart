@@ -7,6 +7,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
+      debugShowCheckedModeBanner: false,
       home: Scroll_HomePage()
     );
   }
@@ -50,9 +51,16 @@ class _Scroll_HomePageState extends State<Scroll_HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Material App Bar'),
+        title: Text('Infinity Scroll Example'),
+        backgroundColor: Colors.grey.shade300,
       ),
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) {
+          return Container(
+            height: 0.4,
+            color: Colors.black45,
+          );
+        },
         controller: _scrollController,
         itemCount: _list.length,
         itemBuilder: (BuildContext context, int index) {
