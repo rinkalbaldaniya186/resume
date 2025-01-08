@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw ;
-import 'package:rnewapp/ResumeBuilder/projectDetail.dart';
-import 'experienceDetail.dart';
 import 'model/allClass.dart';
 
 // class ready extends StatefulWidget {
@@ -983,10 +981,6 @@ import 'model/allClass.dart';
 // //     print("Error saving PDF: $e");
 // //   }
 // // } why all datanot print in pdf correct this code
-
-import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:rnewapp/ResumeBuilder/model/allClass.dart';
 
 class Ready extends StatefulWidget {
   final Resume resume;
